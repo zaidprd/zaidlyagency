@@ -1,30 +1,34 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
-import sanity from '@sanity/astro';
-import react from '@astrojs/react';
-import cloudflare from '@astrojs/cloudflare';
-import sitemap from '@astrojs/sitemap';
+// @ts-check 
+import { defineConfig } from 'astro/config'; 
+import tailwindcss from '@tailwindcss/vite'; 
+import sanity from '@sanity/astro'; 
+import react from '@astrojs/react'; 
+import cloudflare from '@astrojs/cloudflare'; 
+import sitemap from '@astrojs/sitemap'; 
 
-export default defineConfig({
-  site: 'https://zaidly.com',
+export default defineConfig({ 
+  site: 'https://zaidly.com', 
   output: 'server', 
-  
-  // Di Astro 6, cukup panggil cloudflare() tanpa isi opsi mode lagi
   adapter: cloudflare(), 
-
-  integrations: [
-    sanity({
-      projectId: '0ukg7bxy',
-      dataset: 'production',
-      apiVersion: '2026-03-28',
-      useCdn: true,
-    }),
-    react(),
-    sitemap()
-  ],
-
-  vite: {
-    plugins: [tailwindcss()]
-  }
+  image: { 
+    service: { 
+      entrypoint: 'astro/assets/services/noop', 
+    }, 
+  }, 
+  integrations: [ 
+    sanity({ 
+      projectId: process.env.PUBLIC_SANITY_PROJECT_ID, 
+      dataset: process.env.PUBLIC_SANITY_DATASET, 
+      apiVersion: '2023-10-01', // Ini baru bener, gak sok tau masa depan
+      useCdn: true, 
+    }), 
+    react(), 
+    sitemap() 
+  ], 
+  vite: { 
+    plugins: [tailwindcss()], 
+    ssr: { 
+      external: ['node:events'] 
+    } 
+  } 
 });
