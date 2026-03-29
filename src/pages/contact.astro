@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Hubungi Zaidly Agency - Jasa Pembuatan Website Jakarta" 
+  description="Konsultasikan kebutuhan website UMKM Anda dengan Zaidly Agency."
+>
+  
+  <section class="pt-48 pb-20 bg-slate-50 border-b border-slate-100 text-center">
+    <div class="container mx-auto px-4">
+       <span class="text-[#7E67F8] font-oswald uppercase font-bold text-[12px] tracking-[0.3em] mb-4 block">Get In Touch</span>
+       <h1 class="text-5xl md:text-7xl font-bold font-oswald uppercase text-slate-900 tracking-tighter">
+         Kontak Kami
+       </h1>
+    </div>
+  </section>
+
+  <main class="py-24 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="flex flex-wrap -mx-4">
+        
+        <div class="w-full lg:w-1/2 px-4 mb-16 lg:mb-0">
+          <div class="max-w-md">
+            <h2 class="text-3xl font-bold font-oswald uppercase mb-8 text-slate-900">Mari Bicara Tentang <span class="text-[#7E67F8]">Project</span> Anda</h2>
+            <div class="space-y-10">
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-[#7E67F8]/10 rounded-lg flex items-center justify-center mr-6 shrink-0 text-[#7E67F8]">📍</div>
+                <div>
+                  <h4 class="text-sm font-bold font-oswald uppercase text-slate-900 mb-1 tracking-widest">Kantor Kami</h4>
+                  <p class="text-slate-500 text-sm font-mulish">Jl. H Taha, Kebon Jeruk, Jakarta</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-[#7E67F8]/10 rounded-lg flex items-center justify-center mr-6 shrink-0 text-[#7E67F8]">📞</div>
+                <div>
+                  <h4 class="text-sm font-bold font-oswald uppercase text-slate-900 mb-1 tracking-widest">WhatsApp</h4>
+                  <p class="text-slate-500 text-sm font-mulish">+62 812 7420 3815</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 px-4">
+          <div class="bg-[#F8F9FA] p-10 rounded-sm border-t-8 border-[#7E67F8] shadow-2xl">
+            <div class="space-y-6 text-left">
+              <div>
+                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 font-oswald">Nama Lengkap</label>
+                <input type="text" id="wa_name" class="w-full px-5 py-4 bg-white border border-slate-200 focus:border-[#7E67F8] focus:outline-none transition-all font-mulish text-sm text-slate-900" placeholder="Contoh: Zaid" />
+              </div>
+              
+              <div>
+                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 font-oswald">Pilih Paket</label>
+                <select id="wa_package" class="w-full px-5 py-4 bg-white border border-slate-200 focus:border-[#7E67F8] focus:outline-none transition-all font-mulish text-sm text-slate-900">
+                  <option value="Basic (IDR 588k)">Paket Basic (IDR 588k)</option>
+                  <option value="Pro (IDR 1.188k)">Paket Pro (IDR 1.188k)</option>
+                  <option value="Business (IDR 1.788k)">Paket Business (IDR 1.788k)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 font-oswald">Pesan / Detail Project</label>
+                <textarea id="wa_message" rows="4" class="w-full px-5 py-4 bg-white border border-slate-200 focus:border-[#7E67F8] focus:outline-none transition-all font-mulish text-sm text-slate-900" placeholder="Ceritakan kebutuhan website Anda..."></textarea>
+              </div>
+
+              <button id="btn_wa" class="w-full bg-slate-900 text-white py-5 font-bold font-oswald text-xs uppercase tracking-[0.3em] hover:bg-[#7E67F8] transition-all duration-500 shadow-lg flex items-center justify-center gap-3">
+                Kirim ke WhatsApp
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script is:inline>
+    // Tunggu sampai tombol diklik
+    document.getElementById('btn_wa').addEventListener('click', function() {
+      const name = document.getElementById('wa_name').value;
+      const pkg = document.getElementById('wa_package').value;
+      const msg = document.getElementById('wa_message').value;
+      const phone = "6281274203815"; 
+
+      if(!name || !msg) {
+        alert("Nama dan Pesan jangan kosong bos!");
+        return;
+      }
+
+      const text = `Halo Zaidly Agency,%0A%0ANama: ${name}%0APaket: ${pkg}%0APesan: ${msg}`;
+      window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+    });
+  </script>
+</Layout>

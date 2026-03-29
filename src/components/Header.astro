@@ -1,7 +1,7 @@
 ---
-// Header.astro - Telco Style for Zaidly Agency
+// Header.astro - Minimalist Style for Zaidly Agency
 ---
-<header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6 bg-white shadow-sm">
+<header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6 bg-white/70 backdrop-blur-md border-b border-transparent">
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between">
       
@@ -11,36 +11,40 @@
         </a>
       </div>
 
-      <nav class="hidden lg:flex items-center space-x-10">
+      <nav class="hidden lg:flex items-center space-x-12 ml-auto mr-12">
         {[
           { name: 'Home', url: '/' },
-          { name: 'About Us', url: '/#about' },
-          { name: 'Services', url: '/#services' },
-          { name: 'Portfolio', url: '/#portfolio' },
-          { name: 'Blog', url: '/blog' } // MENU BLOG BARU
+    { name: 'Kontak', url: '/contact' },
+    { name: 'Blog', url: '/blog' }
         ].map((item) => (
-          <a 
-            href={item.url} 
-            class="group relative text-[13px] font-bold text-slate-900 uppercase tracking-[0.15em] font-oswald transition-colors hover:text-[#7E67F8]"
-          >
-            {item.name}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#7E67F8] ..."></span>
-          </a>
-        ))}
+         <a 
+      href={item.url} 
+      class="group relative text-[13px] font-bold text-slate-900 uppercase tracking-[0.2em] font-oswald transition-colors hover:text-[#7E67F8]"
+    >
+      {item.name}
+      <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#7E67F8] transition-all duration-300 group-hover:w-full"></span>
+    </a>
+  ))}
       </nav>
 
-      <div class="hidden lg:flex items-center space-x-8">
-        <div class="flex flex-col items-end border-r border-slate-200 pr-8">
-          <span class="text-[10px] text-slate-400 uppercase font-bold tracking-[0.2em] mb-1 font-oswald">Call Us Now</span>
-          <a href="tel:+62812345678" class="text-sm font-bold text-slate-900 font-oswald tracking-wide hover:text-[#7E67F8] transition-colors">+62 812 3456 78</a>
-        </div>
+      
         
-        <a href="#quote" class="group relative overflow-hidden bg-[#7E67F8] text-white px-10 py-4 font-bold text-[12px] uppercase tracking-[0.2em] transition-all duration-500 font-oswald flex items-center gap-3 hover:bg-slate-900">
-          <span class="relative z-10">Get a Quote</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 relative z-10 group-hover:translate-x-2 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
+       <a 
+  href="https://wa.me/6281274203815?text=Halo%20Zaidly%20Agency,%20saya%20tertarik%20buat%20website" 
+  target="_blank" 
+  class="group relative overflow-hidden bg-[#7E67F8] text-white px-10 py-4 font-bold text-[12px] uppercase tracking-[0.2em] transition-all duration-300 font-oswald flex items-center gap-3 hover:scale-110 hover:-rotate-1 active:scale-95 shadow-[0_0_20px_rgba(126,103,248,0.4)] hover:shadow-[0_0_30px_rgba(126,103,248,0.6)] rounded-sm"
+>
+  <div class="absolute inset-0 block animate-shimmer pointer-events-none">
+      <div class="h-full w-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-20"></div>
+  </div>
+
+  <div class="absolute inset-0 bg-[#7E67F8] animate-ping opacity-20 group-hover:hidden"></div>
+
+  <span class="relative z-10">Pesan Sekarang</span>
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 relative z-10 group-hover:translate-x-2 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+  </svg>
+</a>
       </div>
 
       <button class="lg:hidden text-slate-900 p-2" id="mobile-menu-toggle">
@@ -53,26 +57,32 @@
   </div>
 </header>
 
-<script>
+<script is:inline>
   const header = document.getElementById('main-header');
 
-  // Efek Scroll Header
   window.addEventListener('scroll', () => {
     if (header) { 
-      if (window.scrollY > 50) {
-        header.classList.add('bg-white/95', 'backdrop-blur-md', 'py-4', 'shadow-lg');
-        header.classList.remove('py-6', 'shadow-sm');
+      if (window.scrollY > 20) {
+        // Saat di-scroll: Header jadi lebih tipis, blur makin kuat, dan ada garis bawah tipis
+        header.classList.add('py-4', 'bg-white/80', 'backdrop-blur-lg', 'shadow-sm', 'border-slate-100');
+        header.classList.remove('py-6', 'bg-white/70', 'border-transparent');
       } else {
-        header.classList.add('bg-white', 'py-6', 'shadow-sm');
-        header.classList.remove('bg-white/95', 'backdrop-blur-md', 'py-4', 'shadow-lg');
+        // Saat di paling atas: Header lebih tebal dan lebih transparan
+        header.classList.add('py-6', 'bg-white/70', 'border-transparent');
+        header.classList.remove('py-4', 'bg-white/80', 'backdrop-blur-lg', 'shadow-sm', 'border-slate-100');
       }
     }
   });
 </script>
 
 <style>
-  /* Pastikan Font Telco Terpasang */
-  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
-  
-  .font-oswald { font-family: 'Oswald', sans-serif; }
+  /* Animasi Shimmer yang Lebih Cepat & Tegas */
+  @keyframes shimmer {
+    0% { transform: translateX(-150%); }
+    50% { transform: translateX(150%); }
+    100% { transform: translateX(150%); }
+  }
+  .animate-shimmer {
+    animation: shimmer 3s infinite ease-in-out;
+  }
 </style>

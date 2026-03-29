@@ -1,7 +1,11 @@
 ---
-// src/layouts/Layout.astro
-import Header from '../components/Header.astro'; // IMPORT HEADER DI SINI
+// src/layouts/Layout.astro - FIXED Transitions & Shimmer Button
+import Header from '../components/Header.astro'; 
+import Footer from '../components/Footer.astro'; 
 import '../styles/global.css';
+
+// 1. IMPORT TRANSITIONS DI SINI BOS!
+import { ClientRouter } from 'astro:transitions';
 
 // Import Font
 import '@fontsource/mulish/400.css';
@@ -11,7 +15,7 @@ import '@fontsource/oswald/700.css';
 
 interface Props {
     title: string;
-    description?: string; // Tambah opsional deskripsi buat SEO
+    description?: string;
 }
 
 const { title, description = "Zaidly Agency membantu UMKM go-online dengan jasa pembuatan website profesional." } = Astro.props;
@@ -33,13 +37,19 @@ const { title, description = "Zaidly Agency membantu UMKM go-online dengan jasa 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+
+    <ClientRouter />
+
 </head>
-    <body class="bg-white font-sans text-slate-900 overflow-x-hidden m-0 p-0 box-border antialiased">
+    <body class="bg-white font-sans text-slate-900 overflow-x-hidden m-0 p-0 box-border antialiased flex flex-col min-h-screen">
         
         <Header />
 
-        <main>
-            <slot /> </main>
+        <main class="grow" transition:animate="fade">
+            <slot /> 
+        </main>
+
+        <Footer />
 
     </body>
 </html>
@@ -60,8 +70,18 @@ const { title, description = "Zaidly Agency membantu UMKM go-online dengan jasa 
         font-family: 'Mulish', sans-serif;
     }
 
-    /* Hilangkan margin default dari astro */
+    /* Memastikan Footer nendang ke bawah kalau konten dikit */
     main {
-        min-height: 80vh;
+        min-height: 70vh;
+    }
+
+    /* --- KUNCI ANIMASI SHIMMER --- */
+    @keyframes shimmer {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+    .animate-shimmer {
+      animation: shimmer 2s infinite;
     }
 </style>
