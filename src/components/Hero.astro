@@ -11,19 +11,19 @@ import rectangle from '../assets/rectangle.webp';
 <section class="relative z-10 bg-[#F8F9FA] overflow-hidden pt-32 pb-20 lg:pt-52 lg:pb-40 flex items-center min-h-175">
   
   <div class="absolute top-[12%] left-[35%] z-0 w-12 md:w-16 opacity-40 animate-patroli">
-    <Image src={circle} alt="shape circle" />
+    <Image src={circle} alt="" aria-hidden="true" />
   </div>
 
   <div class="absolute top-[40%] left-5 md:left-10 z-0 w-16 md:w-20 opacity-60 animate-bounce-slow">
-    <Image src={triangle} alt="shape triangle" />
+    <Image src={triangle} alt="" aria-hidden="true" />
   </div>
 
   <div class="absolute top-[40%] right-5 md:right-10 z-0 w-12 md:w-16 opacity-40 animate-mutar-slow">
-    <Image src={rectangle} alt="shape rectangle" />
+    <Image src={rectangle} alt="" aria-hidden="true" />
   </div>
 
   <div class="absolute bottom-[15%] left-[10%] md:left-[30%] z-0 w-10 md:w-14 opacity-30 animate-mutar-slow">
-    <Image src={halfCircle} alt="shape half circle" class="rotate-180" />
+    <Image src={halfCircle} alt="" aria-hidden="true" class="rotate-180" />
   </div>
 
   <div class="container mx-auto px-4 relative z-10">
@@ -31,7 +31,7 @@ import rectangle from '../assets/rectangle.webp';
       
       <div class="w-full lg:w-1/2 self-center">
         <div class="max-w-2xl mb-12 lg:mb-0">
-          <span class="inline-block text-[#7E67F8] font-bold tracking-widest uppercase mb-4 font-mulish text-sm">
+          <span class="inline-block text-[#6c54ec] font-bold tracking-widest uppercase mb-4 font-mulish text-sm">
             Solusi Digital Terpercaya untuk UMKM
           </span>
           
@@ -46,7 +46,7 @@ import rectangle from '../assets/rectangle.webp';
             Ubah pengunjung jadi pembeli dengan website yang user-friendly. Kami bantu kelola kebutuhan digital bisnis Anda mulai dari nol hingga go-online.
           </p>
 
-          <a href="/contact" class="group relative overflow-hidden inline-block bg-[#7E67F8] text-white px-10 py-5 rounded-sm font-bold transition-all duration-300 shadow-xl font-oswald uppercase tracking-widest text-sm hover:scale-110 active:scale-95">
+          <a href="/contact" title="Hubungi Zaidly Agency untuk Konsultasi Gratis" class="group relative overflow-hidden inline-block bg-[#7E67F8] text-white px-10 py-5 rounded-sm font-bold transition-all duration-300 shadow-xl font-oswald uppercase tracking-widest text-sm hover:scale-110 active:scale-95">
             <div class="absolute inset-0 block animate-button-shimmer pointer-events-none">
               <div class="h-full w-1/2 bg-linear-to-r from-transparent via-white/30 to-transparent transform -skew-x-20"></div>
             </div>
@@ -57,7 +57,7 @@ import rectangle from '../assets/rectangle.webp';
 
       <div class="w-full lg:w-1/2 relative">
         <div class="relative lg:text-right">
-          <Image src={heroRight} alt="Jasa Website UMKM Zaidly Agency" class="max-w-full h-auto ml-auto relative z-20" />
+          <Image src={heroRight} alt="Ilustrasi Jasa Website UMKM oleh Zaidly Agency" class="max-w-full h-auto ml-auto relative z-20" />
           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#7E67F8]/20 blur-[100px] rounded-full z-10"></div>
         </div>
       </div>
@@ -67,7 +67,7 @@ import rectangle from '../assets/rectangle.webp';
 </section>
 
 <style>
-  /* 1. ANIMASI WARNA JALAN (TEXT) */
+  /* Animasi tetap sama, tidak ada perubahan */
   @keyframes gradient-flow {
     0% { background-position: 0% 50%; }
     100% { background-position: 200% 50%; }
@@ -77,7 +77,6 @@ import rectangle from '../assets/rectangle.webp';
     display: inline-block;
   }
 
-  /* 2. ANIMASI SHIMMER (BUTTON) */
   @keyframes button-shimmer {
     0% { transform: translateX(-150%); }
     100% { transform: translateX(150%); }
@@ -86,7 +85,6 @@ import rectangle from '../assets/rectangle.webp';
     animation: button-shimmer 3s infinite ease-in-out;
   }
 
-  /* 3. ANIMASI SHAPES */
   .animate-patroli { animation: patroli 10s ease-in-out infinite; }
   @keyframes patroli {
     0%, 100% { transform: translateX(0); }
