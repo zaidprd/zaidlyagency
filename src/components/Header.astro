@@ -1,25 +1,31 @@
 ---
-// Header.astro - Minimalist White Mobile Menu Style for Zaidly Agency
+// Header.astro - Final Fixed Version for Zaidly Agency
+// White Transparent (Glassmorphism) with Icons - Based on your preference
 ---
 <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6 bg-white/70 backdrop-blur-md border-b border-transparent">
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between">
       
-      <div class="flex items-center z-[60]"> <a href="/" class="text-3xl font-bold text-slate-900 font-oswald uppercase tracking-tighter">
-          Zaid<span class="text-[#7E67F8]">ly</span>
+      <div class="flex items-center z-[60]">
+        <a href="/" class="text-3xl font-bold text-slate-900 font-oswald uppercase tracking-tighter">
+          Zaid<span class="text-[#7E67F8]">ly</span> <span class="text-slate-900">Agency</span>
         </a>
       </div>
 
       <nav class="hidden lg:flex items-center space-x-12 ml-auto mr-12">
         {[
-          { name: 'Home', url: '/' },
-          { name: 'Kontak', url: '/contact' },
-          { name: 'Blog', url: '/blog' }
+          { name: 'KONTAK', url: '/contact', icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+          { name: 'BLOG', url: '/blog', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
+          { name: 'PORTOFOLIO', url: '/portfolio', icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z' },
+          { name: 'TENTANG KAMI', url: '/about', icon: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' }
         ].map((item) => (
           <a 
             href={item.url} 
-            class="group relative text-[13px] font-bold text-slate-900 uppercase tracking-[0.2em] font-oswald transition-colors hover:text-[#7E67F8]"
+            class="group relative text-[13px] font-bold text-slate-900 uppercase tracking-[0.2em] font-oswald transition-colors hover:text-[#7E67F8] flex items-center gap-2"
           >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon} />
+            </svg>
             {item.name}
             <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#7E67F8] transition-all duration-300 group-hover:w-full"></span>
           </a>
@@ -30,7 +36,7 @@
         <a 
           href="https://wa.me/6281274203815" 
           target="_blank" 
-          class="group relative overflow-hidden bg-[#7E67F8] text-white px-10 py-4 font-bold text-[12px] uppercase tracking-[0.2em] transition-all duration-300 font-oswald flex items-center gap-3 rounded-sm shadow-[0_0_20px_rgba(126,103,248,0.4)]"
+          class="group relative overflow-hidden bg-[#7E67F8] text-white px-10 py-4 font-bold text-[12px] uppercase tracking-[0.2em] transition-all duration-300 font-oswald rounded-sm shadow-[0_0_20px_rgba(126,103,248,0.4)]"
         >
           Pesan Sekarang
         </a>
@@ -45,18 +51,27 @@
     </div>
   </div>
 
-  <div id="mobile-menu" class="fixed top-0 right-0 w-[80%] h-[70vh] bg-white backdrop-blur-sm z-50 flex flex-col items-center justify-center space-y-10 transition-transform duration-500 ease-in-out translate-x-full rounded-l-2xl shadow-2xl invisible opacity-0 border-l border-slate-100">
+  <div id="mobile-menu" class="fixed top-0 right-0 w-[80%] h-[70vh] bg-white/70 backdrop-blur-md z-50 flex flex-col items-start justify-center p-12 space-y-12 transition-transform duration-500 ease-in-out translate-x-full rounded-l-2xl shadow-2xl invisible opacity-0 border-l border-slate-100/50">
     {[
-      { name: 'Home', url: '/' },
-      { name: 'Kontak', url: '/contact' },
-      { name: 'Blog', url: '/blog' }
+      { name: 'KONTAK', url: '/contact', icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+      { name: 'BLOG', url: '/blog', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
+      { name: 'PORTOFOLIO', url: '/portfolio', icon: 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z' },
+      { name: 'TENTANG KAMI', url: '/about', icon: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' }
     ].map((item) => (
-      <a href={item.url} class="text-3xl font-bold text-slate-900 uppercase tracking-widest font-oswald hover:text-[#7E67F8] transition-colors mobile-link">
+      <a href={item.url} class="text-xl font-bold text-slate-900 uppercase tracking-widest font-oswald hover:text-[#7E67F8] transition-colors mobile-link flex items-center gap-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon} />
+        </svg>
         {item.name}
       </a>
     ))}
-    <a href="https://wa.me/6281274203815" class="mt-4 bg-[#7E67F8] text-white px-8 py-4 font-bold font-oswald uppercase tracking-wider rounded-sm text-sm hover:scale-105 transition-transform shadow-[0_0_15px_rgba(126,103,248,0.3)]">
-      Pesan Sekarang
+    
+    <a 
+      href="https://wa.me/6281274203815" 
+      class="w-full mt-6 bg-slate-900 text-white p-6 font-bold font-oswald uppercase tracking-wider rounded-sm text-center shadow-[0_0_20px_rgba(15,23,42,0.3)] hover:bg-[#7E67F8] transition-all"
+    >
+      <div class="text-sm">PESAN SEKARANG</div>
+      <div class="text-[10px] font-light mt-1 text-white/80 lowercase">"Halo Zaidly Agency, saya tertarik buat website"</div>
     </a>
   </div>
 </header>
@@ -73,18 +88,17 @@
     const isOpen = mobileMenu.classList.contains('translate-x-0');
     
     if (!isOpen) {
-      // Buka Menu (Background PUTIH)
+      // Buka Menu (Transparan Putih)
       mobileMenu.classList.remove('invisible', 'opacity-0', 'translate-x-full');
       mobileMenu.classList.add('visible', 'opacity-100', 'translate-x-0');
       menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />'; // Icon X
-      body.style.overflow = 'hidden'; // Stop scroll saat menu buka
+      body.style.overflow = 'hidden'; 
     } else {
       // Tutup Menu
       mobileMenu.classList.add('translate-x-full', 'opacity-0');
       mobileMenu.classList.remove('translate-x-0', 'opacity-100');
       menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />'; // Icon Hamburger
       body.style.overflow = 'auto';
-      // Tambahkan delay sedikit sebelum set invisible agar animasi transisi keluar kelihatan
       setTimeout(() => {
         if (!mobileMenu.classList.contains('translate-x-0')) {
           mobileMenu.classList.add('invisible');
@@ -103,7 +117,7 @@
     });
   });
 
-  // Scroll effect (Jangan ubah padding header kalau menu lagi buka)
+  // Scroll effect
   window.addEventListener('scroll', () => {
     if (header && !mobileMenu.classList.contains('translate-x-0')) { 
       if (window.scrollY > 20) {
