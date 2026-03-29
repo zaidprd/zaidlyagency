@@ -1,0 +1,141 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { client, urlFor } from '../lib/sanity';
+import PortableBody from '../components/PortableBody.tsx';
+
+export async function getStaticPaths() {
+  const posts = await client.fetch(`*[_type == "post"]{"slug": slug.current}`);
+  return posts.map((post: any) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+// FETCH DATA UTAMA + ARTIKEL TERKAIT (BERDASARKAN KATEGORI)
+const post = await client.fetch(`*[_type == "post" && slug.current == $slug][0]{
+  title, 
+  mainImage, 
+  body, 
+  publishedAt, 
+  excerpt,
+  "author": author->{name},
+  "categories": categories[]->title,
+  "related": *[_type == "post" && count(categories[@._ref in ^.^.categories[]._ref]) > 0 && slug.current != $slug] | order(publishedAt desc) [0...3] {
+    title, "slug": slug.current, mainImage, publishedAt
+  }
+}`, { slug });
+
+if (!post) return Astro.redirect('/404');
+
+// LOGIKA DAFTAR ISI (TOC)
+const headings = post.body
+  ? post.body
+      .filter((block: any) => block.style === 'h2')
+      .map((block: any) => ({
+        text: block.children[0].text,
+        slug: block.children[0].text.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-')
+      }))
+  : [];
+
+const currentUrl = Astro.url.href;
+---
+
+<Layout title={`${post.title} - Zaidly Agency`} description={post.excerpt}>
+  <main class="pt-48 pb-24 font-mulish">
+    <div class="container mx-auto px-4 max-w-6xl flex flex-col lg:flex-row gap-16">
+      
+      <article class="lg:w-2/3">
+        {post.mainImage && (
+          /* MB-28 AGAR KOTAK MENGGANTUNG TIDAK MENABRAK JUDUL */
+          <div class="relative w-full mb-28 shadow-2xl">
+            <img 
+              src={urlFor(post.mainImage).width(1200).url()} 
+              class="relative z-0 w-full h-auto object-cover" 
+              alt={post.title} 
+            />
+            
+            <div class="absolute -bottom-10 left-0 md:left-10 bg-[#1A1A1A] text-white flex items-center gap-6 px-8 py-5 text-[11px] font-oswald uppercase tracking-widest z-10 shadow-2xl border-l-4 border-[#7E67F8]">
+               <div class="flex items-center gap-2">
+                 <span class="text-[#7E67F8]">📅</span>
+                 {new Date(post.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+               </div>
+               <div class="w-px h-4 bg-slate-700"></div>
+               <div class="flex items-center gap-2">
+                 <span class="text-[#7E67F8]">👤</span>
+                 BY - {post.author?.name || 'ZAID'}
+               </div>
+            </div>
+          </div>
+        )}
+
+        <h1 class="text-4xl md:text-6xl font-bold font-oswald uppercase leading-tight text-slate-900 mt-20 mb-12 tracking-tighter">
+          {post.title}
+        </h1>
+
+        <div class="prose prose-lg max-w-none mb-20 text-slate-700 leading-relaxed font-mulish">
+          <PortableBody value={post.body} client:load />
+        </div>
+
+        <div class="mt-16 py-8 border-y border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
+           <div class="flex items-center gap-4">
+              <span class="font-oswald uppercase font-bold text-[13px] tracking-widest text-slate-900">Related Tags:</span>
+              <div class="flex gap-2">
+                 <a href="/" class="px-4 py-1.5 border border-slate-200 text-[11px] font-oswald uppercase font-bold text-slate-500 hover:border-[#7E67F8] hover:text-[#7E67F8] transition-all">Jasa Website</a>
+                 <a href="/" class="px-4 py-1.5 border border-slate-200 text-[11px] font-oswald uppercase font-bold text-slate-500 hover:border-[#7E67F8] hover:text-[#7E67F8] transition-all">Website UMKM</a>
+              </div>
+           </div>
+
+           <div class="flex items-center gap-6">
+              <span class="font-oswald uppercase font-bold text-[13px] tracking-widest text-slate-900">Share:</span>
+              <div class="flex gap-5">
+                 <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`} target="_blank" class="text-slate-400 hover:text-[#1877F2] transition-colors">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                 </a>
+                 <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(post.title)}`} target="_blank" class="text-slate-400 hover:text-black transition-colors">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                 </a>
+                 <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(post.title)}%20${encodeURIComponent(currentUrl)}`} target="_blank" class="text-slate-400 hover:text-[#25D366] transition-colors">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                 </a>
+              </div>
+           </div>
+        </div>
+
+        {post.related && post.related.length > 0 && (
+          <div class="mt-24">
+            <h3 class="text-4xl font-oswald uppercase font-bold mb-10 text-slate-900 tracking-tighter">Related Articles</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+              {post.related.map((rel: any) => (
+                /* LINK FIX: Langsung ke slug (/${rel.slug}) */
+                <a href={`/${rel.slug}`} class="group flex flex-col h-full">
+                  <div class="relative overflow-hidden aspect-video mb-6 shadow-lg rounded-sm bg-slate-100 border border-slate-100">
+                    <img src={urlFor(rel.mainImage).width(600).url()} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={rel.title} />
+                  </div>
+                  <span class="text-[10px] font-oswald font-bold uppercase tracking-widest text-slate-400 mb-2 block">📅 {new Date(rel.publishedAt).toLocaleDateString('id-ID', { month: 'short' })}</span>
+                  <h4 class="text-xl font-oswald uppercase font-bold text-slate-900 group-hover:text-[#7E67F8] transition-colors line-clamp-2 leading-tight">{rel.title}</h4>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </article>
+
+      <aside class="lg:w-1/3">
+        <div class="sticky top-32">
+          <div class="p-10 bg-[#F7F7F7] border-t-4 border-[#7E67F8] shadow-sm">
+            <h4 class="text-xl font-oswald uppercase font-bold mb-8 text-slate-900 tracking-widest border-b pb-4 border-slate-200">In This Article</h4>
+            <nav class="space-y-5">
+              {headings.map((h: any) => (
+                <a href={`#${h.slug}`} class="block text-[13px] text-slate-500 hover:text-[#7E67F8] font-bold uppercase transition-colors tracking-wide">
+                  {h.text}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+</Layout>

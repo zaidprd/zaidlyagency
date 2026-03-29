@@ -1,23 +1,67 @@
+---
+// src/layouts/Layout.astro
+import Header from '../components/Header.astro'; // IMPORT HEADER DI SINI
+import '../styles/global.css';
+
+// Import Font
+import '@fontsource/mulish/400.css';
+import '@fontsource/mulish/700.css';
+import '@fontsource/oswald/400.css';
+import '@fontsource/oswald/700.css';
+
+interface Props {
+    title: string;
+    description?: string; // Tambah opsional deskripsi buat SEO
+}
+
+const { title, description = "Zaidly Agency membantu UMKM go-online dengan jasa pembuatan website profesional." } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="id">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <meta name="keywords" content="jasa website umkm, bikin website murah, jasa digital agency, website profesional" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+</head>
+    <body class="bg-white font-sans text-slate-900 overflow-x-hidden m-0 p-0 box-border antialiased">
+        
+        <Header />
+
+        <main>
+            <slot /> </main>
+
+    </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Telco Style: Header & Heading harus Oswald */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Oswald', sans-serif !important;
+        text-transform: uppercase;
+    }
+
+    /* Teks biasa pakai Mulish */
+    body {
+        font-family: 'Mulish', sans-serif;
+    }
+
+    /* Hilangkan margin default dari astro */
+    main {
+        min-height: 80vh;
+    }
 </style>

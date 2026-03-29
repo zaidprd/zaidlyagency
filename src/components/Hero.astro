@@ -1,0 +1,80 @@
+---
+import { Image } from 'astro:assets';
+
+import heroRight from '../assets/hero-right.webp'; 
+import triangle from '../assets/triangle.webp';   
+import circle from '../assets/circle.webp';       
+import halfCircle from '../assets/half-circle.webp'; 
+import rectangle from '../assets/rectangle.webp';   
+---
+
+<section class="relative z-10 bg-[#F8F9FA] overflow-hidden pt-32 pb-20 lg:pt-52 lg:pb-40 flex items-center min-h-175">
+  
+  <div class="absolute top-[12%] left-[35%] z-0 w-12 md:w-16 opacity-40 animate-patroli">
+    <Image src={circle} alt="shape circle" />
+  </div>
+
+  <div class="absolute top-[40%] left-5 md:left-10 z-0 w-16 md:w-20 opacity-60 animate-bounce-slow">
+    <Image src={triangle} alt="shape triangle" />
+  </div>
+
+  <div class="absolute top-[40%] right-5 md:right-10 z-0 w-12 md:w-16 opacity-40 animate-mutar-slow">
+    <Image src={rectangle} alt="shape rectangle" />
+  </div>
+
+  <div class="absolute bottom-[15%] left-[10%] md:left-[30%] z-0 w-10 md:w-14 opacity-30 animate-mutar-slow">
+    <Image src={halfCircle} alt="shape half circle" class="rotate-180" />
+</div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="flex flex-wrap items-center">
+      
+      <div class="w-full lg:w-1/2 self-center">
+        <div class="max-w-2xl mb-12 lg:mb-0">
+          <span class="inline-block text-[#7E67F8] font-bold tracking-widest uppercase mb-4 font-mulish text-sm">
+            Solusi Digital Terpercaya untuk UMKM
+          </span>
+          <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.2] md:leading-[1.1] mb-8 font-oswald uppercase">
+  Bikin Bisnis Kamu <span class="text-[#7E67F8] underline decoration-4 underline-offset-12">Online</span> & Makin Laris.
+</h1>
+          <p class="text-lg text-slate-600 mb-10 font-mulish leading-relaxed max-w-lg">
+            Ubah pengunjung jadi pembeli dengan website yang user-friendly. Kami bantu kelola kebutuhan digital bisnis Anda mulai dari nol hingga go-online.
+          </p>
+          <a href="#contact" class="inline-block bg-[#7E67F8] text-white px-10 py-5 rounded-sm font-bold hover:bg-slate-900 transition-all duration-300 shadow-xl font-oswald uppercase tracking-widest text-sm">
+            Konsultasi Gratis
+          </a>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-1/2 relative">
+        <div class="relative lg:text-right">
+          <Image src={heroRight} alt="Jasa Website UMKM Zaidly Agency" class="max-w-full h-auto ml-auto relative z-20" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* 1. Animasi Si Bulat Jalan Jauh */
+  .animate-patroli { animation: patroli 10s ease-in-out infinite; }
+  @keyframes patroli {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(350px); } /* Ditambah biar makin jauh */
+  }
+
+  /* 2. Animasi Berputar */
+  .animate-mutar-slow { animation: mutar 15s linear infinite; }
+  @keyframes mutar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* 3. Animasi Naik Turun */
+  .animate-bounce-slow { animation: bounce 5s ease-in-out infinite; }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+</style>

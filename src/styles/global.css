@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Mulish", ui-sans-serif, system-ui;
+  --font-oswald: "Oswald", sans-serif;
+
+  /* DAFTARKAN SEMUA ANIMASI DI SINI */
+  --animate-patroli: patroli 10s ease-in-out infinite;
+  --animate-mutar: mutar 10s linear infinite;
+  --animate-melayang: melayang 5s ease-in-out infinite;
+}
+
+/* 1. Jalan Jauh (Untuk si Bulat) */
+@keyframes patroli {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(350px); } /* <--- Ini pasti jauh ke kanan */
+}
+
+/* 2. Berputar 360 Derajat (Untuk Kotak & Half Circle) */
+@keyframes mutar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 3. Naik Turun (Untuk Triangle) */
+@keyframes melayang {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-50px); }
+}

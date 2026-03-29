@@ -1,0 +1,80 @@
+---
+import { Image } from 'astro:assets';
+// Ganti dengan foto kantor, tim, atau mockup website UMKM yang sudah jadi
+import aboutImg from '../assets/hero-right.webp'; 
+---
+
+<section id="about" class="py-24 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap items-center">
+      
+      <div class="w-full lg:w-1/2 mb-12 lg:mb-0 px-4">
+        <div class="relative">
+          <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+            <Image src={aboutImg} alt="Tentang Zaidly Agency" class="w-full h-auto" />
+          </div>
+          
+          <div class="absolute -bottom-10 -right-10 hidden md:block bg-[#7E67F8] p-8 rounded-2xl shadow-xl animate-bounce-slow">
+            <h3 class="text-4xl font-bold text-white font-oswald">5+</h3>
+            <p class="text-white/80 text-xs uppercase tracking-widest font-bold">Tahun Pengalaman</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-1/2 px-4 lg:pl-16">
+        <div class="max-w-xl">
+          <span class="text-[#7E67F8] font-bold tracking-widest uppercase text-sm mb-4 block font-mulish">
+            Tentang Zaidly Agency
+          </span>
+          <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-8 font-oswald leading-tight uppercase">
+            Kami Bantu Bisnis Anda <span class="text-[#7E67F8]">Naik Kelas</span> Secara Digital.
+          </h2>
+          <p class="text-slate-600 mb-8 leading-relaxed font-mulish">
+            Zaidly Agency hadir sebagai mitra digital bagi UMKM Indonesia. Kami paham bahwa website bukan sekadar pajangan, tapi mesin pencetak omzet. Itulah kenapa setiap baris kode yang kami tulis berfokus pada kecepatan dan konversi.
+          </p>
+
+          <div class="space-y-6 mb-10">
+            <div class="flex items-start">
+              <div class="shrink-0 bg-[#7E67F8]/10 p-3 rounded-lg mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#7E67F8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-lg font-bold text-slate-900 font-oswald">Desain Premium & Modern</h4>
+                <p class="text-slate-500 text-sm">Tampilan website yang berkelas bikin UMKM terlihat seperti perusahaan besar.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="shrink-0 bg-[#7E67F8]/10 p-3 rounded-lg mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#7E67F8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-lg font-bold text-slate-900 font-oswald">Akses Cepat & SEO Friendly</h4>
+                <p class="text-slate-500 text-sm">Website ringan saat dibuka dan mudah ditemukan calon pelanggan di Google.</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="#services" class="inline-block border-2 border-[#7E67F8] text-[#7E67F8] px-8 py-4 rounded-sm font-bold hover:bg-[#7E67F8] hover:text-white transition-all duration-300 font-oswald uppercase tracking-widest text-xs">
+            Lihat Layanan Kami
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-bounce-slow {
+    animation: bounceAbout 4s ease-in-out infinite;
+  }
+  @keyframes bounceAbout {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+</style>

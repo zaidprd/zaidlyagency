@@ -1,0 +1,80 @@
+---
+import { Image } from 'astro:assets';
+// IMPORT GAMBAR PORTFOLIO (Pastikan gambarnya sudah ada di src/assets/)
+import port1 from '../assets/portfolio-1.webp'; 
+import port2 from '../assets/portfolio-1.webp'; 
+import port3 from '../assets/portfolio-1.webp'; 
+---
+
+<section id="portfolio" class="py-24 bg-white relative overflow-hidden">
+  
+  <div class="absolute top-[10%] right-[5%] z-0 w-20 opacity-20 animate-spin-slow">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#7E67F8" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,88.5,-0.9C86.9,14.5,81.2,29,73.4,42.3C65.6,55.6,55.6,67.7,42.9,76.3C30.2,84.9,15.1,90.1,0.6,89.1C-13.9,88.1,-27.8,81,-39.8,72C-51.7,62.9,-61.7,51.9,-69.3,39.5C-76.9,27,-82.1,13.5,-83,0.5C-83.9,-12.5,-80.4,-25,-73.7,-36.5C-67,-48,-56.9,-58.5,-44.7,-66.6C-32.5,-74.7,-16.2,-80.5,0.1,-80.7C16.4,-80.9,32.8,-75.5,44.7,-76.4Z" transform="translate(100 100)" />
+    </svg>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-[#7E67F8] font-bold tracking-widest uppercase text-sm mb-4 block font-mulish">
+        Portfolio Kami
+      </span>
+      <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 font-oswald uppercase leading-tight">
+        Karya <span class="text-[#7E67F8]">Terbaru</span> Untuk Klien Istimewa.
+      </h2>
+      <p class="text-slate-500 font-mulish text-sm md:text-base">
+        Lihat bagaimana kami membantu berbagai bisnis dan UMKM bertransformasi secara digital dengan website yang modern dan performa tinggi.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <div class="group relative rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transformed hover:-translate-y-2">
+        <Image src={port1} alt="Website E-Commerce UMKM" class="w-full h-auto transition-transform duration-700 group-hover:scale-110" />
+        
+        <div class="absolute inset-0 bg-slate-900/80 p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <span class="text-[#7E67F8] font-bold text-xs uppercase tracking-widest mb-2 font-mulish">Website E-Commerce</span>
+          <h3 class="text-2xl font-bold text-white font-oswald uppercase leading-tight">Toko Online "Maju Bersama"</h3>
+        </div>
+      </div>
+
+      <div class="group relative rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transformed hover:-translate-y-2">
+        <Image src={port2} alt="Website Company Profile" class="w-full h-auto transition-transform duration-700 group-hover:scale-110" />
+        
+        <div class="absolute inset-0 bg-slate-900/80 p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <span class="text-[#7E67F8] font-bold text-xs uppercase tracking-widest mb-2 font-mulish">Company Profile</span>
+          <h3 class="text-2xl font-bold text-white font-oswald uppercase leading-tight">PT. Solusi Kontraktor Utama</h3>
+        </div>
+      </div>
+
+      <div class="group relative rounded-sm overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transformed hover:-translate-y-2">
+        <Image src={port3} alt="Landing Page UMKM" class="w-full h-auto transition-transform duration-700 group-hover:scale-110" />
+        
+        <div class="absolute inset-0 bg-slate-900/80 p-8 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <span class="text-[#7E67F8] font-bold text-xs uppercase tracking-widest mb-2 font-mulish">Landing Page</span>
+          <h3 class="text-2xl font-bold text-white font-oswald uppercase leading-tight">Kedai Kopi "Aroma Senja"</h3>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-16">
+      <a href="#" class="inline-block bg-[#7E67F8] text-white px-10 py-5 rounded-sm font-bold hover:bg-slate-900 transition-all duration-300 shadow-xl font-oswald uppercase tracking-widest text-sm shadow-[#7E67F8]/30">
+        Lihat Semua Project
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Animasi Spin Halus untuk Shape di Background */
+  .animate-spin-slow {
+    animation: spinAbout 20s linear infinite;
+  }
+  @keyframes spinAbout {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+</style>
