@@ -6,18 +6,15 @@ import react from '@astrojs/react';
 import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
 
-// https://astro.build/config
 export default defineConfig({
-  // 1. Masukkan domain kamu di sini buat SEO & Sitemap
   site: 'https://zaidly.com', 
 
-  // 2. Integrations
   integrations: [
     sanity({
       projectId: '0ukg7bxy', 
       dataset: 'production',
       apiVersion: '2026-03-28', 
-      useCdn: true, // Pakai true di lokal biar enteng (nggak berat)
+      useCdn: true, 
     }), 
     react(), 
     sitemap()
@@ -27,7 +24,7 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  // 3. Output 'server' wajib untuk Cloudflare Pages SSR
+  // Di Astro 6, cukup pakai 'server'
   output: 'server',
-  adapter: cloudflare()
+  adapter: cloudflare() 
 });
