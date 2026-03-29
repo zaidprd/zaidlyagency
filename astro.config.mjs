@@ -9,11 +9,11 @@ export default defineConfig({
   site: 'https://zaidly.com',
   output: 'static', 
 
-  // INI OBATNYA: Paksa Astro buat GAK PAKAI Sharp
+  // INI ALAMAT YANG BENER BUAT ASTRO 6
   image: {
     service: {
-      entrypoint: 'astro/assets/services/passthrough',
-    },
+      entrypoint: 'astro/assets/services/noop'
+    }
   },
 
   integrations: [
