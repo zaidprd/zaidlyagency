@@ -9,7 +9,6 @@ export default defineConfig({
   site: 'https://zaidly.com',
   output: 'static', 
 
-  // INI ALAMAT YANG BENER BUAT ASTRO 6
   image: {
     service: {
       entrypoint: 'astro/assets/services/noop'
@@ -18,9 +17,10 @@ export default defineConfig({
 
   integrations: [
     sanity({
-      projectId: process.env.PUBLIC_SANITY_PROJECT_ID,
-      dataset: process.env.PUBLIC_SANITY_DATASET,
-      apiVersion: '2023-10-01',
+      // Masukin ID lo langsung di sini. Anti-Gagal.
+      projectId: "8ukg7bxy", 
+      dataset: "production",
+      apiVersion: '2024-03-28',
       useCdn: true,
     }),
     react(),

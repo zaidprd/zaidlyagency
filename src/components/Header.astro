@@ -1,11 +1,11 @@
 ---
-// Header.astro - FINAL CLEAN VERSION
+// Header.astro - FINAL POSITION FIX
 ---
 <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6 bg-white/70 backdrop-blur-md border-b border-transparent">
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between">
-      <div class="flex items-center z-[60]">
-        <a href="/" class="text-3xl font-bold text-slate-900 font-oswald uppercase tracking-tighter">
+      <div class="flex items-center z-60">
+        <a href="/" class="text-3xl font-bold text-slate-900 font-oswald uppercase tracking-tighter hover:scale-105 transition-transform">
           Zaid<span class="text-[#7E67F8]">ly</span>
         </a>
       </div>
@@ -16,7 +16,13 @@
         <a href="/blog" class="text-[13px] font-bold text-slate-900 uppercase font-oswald hover:text-[#7E67F8]">BLOG</a>
       </nav>
 
-      <button class="lg:hidden text-slate-900 p-2 z-[60]" id="mobile-menu-toggle">
+      <div class="hidden lg:block">
+        <a href="https://wa.me/6281274203815" target="_blank" class="bg-[#7E67F8] text-white px-8 py-3 font-bold text-[12px] uppercase tracking-wider transition-all duration-300 font-oswald rounded-sm shadow-[0_0_20px_rgba(126,103,248,0.3)] hover:scale-105 inline-block">
+          Pesan Sekarang
+        </a>
+      </div>
+
+      <button class="lg:hidden text-slate-900 p-2 z-60" id="mobile-menu-toggle">
         <svg xmlns="http://www.w3.org/2000/svg" id="menu-icon" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
         </svg>
@@ -25,25 +31,25 @@
   </div>
 
   <div id="mobile-menu" 
-    style="background: rgba(255, 255, 255, 0.7) !important; backdrop-filter: blur(15px) !important; -webkit-backdrop-filter: blur(15px) !important;"
-    class="fixed top-0 right-0 w-[80%] h-[75vh] z-50 flex flex-col items-start justify-center p-10 space-y-10 transition-all duration-500 ease-in-out translate-x-full rounded-l-3xl shadow-2xl invisible opacity-0 border-l border-white/40">
+    style="background: rgba(255, 255, 255, 0.90) !important; backdrop-filter: blur(25px) !important; -webkit-backdrop-filter: blur(20px) !important;"
+    class="fixed top-0 right-0 w-[50%] h-[50vh] z-50 flex flex-col items-start p-10 pt-32 space-y-10 transition-transform duration-500 ease-in-out translate-x-full rounded-l-3xl shadow-2xl invisible opacity-0 border-l border-white/40">
     
-    <a href="/" class="flex items-center gap-4 text-xl font-bold text-slate-900 font-oswald uppercase">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#7E67F8]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+    <a href="/" class="flex items-center gap-4 text-xl font-bold text-slate-900 font-oswald uppercase hover:text-[#7E67F8]">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
       HOME
     </a>
-    <a href="/contact" class="flex items-center gap-4 text-xl font-bold text-slate-900 font-oswald uppercase">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#7E67F8]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    <a href="/contact" class="flex items-center gap-4 text-xl font-bold text-slate-900 font-oswald uppercase hover:text-[#7E67F8]">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
       KONTAK
     </a>
-    <a href="/blog" class="flex items-center gap-4 text-xl font-bold text-slate-900 font-oswald uppercase">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#7E67F8]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+    <a href="/blog" class="flex items-center gap-4 text-xl font-bold text-slate-900 font-oswald uppercase hover:text-[#7E67F8]">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
       BLOG
     </a>
 
-    <a href="https://wa.me/6281274203815" class="w-full mt-4 bg-slate-900 text-white p-6 rounded-xl shadow-xl text-center">
+    <a href="https://wa.me/6281274203815" class="w-full mt-4 bg-gradient-to-r from-[#7E67F8] to-[#6c54ec] text-white p-6 rounded-xl shadow-[0_10px_30px_rgba(126,103,248,0.3)] text-center transition-all duration-300 hover:scale-[1.03]">
       <div class="font-bold font-oswald uppercase text-sm">PESAN SEKARANG</div>
-      <div class="text-[10px] font-light mt-1 text-white/60 lowercase italic">"Halo Zaidly Agency, saya tertarik buat website"</div>
+      <div class="text-[10px] font-light mt-1 text-white/80 lowercase italic">"Halo Zaidly Agency, saya tertarik buat website"</div>
     </a>
   </div>
 </header>
@@ -66,7 +72,7 @@
       mobileMenu.classList.remove('translate-x-0', 'opacity-100');
       menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />';
       body.style.overflow = 'auto';
-      setTimeout(() => { mobileMenu.classList.add('invisible'); }, 500);
+      setTimeout(() => { if (!mobileMenu.classList.contains('translate-x-0')) mobileMenu.classList.add('invisible'); }, 500);
     }
   });
 </script>
