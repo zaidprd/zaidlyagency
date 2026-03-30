@@ -1,10 +1,12 @@
 ---
-// Header.astro - FINAL POSITION FIX
+// Header.astro - FINAL STABLE
 ---
-<header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6 bg-white/70 backdrop-blur-md border-b border-transparent">
+
+<header id="main-header" class="fixed top-0 left-0 w-full z-[100] transition-all duration-500 py-6 bg-white/70 backdrop-blur-md border-b border-transparent">
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between">
-      <div class="flex items-center z-60">
+
+      <div class="flex items-center">
         <a href="/" class="text-3xl font-bold text-slate-900 font-oswald uppercase tracking-tighter hover:scale-105 transition-transform">
           Zaid<span class="text-[#7E67F8]">ly</span>
         </a>
@@ -17,106 +19,106 @@
       </nav>
 
       <div class="hidden lg:block">
-        <a href="https://wa.me/6281274203815" target="_blank" class="bg-[#7E67F8] text-white px-8 py-3 font-bold text-[12px] uppercase tracking-wider transition-all duration-300 font-oswald rounded-sm shadow-[0_0_20px_rgba(126,103,248,0.3)] hover:scale-105 inline-block">
+        <a href="https://wa.me/6281274203815" target="_blank"
+          class="bg-[#7E67F8] text-white px-8 py-3 font-bold text-[12px] uppercase tracking-wider transition-all duration-300 font-oswald rounded-sm shadow-[0_0_20px_rgba(126,103,248,0.3)] hover:scale-105 inline-block">
           Pesan Sekarang
         </a>
       </div>
 
-      <button class="lg:hidden text-slate-900 p-2 z-[110] relative" id="mobile-menu-toggle" aria-label="Buka Menu Navigasi">
-   </button>
-        <svg xmlns="http://www.w3.org/2000/svg" id="menu-icon" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      <!-- ✅ touch-action: manipulation → hapus 300ms delay tanpa double-fire -->
+      <button
+        id="mobile-menu-toggle"
+        class="lg:hidden text-slate-900 p-2 z-[130] relative"
+        style="touch-action: manipulation;"
+        aria-label="Buka Menu Navigasi"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg"
+          class="h-8 w-8 pointer-events-none transition-all duration-300"
+          fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path id="icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
         </svg>
       </button>
+
     </div>
   </div>
 
-  <div id="mobile-menu" 
-    style="background: rgba(255, 255, 255, 0.90) !important; backdrop-filter: blur(25px) !important; -webkit-backdrop-filter: blur(20px) !important;"
-    class="fixed top-0 right-0 w-[50%] h-[70vh] z-50 flex flex-col items-start p-10 pt-32 space-y-10 transition-transform duration-500 ease-in-out translate-x-full rounded-l-3xl shadow-2xl invisible opacity-0 border-l border-white/40">
-    
-    <a href="/" class="flex items-center gap-4 text-xl font-bold text-slate-900 font-oswald uppercase hover:text-[#7E67F8]">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-      HOME
+  <div id="mobile-menu" class="fixed top-0 right-0 w-[75%] max-w-sm h-screen z-[120] flex flex-col items-start p-10 pt-32 space-y-10 bg-white/90 backdrop-blur-xl border-l border-white/40 shadow-2xl rounded-l-3xl">
+    <a href="/" class="text-xl font-bold text-slate-900 font-oswald uppercase hover:text-[#7E67F8]">HOME</a>
+    <a href="/contact" class="text-xl font-bold text-slate-900 font-oswald uppercase hover:text-[#7E67F8]">KONTAK</a>
+    <a href="/blog" class="text-xl font-bold text-slate-900 font-oswald uppercase hover:text-[#7E67F8]">BLOG</a>
+    <a href="https://wa.me/6281274203815"
+      class="w-full mt-4 bg-gradient-to-r from-[#7E67F8] to-[#6c54ec] text-white p-3 rounded-xl text-center shadow-lg hover:scale-[1.03] transition-all">
+      <div class="font-bold uppercase text-sm">PESAN SEKARANG</div>
+      <div class="text-[10px] opacity-80 italic">klik untuk tanya via WhatsApp</div>
     </a>
-    <a href="/contact" class="flex items-center gap-4 text-xl font-bold text-slate-900 font-oswald uppercase hover:text-[#7E67F8]">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-      KONTAK
-    </a>
-    <a href="/blog" class="flex items-center gap-4 text-xl font-bold text-slate-900 font-oswald uppercase hover:text-[#7E67F8]">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-      BLOG
-    </a>
-
-    <a href="https://wa.me/6281274203815" 
-   class="w-full mt-4 bg-gradient-to-r from-[#7E67F8] to-[#6c54ec] text-white p-3 rounded-xl shadow-[0_10px_25px_rgba(126,103,248,0.3)] text-center transition-all duration-300 hover:scale-[1.03] block border border-white/10">
-  
-  <div class="font-bold font-oswald uppercase text-sm tracking-wider">
-    PESAN SEKARANG
-  </div>
-  
-  <div class="text-[9px] font-light mt-0.5 text-white lowercase italic opacity-80">
-    klik untuk tanya-tanya via whatsapp
-  </div>
-</a>
   </div>
 </header>
 
-<script is:inline>
-  const toggle = document.getElementById('mobile-menu-toggle');
-  const menu = document.getElementById('mobile-menu');
-  const icon = document.getElementById('menu-icon');
-  const body = document.body;
+<style>
+  #mobile-menu {
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.35s ease;
+  }
+  #mobile-menu.open {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+</style>
 
-  // 1. Fungsi Utama Buka-Tutup
-  function toggleMenu(forceClose = false) {
-    const isOpen = menu.classList.contains('translate-x-0');
-    
-    // Jika sedang terbuka atau dipaksa tutup
-    if (isOpen || forceClose) {
-      menu.classList.add('translate-x-full', 'opacity-0');
-      menu.classList.remove('translate-x-0', 'opacity-100');
-      icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />';
-      body.style.overflow = 'auto';
-      setTimeout(() => {
-        if (!menu.classList.contains('translate-x-0')) menu.classList.add('invisible');
-      }, 500);
-    } else {
-      // Buka Menu
-      menu.classList.remove('invisible', 'opacity-0', 'translate-x-full');
-      menu.classList.add('visible', 'opacity-100', 'translate-x-0');
-      icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+<script is:inline>
+  if (!window.__menuInitialized) {
+    window.__menuInitialized = true;
+
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const iconPath = document.getElementById('icon-path');
+    const body = document.body;
+
+    const ICON_BURGER = 'M4 6h16M4 12h16m-7 6h7';
+    const ICON_CLOSE  = 'M6 18L18 6M6 6l12 12';
+    let isOpen = false;
+
+    function openMenu() {
+      isOpen = true;
+      menu.classList.add('open');
+      iconPath.setAttribute('d', ICON_CLOSE);
+      toggle.setAttribute('aria-expanded', 'true');
       body.style.overflow = 'hidden';
     }
+
+    function closeMenu() {
+      isOpen = false;
+      menu.classList.remove('open');
+      iconPath.setAttribute('d', ICON_BURGER);
+      toggle.setAttribute('aria-expanded', 'false');
+      body.style.overflow = ''; // ✅ reset ke default, bukan 'auto'
+    }
+
+    // ✅ Hanya 'click' — touchstart dihapus untuk cegah double-fire
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (isOpen && !menu.contains(e.target) && !toggle.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) closeMenu();
+    });
   }
-
-  // 2. Klik Tombol Burger
-  toggle?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleMenu();
-  });
-
-  // 3. JURUS SAKTI: Klik di mana saja di luar menu untuk menutup
-  document.addEventListener('click', (e) => {
-    const isClickInsideMenu = menu.contains(e.target);
-    const isClickOnToggle = toggle.contains(e.target);
-    const isOpen = menu.classList.contains('translate-x-0');
-
-    if (isOpen && !isClickInsideMenu && !isClickOnToggle) {
-      toggleMenu(true);
-    }
-  });
-
-  // 4. Klik link menu langsung tutup (Penting buat One-Page)
-  const menuLinks = menu.querySelectorAll('a');
-  menuLinks.forEach(link => {
-    link.addEventListener('click', () => toggleMenu(true));
-  });
-
-  // 5. ESC Key buat nutup (User Laptop/Tablet)
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menu.classList.contains('translate-x-0')) {
-      toggleMenu(true);
-    }
-  });
 </script>
