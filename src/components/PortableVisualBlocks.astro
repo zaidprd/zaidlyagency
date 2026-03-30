@@ -1,0 +1,16 @@
+---
+import PortableVisualBlocksReact from './PortableVisualBlocks.tsx'; 
+const { value } = Astro.props;
+---
+
+<div class="zaidly-render-container">
+  <PortableVisualBlocksReact value={value} client:load />
+</div>
+
+<style is:global>
+  .zaidly-render-container {
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+</style>
