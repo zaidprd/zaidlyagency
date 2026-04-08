@@ -102,9 +102,14 @@ const currentUrl = Astro.url.href;
            <div class="flex items-center gap-4">
               <span class="font-oswald uppercase font-bold text-[13px] tracking-widest text-slate-900">Tags:</span>
               <div class="flex gap-2 flex-wrap">
-                 {post.categories?.map((cat: string) => (
-                    <span class="px-4 py-1.5 border border-slate-200 text-[11px] font-oswald uppercase font-bold text-slate-500">{cat}</span>
-                 ))}
+   {post.categories?.map((cat: string) => (
+      <a 
+        href="/" 
+        class="px-4 py-1.5 border border-slate-200 text-[11px] font-oswald uppercase font-bold text-slate-500 hover:bg-[#7E67F8] hover:text-white hover:border-[#7E67F8] transition-all duration-300 cursor-pointer"
+      >
+        {cat}
+      </a>
+   ))}
               </div>
            </div>
 
