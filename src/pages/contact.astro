@@ -3,8 +3,9 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout 
-  title="Hubungi Zaidly Agency - Jasa Pembuatan Website Jakarta" 
-  description="Konsultasikan kebutuhan website UMKM Anda dengan Zaidly Agency."
+  title="Hubungi Zaidly Agency - Konsultasi Website UMKM Gratis" 
+  description="Konsultasi gratis pembuatan website UMKM profesional bersama Zaidly Agency. Hubungi via WhatsApp sekarang, respon cepat, harga mulai Rp 588.000."
+  keywords="kontak zaidly agency, konsultasi website umkm gratis, order jasa website jakarta, hubungi digital agency"
 >
   
   <section class="pt-48 pb-20 bg-slate-50 border-b border-slate-100 text-center">
@@ -16,7 +17,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <main class="py-24 bg-white">
+  <section class="py-24 bg-white">
     <div class="container mx-auto px-4 max-w-6xl">
       <div class="flex flex-wrap -mx-4">
         
@@ -54,8 +55,9 @@ import Layout from '../layouts/Layout.astro';
                 <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 font-oswald">Pilih Paket</label>
                 <select id="wa_package" class="w-full px-5 py-4 bg-white border border-slate-200 focus:border-[#7E67F8] focus:outline-none transition-all font-mulish text-sm text-slate-900">
                   <option value="Basic (IDR 588k)">Paket Basic (IDR 588k)</option>
-                  <option value="Pro (IDR 1.000k)">Paket Pro (IDR 1.100k)</option>
+                  <option value="Pro (IDR 1.000k)">Paket Pro (IDR 1.000k)</option>
                   <option value="Business (IDR 2.588k)">Paket Business (IDR 2.588k)</option>
+                  <option value="Belum tahu, mau konsultasi dulu">Belum tahu, mau konsultasi dulu</option>
                 </select>
               </div>
 
@@ -73,10 +75,9 @@ import Layout from '../layouts/Layout.astro';
 
       </div>
     </div>
-  </main>
+  </section>
 
   <script is:inline>
-    // Tunggu sampai tombol diklik
     document.getElementById('btn_wa').addEventListener('click', function() {
       const name = document.getElementById('wa_name').value;
       const pkg = document.getElementById('wa_package').value;
@@ -92,4 +93,5 @@ import Layout from '../layouts/Layout.astro';
       window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
     });
   </script>
+
 </Layout>
