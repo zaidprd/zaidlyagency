@@ -1,5 +1,5 @@
 ---
-// Header.astro - FINAL STABLE
+// Header.astro - Fixed hamburger for Astro View Transitions
 ---
 
 <header id="main-header" class="fixed top-0 left-0 w-full z-[100] transition-all duration-500 py-6 bg-white/70 backdrop-blur-md border-b border-transparent">
@@ -25,7 +25,6 @@
         </a>
       </div>
 
-      <!-- ✅ touch-action: manipulation → hapus 300ms delay tanpa double-fire -->
       <button
         id="mobile-menu-toggle"
         class="lg:hidden text-slate-900 p-2 z-[130] relative"
@@ -72,14 +71,22 @@
   }
 </style>
 
-<script is:inline>
-  if (!window.__menuInitialized) {
-    window.__menuInitialized = true;
+<script>
+  // AbortController untuk cleanup listener lama setiap navigasi
+  let controller: AbortController | null = null;
+
+  function initMenu() {
+    // Hapus semua listener dari navigasi sebelumnya
+    if (controller) controller.abort();
+    controller = new AbortController();
+    const { signal } = controller;
 
     const toggle = document.getElementById('mobile-menu-toggle');
     const menu = document.getElementById('mobile-menu');
     const iconPath = document.getElementById('icon-path');
     const body = document.body;
+
+    if (!toggle || !menu || !iconPath) return;
 
     const ICON_BURGER = 'M4 6h16M4 12h16m-7 6h7';
     const ICON_CLOSE  = 'M6 18L18 6M6 6l12 12';
@@ -98,27 +105,28 @@
       menu.classList.remove('open');
       iconPath.setAttribute('d', ICON_BURGER);
       toggle.setAttribute('aria-expanded', 'false');
-      body.style.overflow = ''; // ✅ reset ke default, bukan 'auto'
+      body.style.overflow = '';
     }
 
-    // ✅ Hanya 'click' — touchstart dihapus untuk cegah double-fire
     toggle.addEventListener('click', (e) => {
       e.stopPropagation();
       isOpen ? closeMenu() : openMenu();
-    });
+    }, { signal });
 
     document.addEventListener('click', (e) => {
-      if (isOpen && !menu.contains(e.target) && !toggle.contains(e.target)) {
+      if (isOpen && !menu.contains(e.target as Node) && !toggle.contains(e.target as Node)) {
         closeMenu();
       }
-    });
+    }, { signal });
 
     menu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMenu);
+      link.addEventListener('click', closeMenu, { signal });
     });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && isOpen) closeMenu();
-    });
+    }, { signal });
   }
+
+  document.addEventListener('astro:page-load', initMenu);
 </script>
