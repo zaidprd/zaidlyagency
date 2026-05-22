@@ -1,13 +1,8 @@
 ---
-// src/layouts/Layout.astro - FIXED Transitions & Shimmer Button
 import Header from '../components/Header.astro'; 
 import Footer from '../components/Footer.astro'; 
 import '../styles/global.css';
-
-// 1. IMPORT TRANSITIONS DI SINI BOS!
 import { ClientRouter } from 'astro:transitions';
-
-// Import Font
 import '@fontsource/mulish/400.css';
 import '@fontsource/mulish/700.css';
 import '@fontsource/oswald/400.css';
@@ -16,14 +11,42 @@ import '@fontsource/oswald/700.css';
 interface Props {
     title: string;
     description?: string;
+    ogImage?: string;
+    keywords?: string;
 }
 
-const { title, description = "Zaidly Agency membantu UMKM go-online dengan jasa pembuatan website profesional." } = Astro.props;
----
+const { 
+  title, 
+  description = "Zaidly Agency membantu UMKM go-online dengan jasa pembuatan website profesional, cepat, dan terjangkau.",
+  ogImage = "/og-image.svg",
+  keywords = "jasa website umkm, bikin website murah, jasa digital agency, website profesional"
+} = Astro.props;
 
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://zaidly.com");
+const ogImageURL = new URL(ogImage, "https://zaidly.com").href;
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Zaidly Agency",
+  "description": "Jasa pembuatan website profesional untuk UMKM Indonesia",
+  "url": "https://zaidly.com",
+  "telephone": "+6281274203815",
+  "email": "hello@zaidly.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Jl. H Taha",
+    "addressLocality": "Kebon Jeruk",
+    "addressRegion": "Jakarta",
+    "addressCountry": "ID"
+  },
+  "priceRange": "Rp 588.000 - Rp 2.588.000",
+  "sameAs": ["https://zaidly.com"]
+});
+---
 <!doctype html>
 <html lang="id">
-    <head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -31,57 +54,45 @@ const { title, description = "Zaidly Agency membantu UMKM go-online dengan jasa 
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    
-    <meta name="keywords" content="jasa website umkm, bikin website murah, jasa digital agency, website profesional" />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={canonicalURL} />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="Zaidly Agency" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <script type="application/ld+json" set:html={schema}></script>
 
     <ClientRouter />
-
-</head>
-    <body class="bg-white font-sans text-slate-900 overflow-x-hidden m-0 p-0 box-border antialiased flex flex-col min-h-screen">
-        
-        <Header />
-
-        <main class="grow" transition:animate="fade">
-            <slot /> 
-        </main>
-
-        <Footer />
-
-    </body>
+  </head>
+  <body class="bg-white font-sans text-slate-900 overflow-x-hidden m-0 p-0 box-border antialiased flex flex-col min-h-screen">
+    <Header />
+    <main class="grow" transition:animate="fade">
+      <slot /> 
+    </main>
+    <Footer />
+  </body>
 </html>
 
 <style is:global>
-    html {
-        scroll-behavior: smooth;
-    }
-
-    /* Telco Style: Header & Heading harus Oswald */
-    h1, h2, h3, h4, h5, h6 {
-        font-family: 'Oswald', sans-serif !important;
-        text-transform: uppercase;
-    }
-
-    /* Teks biasa pakai Mulish */
-    body {
-        font-family: 'Mulish', sans-serif;
-    }
-
-    /* Memastikan Footer nendang ke bawah kalau konten dikit */
-    main {
-        min-height: 70vh;
-    }
-
-    /* --- KUNCI ANIMASI SHIMMER --- */
-    @keyframes shimmer {
-      100% {
-        transform: translateX(100%);
-      }
-    }
-    .animate-shimmer {
-      animation: shimmer 2s infinite;
-    }
+  html { scroll-behavior: smooth; }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif !important;
+    text-transform: uppercase;
+  }
+  body { font-family: 'Mulish', sans-serif; }
+  main { min-height: 70vh; }
+  @keyframes shimmer { 100% { transform: translateX(100%); } }
+  .animate-shimmer { animation: shimmer 2s infinite; }
 </style>
