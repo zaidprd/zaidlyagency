@@ -41,29 +41,31 @@ const { page } = Astro.props;
       {page.data.map((post: any) => (
         <article class="relative flex flex-col w-full">
           
-          <div class="relative w-full shadow-2xl bg-slate-900 aspect-video rounded-sm">
-            <a href={`/${post.slug}`} class="block w-full h-full p-2">
-              <img 
-                src={urlFor(post.mainImage).width(1200).url()} 
-                alt={post.mainImage.alt || post.title} 
-                class="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
-              />
-            </a>
+          {post.mainImage && (
+            <div class="relative w-full shadow-2xl bg-slate-900 aspect-video rounded-sm">
+              <a href={`/${post.slug}`} class="block w-full h-full p-2">
+                <img 
+                  src={urlFor(post.mainImage).width(1200).url()} 
+                  alt={post.mainImage.alt || post.title} 
+                  class="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
+                />
+              </a>
 
-            <div class="absolute -bottom-8 left-0 md:left-10 bg-[#1A1A1A] text-white flex items-center gap-6 px-8 py-5 text-[11px] font-oswald uppercase tracking-[0.2em] z-50 shadow-2xl border-l-4 border-[#7E67F8]">
-                <div class="flex items-center gap-2">
-                  <span class="text-[#7E67F8]">📅</span>
-                  {new Date(post.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
-                </div>
-                <div class="w-px h-4 bg-slate-700"></div>
-                <div class="flex items-center gap-2">
-                  <span class="text-[#7E67F8]">👤</span>
-                  BY - {post.authorName || 'ZAID'}
-                </div>
+              <div class="absolute -bottom-8 left-0 md:left-10 bg-[#1A1A1A] text-white flex items-center gap-6 px-8 py-5 text-[11px] font-oswald uppercase tracking-[0.2em] z-50 shadow-2xl border-l-4 border-[#7E67F8]">
+                  <div class="flex items-center gap-2">
+                    <span class="text-[#7E67F8]">📅</span>
+                    {new Date(post.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  </div>
+                  <div class="w-px h-4 bg-slate-700"></div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-[#7E67F8]">👤</span>
+                    BY - {post.authorName || 'ZAID'}
+                  </div>
+              </div>
             </div>
-          </div>
+          )}
 
-          <div class="mt-20 space-y-6">
+          <div class={post.mainImage ? "mt-20 space-y-6" : "space-y-6"}>
             <div class="flex gap-2">
               {post.categories?.map((cat: string) => (
                 <span class="text-[#7E67F8] text-[11px] font-bold uppercase tracking-[0.2em]">{cat}</span>
