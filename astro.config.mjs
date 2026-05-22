@@ -18,7 +18,7 @@ export default defineConfig({
   integrations: [
     sanity({
       // Masukin ID lo langsung di sini. Anti-Gagal.
-      projectId: "8ukg7bxy", 
+      projectId: "0ukg7bxy", 
       dataset: "production",
       apiVersion: '2024-03-28',
       useCdn: true,
