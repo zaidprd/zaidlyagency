@@ -133,7 +133,9 @@ const currentUrl = Astro.url.href;
               {post.related.map((rel: any) => (
                 <a href={`/${rel.slug}`} class="group flex flex-col h-full">
                   <div class="relative overflow-hidden aspect-video mb-6 shadow-lg rounded-sm bg-slate-100 border border-slate-100">
-                    <img src={urlFor(rel.mainImage).width(600).url()} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={rel.title} />
+                    {rel.mainImage && (
+  <img src={urlFor(rel.mainImage).width(600).url()} class="w-full h-full object-cover ..." alt={rel.title} />
+)} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={rel.title} />
                   </div>
                   <span class="text-[10px] font-oswald font-bold uppercase tracking-widest text-slate-400 mb-2 block">📅 {new Date(rel.publishedAt).toLocaleDateString('id-ID', { month: 'short' })}</span>
                   <h4 class="text-xl font-oswald uppercase font-bold text-slate-900 group-hover:text-[#7E67F8] transition-colors line-clamp-2 leading-tight">{rel.title}</h4>
