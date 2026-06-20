@@ -356,4 +356,18 @@ const currentUrl = Astro.url.href;
       btn?.setAttribute('aria-expanded', 'false');
     });
   });
+
+  // TOC scroll tanpa ubah URL — intercept semua anchor TOC
+  document.querySelectorAll('aside a[href^="#"], #toc-mobile-content a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = (link.getAttribute('href') ?? '').replace('#', '');
+      const target = document.getElementById(id);
+      if (target) {
+        const offset = 96; // tinggi navbar sticky
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
 </script>
