@@ -14,10 +14,10 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 
 const post = await client.fetch(`*[_type == "post" && slug.current == $slug][0]{
-  title, 
-  mainImage, 
-  body, 
-  publishedAt, 
+  title,
+  mainImage,
+  body,
+  publishedAt,
   excerpt,
   "author": author->{name},
   "categories": categories[]->title,
@@ -29,10 +29,10 @@ const post = await client.fetch(`*[_type == "post" && slug.current == $slug][0]{
 if (!post) return Astro.redirect('/404');
 
 const getSlug = (str: string) => str.toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
+  .replace(/[^\w\s-]/g, '')
+  .trim()
+  .replace(/\s+/g, '-')
+  .replace(/-+/g, '-');
 
 const headings = post.body
   ? post.body.flatMap((block: any) => {
@@ -57,26 +57,79 @@ const currentUrl = Astro.url.href;
 ---
 
 <Layout title={`${post.title} - Zaidly Agency`} description={post.excerpt}>
-  <main class="pt-48 pb-24 font-mulish">
-    <div class="container mx-auto px-4 max-w-6xl">
 
-      <!-- TOC MOBILE: collapsible, hanya tampil di bawah lg -->
+  <!-- Article hero image -->
+  {post.mainImage && (
+    <div class="relative w-full pt-24 bg-[#060608]">
+      <div class="max-w-5xl mx-auto px-6 pt-16 pb-0">
+        <div class="relative rounded-[20px] overflow-hidden border border-white/[0.06]
+                    shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
+          <img
+            src={urlFor(post.mainImage).width(1200).url()}
+            class="w-full h-auto object-cover"
+            alt={post.title}
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#060608]/80 to-transparent"></div>
+
+          <!-- Meta bar over image -->
+          <div class="absolute bottom-0 left-0 right-0 p-6 flex flex-wrap gap-4 items-center">
+            <div class="flex items-center gap-2 bg-[#0f0f14]/90 backdrop-blur-sm
+                        border border-white/[0.06] rounded-lg px-4 py-2
+                        text-[10px] font-heading font-black uppercase tracking-widest text-white/60">
+              <span class="text-[#3245FF]">📅</span>
+              {new Date(post.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </div>
+            <div class="flex items-center gap-2 bg-[#0f0f14]/90 backdrop-blur-sm
+                        border border-white/[0.06] rounded-lg px-4 py-2
+                        text-[10px] font-heading font-black uppercase tracking-widest text-white/60">
+              <span class="text-[#BC52EE]">👤</span>
+              By {post.author?.name || 'Zaid'}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Main content area -->
+  <main class="pt-16 pb-32 bg-[#050507]">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <!-- Title + categories -->
+      <div class="max-w-3xl mb-12">
+        <div class="flex gap-2 flex-wrap mb-6">
+          {post.categories?.map((cat: string) => (
+            <span class="section-label" style="margin-bottom:0">{cat}</span>
+          ))}
+        </div>
+        <h1 class="font-heading font-black uppercase text-4xl md:text-6xl leading-[0.9]
+                   tracking-tighter text-white">
+          {post.title}
+        </h1>
+      </div>
+
+      <!-- TOC mobile -->
       {headings.length > 0 && (
-        <div class="lg:hidden mb-10">
+        <div class="lg:hidden mb-10 rounded-[16px] overflow-hidden border border-white/[0.06]">
           <button
             id="toc-toggle"
-            class="w-full flex items-center justify-between bg-[#F7F7F7] border-t-4 border-[#7E67F8] px-6 py-4 text-left shadow-sm"
+            class="w-full flex items-center justify-between bg-[#0f0f14] px-6 py-4 text-left"
             aria-expanded="false"
             aria-controls="toc-mobile-content"
           >
-            <span class="font-oswald uppercase font-bold text-sm tracking-widest text-slate-900">Daftar Isi</span>
-            <svg id="toc-chevron" class="w-5 h-5 text-[#7E67F8] transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <span class="font-heading font-black text-[10px] uppercase tracking-[0.3em] text-white">
+              Daftar Isi
+            </span>
+            <svg id="toc-chevron" class="w-5 h-5 text-[#3245FF] transition-transform duration-300"
+                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div id="toc-mobile-content" class="hidden bg-[#F7F7F7] border-x border-b border-slate-200 px-6 pb-5 pt-2 space-y-4">
+          <div id="toc-mobile-content" class="hidden bg-[#0a0a0f] px-6 pb-5 pt-3 space-y-4">
             {headings.map((h: any) => (
-              <a href={`#${h.slug}`} class="toc-mobile-link block text-[13px] text-slate-500 hover:text-[#7E67F8] font-bold uppercase transition-colors tracking-wide leading-relaxed">
+              <a href={`#${h.slug}`}
+                 class="toc-mobile-link block text-[12px] text-white/40 hover:text-[#3245FF]
+                        font-heading font-black uppercase tracking-wide transition-colors">
                 {h.text}
               </a>
             ))}
@@ -84,74 +137,69 @@ const currentUrl = Astro.url.href;
         </div>
       )}
 
-      <!-- LAYOUT UTAMA -->
+      <!-- Two-column layout -->
       <div class="flex flex-col lg:flex-row gap-16">
 
-        <article class="lg:w-2/3">
-          {post.mainImage && (
-            <div class="relative w-full mb-28 shadow-2xl rounded-2xl overflow-hidden">
-              <img 
-                src={urlFor(post.mainImage).width(1200).url()} 
-                class="relative z-0 w-full h-auto object-cover" 
-                alt={post.title} 
-              />
-              <div class="absolute -bottom-1 left-0 md:left-10 bg-[#1A1A1A] text-white flex items-center gap-6 px-8 py-5 text-[11px] font-oswald uppercase tracking-widest z-10 shadow-2xl border-l-4 border-[#7E67F8]">
-                <div class="flex items-center gap-2">
-                  <span class="text-[#7E67F8]">📅</span>
-                  {new Date(post.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
-                </div>
-                <div class="w-px h-4 bg-slate-700"></div>
-                <div class="flex items-center gap-2">
-                  <span class="text-[#7E67F8]">👤</span>
-                  BY - {post.author?.name || 'ZAID'}
-                </div>
-              </div>
-            </div>
-          )}
-
-          <h1 class="text-4xl md:text-6xl font-bold font-oswald uppercase leading-tight text-slate-900 mb-12 tracking-tighter">
-            {post.title}
-          </h1>
-
-          <div class="prose prose-lg max-w-none mb-20 text-slate-700 leading-relaxed font-mulish">
+        <!-- Article body -->
+        <article class="lg:w-2/3 min-w-0">
+          <div class="prose-dark">
             <PortableVisualBlocks value={post.body} />
           </div>
 
-          <div class="mt-16 py-8 border-y border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div class="flex items-center gap-4">
-              <span class="font-oswald uppercase font-bold text-[13px] tracking-widest text-slate-900">Tags:</span>
-              <div class="flex gap-2 flex-wrap">
-                {post.categories?.map((cat: string) => (
-                  <a 
-                    href="/" 
-                    class="px-4 py-1.5 border border-slate-200 text-[11px] font-oswald uppercase font-bold text-slate-500 hover:bg-[#7E67F8] hover:text-white hover:border-[#7E67F8] transition-all duration-300 cursor-pointer"
-                  >
-                    {cat}
-                  </a>
-                ))}
-              </div>
+          <!-- Tags + Share -->
+          <div class="mt-16 py-8 border-t border-white/[0.05] flex flex-col md:flex-row
+                      md:items-center justify-between gap-6">
+            <div class="flex items-center gap-4 flex-wrap">
+              <span class="font-heading font-black text-[9px] uppercase tracking-[0.3em] text-white/40">
+                Tags:
+              </span>
+              {post.categories?.map((cat: string) => (
+                <span class="px-3 py-1.5 rounded-lg border border-white/[0.08]
+                             text-[10px] font-heading font-black uppercase tracking-widest
+                             text-white/40 hover:text-[#3245FF] hover:border-[#3245FF]/30
+                             transition-all cursor-default">
+                  {cat}
+                </span>
+              ))}
             </div>
 
-            <div class="flex items-center gap-6">
-              <span class="font-oswald uppercase font-bold text-[13px] tracking-widest text-slate-900">Share:</span>
-              <div class="flex gap-5">
-                <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#1877F2] transition-colors">
-                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <div class="flex items-center gap-5">
+              <span class="font-heading font-black text-[9px] uppercase tracking-[0.3em] text-white/40">
+                Share:
+              </span>
+              <div class="flex gap-4">
+                <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`}
+                   target="_blank" rel="noopener noreferrer"
+                   class="text-white/30 hover:text-[#1877F2] transition-colors">
+                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
                 </a>
-                <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(post.title)}%20${encodeURIComponent(currentUrl)}`} target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#25D366] transition-colors">
-                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(post.title)}%20${encodeURIComponent(currentUrl)}`}
+                   target="_blank" rel="noopener noreferrer"
+                   class="text-white/30 hover:text-[#25D366] transition-colors">
+                  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
                 </a>
               </div>
             </div>
           </div>
 
+          <!-- Related articles -->
           {post.related && post.related.length > 0 && (
             <div class="mt-24">
-              <h3 class="text-4xl font-oswald uppercase font-bold mb-10 text-slate-900 tracking-tighter">Related Articles</h3>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+              <h3 class="font-heading font-black uppercase text-3xl md:text-4xl
+                         tracking-tighter text-white mb-12">
+                Related Articles
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {post.related.map((rel: any) => (
-                  <a href={`/${rel.slug}`} class="group flex flex-col h-full">
-                    <div class="relative overflow-hidden aspect-video mb-6 shadow-lg rounded-sm bg-slate-100 border border-slate-100">
+                  <a href={`/${rel.slug}`}
+                     class="group block rounded-[16px] overflow-hidden border border-white/[0.06]
+                            bg-[#0f0f14] hover:-translate-y-1 hover:border-white/[0.12]
+                            transition-all duration-300">
+                    <div class="relative aspect-video overflow-hidden">
                       {rel.mainImage && (
                         <img
                           src={urlFor(rel.mainImage).width(600).url()}
@@ -159,13 +207,17 @@ const currentUrl = Astro.url.href;
                           alt={rel.title}
                         />
                       )}
+                      <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f14]/80 to-transparent"></div>
                     </div>
-                    <span class="text-[10px] font-oswald font-bold uppercase tracking-widest text-slate-400 mb-2 block">
-                      📅 {new Date(rel.publishedAt).toLocaleDateString('id-ID', { month: 'short' })}
-                    </span>
-                    <h4 class="text-xl font-oswald uppercase font-bold text-slate-900 group-hover:text-[#7E67F8] transition-colors line-clamp-2 leading-tight">
-                      {rel.title}
-                    </h4>
+                    <div class="p-5">
+                      <span class="text-[9px] font-heading font-black uppercase tracking-widest text-white/30 block mb-2">
+                        {new Date(rel.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' })}
+                      </span>
+                      <h4 class="font-heading font-black uppercase text-base tracking-tight
+                                 text-white group-hover:text-gradient-static transition-all line-clamp-2 leading-tight">
+                        {rel.title}
+                      </h4>
+                    </div>
                   </a>
                 ))}
               </div>
@@ -173,20 +225,25 @@ const currentUrl = Astro.url.href;
           )}
         </article>
 
-        <!-- TOC DESKTOP: sidebar kanan sticky, hidden di mobile -->
-        <aside class="hidden lg:block lg:w-1/3">
+        <!-- TOC sidebar (desktop) -->
+        <aside class="hidden lg:block lg:w-1/3 shrink-0">
           <div class="sticky top-32">
-            <div class="p-10 bg-[#F7F7F7] border-t-4 border-[#7E67F8] shadow-sm rounded-sm">
-              <h4 class="text-xl font-oswald uppercase font-bold mb-8 text-slate-900 tracking-widest border-b pb-4 border-slate-200">In This Article</h4>
-              <nav class="space-y-5">
+            <div class="card-premium p-8 rounded-[20px]">
+              <h4 class="font-heading font-black text-[10px] uppercase tracking-[0.3em] text-white mb-6
+                         pb-4 border-b border-white/[0.06]">
+                In This Article
+              </h4>
+              <nav class="space-y-4">
                 {headings.length > 0 ? (
                   headings.map((h: any) => (
-                    <a href={`#${h.slug}`} class="block text-[13px] text-slate-500 hover:text-[#7E67F8] font-bold uppercase transition-colors tracking-wide leading-relaxed">
+                    <a href={`#${h.slug}`}
+                       class="block text-[12px] font-heading font-black uppercase tracking-wide
+                              text-white/40 hover:text-[#3245FF] transition-colors leading-relaxed">
                       {h.text}
                     </a>
                   ))
                 ) : (
-                  <span class="text-[11px] text-slate-400 uppercase">No headings found</span>
+                  <span class="text-[11px] text-white/20 uppercase">No headings found</span>
                 )}
               </nav>
             </div>
@@ -196,7 +253,83 @@ const currentUrl = Astro.url.href;
       </div>
     </div>
   </main>
+
 </Layout>
+
+<style>
+  /* Prose dark — article body typography */
+  .prose-dark :global(h2),
+  .prose-dark :global(h3) {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    color: white;
+    margin-top: 3rem;
+    margin-bottom: 1.25rem;
+    line-height: 0.9;
+  }
+  .prose-dark :global(h2) { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+  .prose-dark :global(h3) { font-size: clamp(1.2rem, 2vw, 1.75rem); }
+
+  .prose-dark :global(p) {
+    color: rgba(255,255,255,0.5);
+    font-size: 1rem;
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+
+  .prose-dark :global(a) {
+    color: #3245FF;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+  }
+  .prose-dark :global(a:hover) { color: #BC52EE; }
+
+  .prose-dark :global(strong) { color: rgba(255,255,255,0.8); font-weight: 700; }
+
+  .prose-dark :global(ul), .prose-dark :global(ol) {
+    color: rgba(255,255,255,0.5);
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.85;
+  }
+  .prose-dark :global(li) { margin-bottom: 0.5rem; }
+
+  .prose-dark :global(blockquote) {
+    border-left: 3px solid #3245FF;
+    padding-left: 1.5rem;
+    margin-left: 0;
+    color: rgba(255,255,255,0.4);
+    font-style: italic;
+  }
+
+  .prose-dark :global(code) {
+    background: rgba(50,69,255,0.1);
+    border: 1px solid rgba(50,69,255,0.2);
+    border-radius: 6px;
+    padding: 0.15em 0.4em;
+    font-size: 0.85em;
+    color: #BC52EE;
+  }
+
+  .prose-dark :global(pre) {
+    background: #0a0a10;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .prose-dark :global(img) {
+    border-radius: 12px;
+    width: 100%;
+    height: auto;
+    margin: 2rem 0;
+  }
+</style>
 
 <script>
   const btn = document.getElementById('toc-toggle');

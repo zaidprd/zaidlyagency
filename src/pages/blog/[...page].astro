@@ -14,78 +14,89 @@ export const getStaticPaths = (async ({ paginate }) => {
     "authorName": author->name,
     "categories": categories[]->title
   }`);
-
   return paginate(allPosts, { pageSize: 10 });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
 ---
 
-<Layout 
-  title={`Blog Zaidly Agency - Halaman ${page.currentPage}`} 
-  description="Daftar artikel Zaidly Agency tampilan full width vertikal."
+<Layout
+  title={`Blog Zaidly Agency - Halaman ${page.currentPage}`}
+  description="Artikel seputar jasa website, SEO, dan tips digital marketing untuk UMKM Indonesia dari Zaidly Agency."
 >
-  
-  <section class="pt-40 pb-20 bg-slate-50 border-b border-slate-100 text-center">
-    <div class="container mx-auto px-4">
-       <span class="text-[#7E67F8] font-oswald uppercase font-bold text-[12px] tracking-[0.3em] mb-4 block">Our Insights</span>
-       <h1 class="text-6xl md:text-8xl font-bold font-oswald uppercase text-slate-900 tracking-tighter">
-         Blog
-       </h1>
+
+  <!-- Page header -->
+  <section class="relative pt-40 pb-20 overflow-hidden">
+    <div class="absolute inset-0 bg-[#060608]"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px]
+                bg-[radial-gradient(ellipse,rgba(50,69,255,0.15)_0%,transparent_65%)]
+                pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-[1px]
+                bg-gradient-to-r from-transparent via-[#3245FF]/30 to-transparent"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+      <span class="section-label mx-auto">Our Insights</span>
+      <h1 class="font-heading font-black uppercase text-6xl md:text-8xl leading-[0.85] tracking-tighter text-white">
+        Blog
+      </h1>
     </div>
   </section>
 
-  <main class="py-24 bg-white">
-    <div class="container mx-auto px-4 max-w-4xl space-y-32">
-      
+  <!-- Articles -->
+  <main class="py-24 bg-[#050507]">
+    <div class="max-w-4xl mx-auto px-6 space-y-32">
+
       {page.data.map((post: any) => (
-        <article class="relative flex flex-col w-full">
-          
+        <article class="relative flex flex-col w-full group">
+
           {post.mainImage && (
-            <div class="relative w-full shadow-2xl bg-slate-900 aspect-video rounded-sm">
-              <a href={`/${post.slug}`} class="block w-full h-full p-2">
-                <img 
-                  src={urlFor(post.mainImage).width(1200).url()} 
-                  alt={post.mainImage.alt || post.title} 
-                  class="w-full h-full object-contain transition-transform duration-700 hover:scale-105"
+            <div class="relative w-full mb-14 rounded-[20px] overflow-hidden
+                        border border-white/[0.04]
+                        shadow-[0_40px_80px_rgba(0,0,0,0.5)]">
+              <a href={`/${post.slug}`} class="block">
+                <img
+                  src={urlFor(post.mainImage).width(1200).url()}
+                  alt={post.mainImage.alt || post.title}
+                  class="w-full h-auto transition-transform duration-700 group-hover:scale-[1.02]"
                 />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#050507]/60 to-transparent"></div>
               </a>
 
-              <div class="absolute -bottom-8 left-0 md:left-10 bg-[#1A1A1A] text-white flex items-center gap-6 px-8 py-5 text-[11px] font-oswald uppercase tracking-[0.2em] z-50 shadow-2xl border-l-4 border-[#7E67F8]">
-                  <div class="flex items-center gap-2">
-                    <span class="text-[#7E67F8]">📅</span>
-                    {new Date(post.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
-                  </div>
-                  <div class="w-px h-4 bg-slate-700"></div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-[#7E67F8]">👤</span>
-                    BY - {post.authorName || 'ZAID'}
-                  </div>
+              <div class="absolute bottom-5 left-5 flex items-center gap-4
+                          bg-[#0f0f14]/90 backdrop-blur-sm border border-white/[0.06]
+                          rounded-xl px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest">
+                <span class="text-white/50">
+                  {new Date(post.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                </span>
+                <span class="w-px h-3 bg-white/20"></span>
+                <span class="text-[#3245FF]">By {post.authorName || 'Zaid'}</span>
               </div>
             </div>
           )}
 
-          <div class={post.mainImage ? "mt-20 space-y-6" : "space-y-6"}>
-            <div class="flex gap-2">
+          <div class="space-y-5">
+            <div class="flex gap-2 flex-wrap">
               {post.categories?.map((cat: string) => (
-                <span class="text-[#7E67F8] text-[11px] font-bold uppercase tracking-[0.2em]">{cat}</span>
+                <span class="section-label" style="margin-bottom:0;">{cat}</span>
               ))}
             </div>
-            
+
             <a href={`/${post.slug}`} class="block">
-              <h2 class="text-4xl md:text-6xl font-bold font-oswald uppercase leading-tight text-slate-900 hover:text-[#7E67F8] transition-colors tracking-tighter">
+              <h2 class="font-heading font-black uppercase text-3xl md:text-5xl leading-[0.9]
+                         tracking-tighter text-white hover:text-gradient-static transition-all">
                 {post.title}
               </h2>
             </a>
 
-            <p class="text-slate-500 font-mulish text-base leading-relaxed line-clamp-3 max-w-3xl">
+            <p class="text-white/40 text-base leading-relaxed line-clamp-3 max-w-2xl">
               {post.excerpt}
             </p>
 
-            <div class="pt-6">
-              <a href={`/${post.slug}`} class="inline-flex items-center gap-4 text-[#7E67F8] font-oswald font-bold text-xs uppercase tracking-[0.3em] group">
-                Read Full Article 
-                <span class="w-10 h-px bg-[#7E67F8] transition-all duration-300 group-hover:w-16"></span>
+            <div class="pt-4">
+              <a href={`/${post.slug}`}
+                 class="inline-flex items-center gap-3 text-[#3245FF] font-black text-[10px] uppercase tracking-[0.3em] group/link">
+                Read Full Article
+                <span class="w-8 h-px bg-[#3245FF] transition-all duration-300 group-hover/link:w-14"></span>
               </a>
             </div>
           </div>
@@ -94,17 +105,20 @@ const { page } = Astro.props;
       ))}
 
       {page.lastPage > 1 && (
-        <div class="mt-40 flex justify-center items-center gap-4 border-t pt-20 border-slate-100">
-           {page.url.prev && (
-             <a href={page.url.prev} class="px-8 py-4 bg-slate-900 text-white font-oswald font-bold text-xs uppercase tracking-widest hover:bg-[#7E67F8] transition-all">PREV</a>
-           )}
-           <span class="font-oswald font-bold text-slate-900 px-6 py-4 bg-slate-50 text-xs border border-slate-200">{page.currentPage} / {page.lastPage}</span>
-           {page.url.next && (
-             <a href={page.url.next} class="px-8 py-4 bg-slate-900 text-white font-oswald font-bold text-xs uppercase tracking-widest hover:bg-[#7E67F8] transition-all">NEXT</a>
-           )}
+        <div class="mt-20 flex justify-center items-center gap-4 border-t border-white/[0.05] pt-16">
+          {page.url.prev && (
+            <a href={page.url.prev} class="btn-ghost px-8 py-3 text-[10px]">PREV</a>
+          )}
+          <span class="font-heading text-white/40 text-sm px-6">
+            {page.currentPage} / {page.lastPage}
+          </span>
+          {page.url.next && (
+            <a href={page.url.next} class="btn-premium px-8 py-3 text-[10px]">NEXT</a>
+          )}
         </div>
       )}
 
     </div>
   </main>
+
 </Layout>
