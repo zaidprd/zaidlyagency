@@ -9,25 +9,23 @@ const links = [
 
 <nav class="navbar sticky top-0 z-[100]">
 
-  <!-- Glassmorphism base -->
   <div class="navbar-bg absolute inset-0"></div>
 
-  <!-- Bottom shimmer line -->
   <div class="absolute bottom-0 left-0 right-0 h-[1px]
               bg-gradient-to-r from-transparent via-[#3245FF]/30 to-transparent"></div>
 
-  <div class="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between relative z-10">
+  <div class="max-w-7xl mx-auto px-6 h-[64px] flex items-center justify-between relative z-10">
 
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-3 group cursor-pointer no-underline">
-      <div class="w-9 h-9 rounded-[10px] flex items-center justify-center
-                  font-black text-lg text-white
+    <a href="/" class="flex items-center gap-2.5 group cursor-pointer no-underline">
+      <div class="w-8 h-8 rounded-[9px] flex items-center justify-center
+                  font-black text-base text-white shrink-0
                   transition-transform duration-500 group-hover:rotate-12"
            style="background: linear-gradient(135deg, #3245FF, #BC52EE);
-                  box-shadow: 0 4px 16px rgba(50,69,255,0.4);">
+                  box-shadow: 0 4px 14px rgba(50,69,255,0.4);">
         Z
       </div>
-      <div class="text-[20px] font-black uppercase tracking-tighter text-white leading-none">
+      <div class="text-[18px] font-black uppercase tracking-tighter text-white leading-none">
         ZAIDLY<span class="text-gradient-static">.</span>
       </div>
     </a>
@@ -48,7 +46,7 @@ const links = [
       ))}
     </ul>
 
-    <!-- CTA button (desktop only) -->
+    <!-- CTA desktop -->
     <a href="https://wa.me/6281274203815"
        class="nav-cta hidden md:inline-flex items-center gap-2
               px-6 py-[10px] rounded-[10px]
@@ -60,64 +58,91 @@ const links = [
       </svg>
     </a>
 
-    <!-- Hamburger button (mobile only) -->
+    <!-- Hamburger (mobile only) -->
     <button
       id="nav-hamburger"
-      class="md:hidden flex flex-col justify-center items-center gap-[5px]
-             w-11 h-11 rounded-[10px] transition-colors duration-200
-             hover:bg-white/5 active:bg-white/10"
+      class="md:hidden relative flex flex-col justify-center items-center
+             w-10 h-10 rounded-[10px] transition-colors duration-200
+             hover:bg-white/[0.06] active:bg-white/10 touch-manipulation"
       aria-label="Toggle Menu"
       aria-expanded="false"
-      aria-controls="mobile-menu"
+      aria-controls="mobile-drawer"
+      style="min-width:40px; min-height:40px;"
     >
-      <span id="ham-line1" class="w-5 h-[2px] bg-white/70 rounded-full block transition-all duration-300"></span>
-      <span id="ham-line2" class="w-5 h-[2px] bg-white/70 rounded-full block transition-all duration-300"></span>
-      <span id="ham-line3" class="w-3 h-[2px] bg-white/70 rounded-full block transition-all duration-300"></span>
+      <span id="ham-l1" class="ham-line"></span>
+      <span id="ham-l2" class="ham-line my-[4.5px]"></span>
+      <span id="ham-l3" class="ham-line" style="width:12px;"></span>
     </button>
 
   </div>
-
-  <!-- Mobile menu panel -->
-  <div
-    id="mobile-menu"
-    class="md:hidden mobile-menu-panel"
-    aria-hidden="true"
-  >
-    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-1">
-      {links.map((l) => (
-        <a
-          href={l.href}
-          class="mobile-nav-link block px-4 py-4 rounded-[12px]
-                 text-[11px] font-black uppercase tracking-[0.3em]
-                 text-white/50 hover:text-white hover:bg-white/[0.04]
-                 transition-all duration-200 no-underline"
-        >
-          {l.label}
-        </a>
-      ))}
-
-      <!-- CTA in mobile menu -->
-      <div class="mt-4 pt-4 border-t border-white/[0.06]">
-        <a
-          href="https://wa.me/6281274203815"
-          class="nav-cta flex items-center justify-center gap-2
-                 w-full py-4 rounded-[12px]
-                 text-[11px] font-black uppercase tracking-[0.2em] text-white
-                 transition-all duration-300 active:scale-95"
-        >
-          Hubungi via WhatsApp
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.997 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.402A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.52 2 11.997 2z"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </div>
-
 </nav>
 
-<!-- Backdrop overlay for mobile menu -->
+<!-- Backdrop (full-screen, behind drawer) -->
 <div id="nav-backdrop" class="nav-backdrop"></div>
+
+<!-- Right-side drawer -->
+<div
+  id="mobile-drawer"
+  class="mobile-drawer"
+  aria-hidden="true"
+  role="dialog"
+  aria-label="Menu navigasi"
+>
+  <!-- Header drawer -->
+  <div class="flex items-center justify-between mb-8">
+    <span class="text-[9px] font-black uppercase tracking-[0.35em] text-white/25">
+      Menu
+    </span>
+    <button
+      id="drawer-close"
+      class="w-8 h-8 flex items-center justify-center rounded-[8px]
+             bg-white/[0.04] hover:bg-white/[0.08] transition-colors"
+      aria-label="Tutup menu"
+    >
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" class="text-white/50">
+        <path d="M1 1l10 10M11 1L1 11"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Nav links in drawer -->
+  <nav class="flex flex-col gap-1 mb-8">
+    {links.map((l) => (
+      <a
+        href={l.href}
+        class="drawer-link flex items-center justify-between
+               px-4 py-4 rounded-[12px]
+               text-[12px] font-black uppercase tracking-[0.25em]
+               text-white/50 hover:text-white hover:bg-white/[0.05]
+               transition-all duration-200 no-underline group"
+      >
+        <span>{l.label}</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round"
+             class="text-white/20 group-hover:text-[#3245FF] group-hover:translate-x-1 transition-all">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    ))}
+  </nav>
+
+  <!-- CTA in drawer -->
+  <div class="mt-auto pt-6 border-t border-white/[0.06]">
+    <a
+      href="https://wa.me/6281274203815"
+      class="nav-cta flex items-center justify-center gap-2.5
+             w-full py-4 rounded-[14px]
+             text-[11px] font-black uppercase tracking-[0.2em] text-white
+             transition-all duration-300 active:scale-95"
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.997 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.402A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.52 2 11.997 2z"/>
+      </svg>
+      Hubungi via WhatsApp
+    </a>
+  </div>
+</div>
 
 <style>
   @reference "../styles/global.css";
@@ -129,78 +154,92 @@ const links = [
   }
 
   .navbar-bg {
-    background: rgba(6, 9, 26, 0.80);
+    background: rgba(6, 9, 26, 0.82);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  /* Desktop underline animation */
+  /* Hamburger lines */
+  .ham-line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: rgba(255,255,255,0.70);
+    border-radius: 99px;
+    transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+  }
+
+  /* Hamburger → X */
+  #nav-hamburger.is-open #ham-l1 { transform: translateY(6.5px) rotate(45deg); }
+  #nav-hamburger.is-open #ham-l2 { opacity: 0; transform: scaleX(0); }
+  #nav-hamburger.is-open #ham-l3 { transform: translateY(-6.5px) rotate(-45deg); width: 20px !important; }
+
+  /* Desktop nav underline */
   .nav-link:hover .nav-underline { width: 100%; }
 
-  /* CTA gradient pill */
+  /* CTA gradient */
   .nav-cta {
     background: linear-gradient(135deg, #3245FF, #BC52EE);
     box-shadow: 0 4px 16px rgba(50, 69, 255, 0.35);
   }
-  .nav-cta:hover {
-    box-shadow: 0 8px 28px rgba(50, 69, 255, 0.5);
-  }
+  .nav-cta:hover { box-shadow: 0 8px 28px rgba(50, 69, 255, 0.5); }
 
-  /* Mobile menu panel */
-  .mobile-menu-panel {
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    background: rgba(6, 9, 26, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
-    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.25s ease;
-    pointer-events: none;
-  }
-
-  .mobile-menu-panel.open {
-    max-height: 400px;
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* Backdrop */
+  /* === BACKDROP === */
   .nav-backdrop {
     display: none;
     position: fixed;
     inset: 0;
-    z-index: 99;
-    background: rgba(0, 0, 0, 0.5);
+    z-index: 150;
+    background: rgba(0, 0, 0, 0.40);
     backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+  .nav-backdrop.is-open { display: block; }
+
+  /* === RIGHT DRAWER === */
+  .mobile-drawer {
+    position: fixed;
+    top: 64px;              /* below navbar */
+    right: 0;
+    width: 82vw;
+    max-width: 340px;
+    height: 80vh;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 20px 24px;
+    background: rgba(8, 13, 32, 0.92);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border-left: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom-left-radius: 24px;
+    box-shadow: -20px 20px 60px rgba(0, 0, 0, 0.5);
+    /* slide-in from right */
+    transform: translateX(calc(100% + 4px));
+    transition: transform 0.32s cubic-bezier(0.32, 0, 0, 1);
+    pointer-events: none;
+    overflow-y: auto;
   }
 
-  .nav-backdrop.open {
-    display: block;
+  .mobile-drawer.is-open {
+    transform: translateX(0);
+    pointer-events: auto;
   }
 
-  /* Hamburger → X animation */
-  .ham-open #ham-line1 {
-    transform: translateY(7px) rotate(45deg);
-    width: 20px;
-  }
-  .ham-open #ham-line2 {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-  .ham-open #ham-line3 {
-    transform: translateY(-7px) rotate(-45deg);
-    width: 20px;
+  /* Only show drawer on mobile */
+  @media (min-width: 768px) {
+    .mobile-drawer { display: none !important; }
+    .nav-backdrop  { display: none !important; }
   }
 
-  /* Scroll darken */
+  /* Scroll darken on navbar */
   @supports (animation-timeline: scroll()) {
     .navbar-bg {
       animation: navDarken linear both;
       animation-timeline: scroll();
-      animation-range: 0px 120px;
+      animation-range: 0px 100px;
     }
     @keyframes navDarken {
       from { background: rgba(6, 9, 26, 0.0); }
@@ -210,48 +249,38 @@ const links = [
 </style>
 
 <script>
-  const hamburger = document.getElementById('nav-hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const backdrop = document.getElementById('nav-backdrop');
+  const hamburger  = document.getElementById('nav-hamburger')!;
+  const drawer     = document.getElementById('mobile-drawer')!;
+  const backdrop   = document.getElementById('nav-backdrop')!;
+  const closeBtn   = document.getElementById('drawer-close')!;
 
-  function openMenu() {
-    mobileMenu?.classList.add('open');
-    backdrop?.classList.add('open');
-    hamburger?.classList.add('ham-open');
-    hamburger?.setAttribute('aria-expanded', 'true');
-    mobileMenu?.setAttribute('aria-hidden', 'false');
+  function open() {
+    drawer.classList.add('is-open');
+    backdrop.classList.add('is-open');
+    hamburger.classList.add('is-open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    drawer.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
 
-  function closeMenu() {
-    mobileMenu?.classList.remove('open');
-    backdrop?.classList.remove('open');
-    hamburger?.classList.remove('ham-open');
-    hamburger?.setAttribute('aria-expanded', 'false');
-    mobileMenu?.setAttribute('aria-hidden', 'true');
+  function close() {
+    drawer.classList.remove('is-open');
+    backdrop.classList.remove('is-open');
+    hamburger.classList.remove('is-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
 
-  hamburger?.addEventListener('click', () => {
-    const isOpen = mobileMenu?.classList.contains('open');
-    isOpen ? closeMenu() : openMenu();
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.contains('is-open') ? close() : open();
   });
 
-  // Close on backdrop click
-  backdrop?.addEventListener('click', closeMenu);
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', close);
 
-  // Close when a nav link is clicked
-  mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
 
-  // Close on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
-  });
-
-  // Close menu if window resized to desktop
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 768) closeMenu();
-  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  window.addEventListener('resize', () => { if (window.innerWidth >= 768) close(); });
 </script>
