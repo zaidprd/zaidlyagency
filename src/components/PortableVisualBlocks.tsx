@@ -1,5 +1,14 @@
 import { marked, Renderer } from 'marked';
-import { urlFor } from '../lib/sanity';
+
+// Build Sanity image URL tanpa import sanity client (biar tidak trigger hook error)
+function sanityImgUrl(ref: string, width = 900): string {
+  // ref format: "image-abc123-1200x800-jpg"
+  const cleaned = ref
+    .replace(/^image-/, '')
+    .replace(/-(\w+)$/, '.$1')   // ubah suffix "-jpg" → ".jpg"
+    .replace(/-(\d+x\d+)\./, '-$1.'); // pastikan dimensi tetap
+  return `https://cdn.sanity.io/images/0ukg7bxy/production/${cleaned}?w=${width}&auto=format`;
+}
 
 // Sama persis dengan getSlug di [...slug].astro agar id heading match dengan href TOC
 const getSlug = (str: string) =>
@@ -23,8 +32,8 @@ marked.use({ renderer });
 function blocksToMarkdown(blocks: any[]): string {
   return blocks.map((block) => {
     // Images stored as Portable Text asset blocks
-    if (block._type === 'image' && block.asset) {
-      const src = urlFor(block).width(900).url();
+    if (block._type === 'image' && block.asset?._ref) {
+      const src = sanityImgUrl(block.asset._ref, 900);
       const alt = block.alt || '';
       const caption = block.caption || '';
       return caption

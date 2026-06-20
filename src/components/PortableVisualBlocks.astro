@@ -1,16 +1,239 @@
 ---
-import PortableVisualBlocksReact from './PortableVisualBlocks.tsx'; 
+import { marked, Renderer } from 'marked';
+
 const { value } = Astro.props;
+
+function sanityImgUrl(ref: string, width = 900): string {
+  const cleaned = ref
+    .replace(/^image-/, '')
+    .replace(/-(\w+)$/, '.$1')
+    .replace(/-(\d+x\d+)\./, '-$1.');
+  return `https://cdn.sanity.io/images/0ukg7bxy/production/${cleaned}?w=${width}&auto=format`;
+}
+
+const getSlug = (str: string) =>
+  str.toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+
+const renderer = new Renderer();
+renderer.heading = function ({ text, depth }: { text: string; depth: number }) {
+  const plain = text.replace(/<[^>]+>/g, '');
+  const id = getSlug(plain);
+  return `<h${depth} id="${id}">${text}</h${depth}>\n`;
+};
+marked.use({ renderer });
+
+function blocksToMarkdown(blocks: any[]): string {
+  return blocks.map((block) => {
+    if (block._type === 'image' && block.asset?._ref) {
+      const src = sanityImgUrl(block.asset._ref, 900);
+      const alt = block.alt || '';
+      const caption = block.caption || '';
+      return caption
+        ? `![${alt}](${src})\n*${caption}*`
+        : `![${alt}](${src})`;
+    }
+    if (block._type !== 'block') return '';
+    const text = (block.children || []).map((span: any) => {
+      let t = span.text || '';
+      if (!t) return '';
+      const marks: string[] = span.marks || [];
+      const linkMark = marks.find((m: string) =>
+        block.markDefs?.some((def: any) => def._key === m && def._type === 'link')
+      );
+      if (linkMark) {
+        const def = block.markDefs.find((d: any) => d._key === linkMark);
+        t = `[${t}](${def.href})`;
+      }
+      if (marks.includes('strong')) t = `**${t}**`;
+      if (marks.includes('em')) t = `*${t}*`;
+      if (marks.includes('code')) t = `\`${t}\``;
+      return t;
+    }).join('');
+    switch (block.style) {
+      case 'h1': return `# ${text}`;
+      case 'h2': return `## ${text}`;
+      case 'h3': return `### ${text}`;
+      case 'h4': return `#### ${text}`;
+      case 'blockquote': return `> ${text}`;
+      default: return text;
+    }
+  }).filter(Boolean).join('\n\n');
+}
+
+let html = '';
+if (value && Array.isArray(value)) {
+  const markdown = blocksToMarkdown(value);
+  html = marked.parse(markdown, { async: false, breaks: false }) as string;
+}
 ---
 
-<div class="zaidly-render-container">
-  <PortableVisualBlocksReact value={value} client:load />
-</div>
+<div class="portable-md" set:html={html} />
 
 <style is:global>
-  .zaidly-render-container {
-    width: 100%;
+  .portable-md p {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+    font-family: "Inter", sans-serif;
+  }
+
+  .portable-md h2 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    font-size: clamp(1.4rem, 3vw, 2.1rem);
+    line-height: 0.92;
+    margin-top: 3.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .portable-md h3 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    font-size: clamp(1.1rem, 2vw, 1.55rem);
+    line-height: 0.95;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .portable-md h4 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
     margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .portable-md a {
+    color: #3245FF;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+  }
+  .portable-md a:hover { color: #BC52EE; }
+
+  .portable-md strong {
+    color: rgba(255, 255, 255, 0.90);
+    font-weight: 700;
+  }
+
+  .portable-md em {
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .portable-md ul,
+  .portable-md ol {
+    color: rgba(255, 255, 255, 0.70);
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.85;
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+  }
+
+  .portable-md li {
+    margin-bottom: 0.5rem;
+  }
+
+  .portable-md ul li::marker {
+    color: #3245FF;
+  }
+
+  .portable-md ol li::marker {
+    color: #3245FF;
+    font-weight: 700;
+  }
+
+  .portable-md blockquote {
+    border-left: 3px solid #3245FF;
+    padding-left: 1.5rem;
+    margin-left: 0;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.58);
+    font-style: italic;
+    background: rgba(50, 69, 255, 0.04);
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .portable-md code {
+    background: rgba(50, 69, 255, 0.12);
+    border: 1px solid rgba(50, 69, 255, 0.22);
+    border-radius: 6px;
+    padding: 0.15em 0.4em;
+    font-size: 0.85em;
+    color: #BC52EE;
+  }
+
+  .portable-md pre {
+    background: #090e22;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .portable-md pre code {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9rem;
+  }
+
+  .portable-md img {
+    border-radius: 12px;
+    width: 100%;
+    height: auto;
+    margin: 2rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .portable-md hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    margin: 2.5rem 0;
+  }
+
+  .portable-md table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .portable-md th {
+    background: rgba(50, 69, 255, 0.12);
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(50, 69, 255, 0.2);
+  }
+
+  .portable-md td {
+    padding: 0.75rem 1rem;
+    color: rgba(255, 255, 255, 0.65);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .portable-md tr:last-child td {
+    border-bottom: none;
   }
 </style>
