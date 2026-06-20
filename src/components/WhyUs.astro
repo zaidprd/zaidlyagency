@@ -1,27 +1,27 @@
----
+﻿---
 const features = [
   {
     title: 'PERFORMA TINGGI',
     desc: 'Website dibangun dengan Astro, menghasilkan skor kecepatan 100/100 di Google Lighthouse tanpa kompromi.',
-    chip: '⚡ Top Score',
+    chip: 'âš¡ Top Score',
     chipStyle: 'dark',
   },
   {
     title: 'SEO OPTIMIZED',
     desc: 'Struktur metadata rapi & JSON-LD, memastikan bisnis Anda nangkring di halaman pertama Google.',
-    chip: '🔍 SEO',
+    chip: 'ðŸ” SEO',
     chipStyle: 'blue',
   },
   {
     title: 'MODERN CMS',
     desc: 'Kelola konten artikel dan layanan Anda sendiri secepat kilat melalui dashboard Sanity CMS.',
-    chip: '🛠 CMS',
+    chip: 'ðŸ›  CMS',
     chipStyle: 'purple',
   },
   {
     title: 'CLOUDFLARE EDGE',
     desc: 'Proteksi tingkat dewa dari serangan siber dengan infrastruktur server Global Cloudflare.',
-    chip: '🛡 CDN',
+    chip: 'ðŸ›¡ CDN',
     chipStyle: 'blue',
   },
 ];
@@ -33,18 +33,18 @@ const chipClass = {
 };
 
 const cardStyle = [
-  // Card 01 — dark hero card
+  // Card 01 â€” dark hero card
   'wu-card-dark',
-  // Card 02 — pure white
+  // Card 02 â€” pure white
   'bg-white border border-brand-primary/10 hover:border-brand-primary/30',
-  // Card 03 — soft purple tint
+  // Card 03 â€” soft purple tint
   'bg-[#f9f7ff] border border-brand-secondary/12 hover:border-brand-secondary/30',
-  // Card 04 — soft blue tint
+  // Card 04 â€” soft blue tint
   'bg-[#f7f8ff] border border-brand-primary/8 hover:border-brand-primary/25',
 ];
 ---
 
-<!-- LIGHT section — pecah ritme dark-dark-dark -->
+<!-- LIGHT section â€” pecah ritme dark-dark-dark -->
 <section id="about" class="py-40 bg-[#f4f4f8] overflow-hidden relative">
 
   <!-- Decorative blobs: samar, bukan bold -->
@@ -57,7 +57,7 @@ const cardStyle = [
 
   <!-- Top edge: transisi dari section gelap sebelumnya -->
   <div class="absolute top-0 left-0 right-0 h-24
-              bg-gradient-to-b from-[#08080b] to-transparent pointer-events-none"></div>
+              bg-gradient-to-b from-[#080d20] to-transparent pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="flex flex-col lg:flex-row gap-16 xl:gap-24 items-center">
@@ -151,9 +151,9 @@ const cardStyle = [
 <style>
   @reference "../styles/global.css";
 
-  /* Dark hero card — card pertama */
+  /* Dark hero card â€” card pertama */
   .wu-card-dark {
-    background: linear-gradient(145deg, #0f0f1a 0%, #15122a 100%);
+    background: linear-gradient(145deg, #0e1530 0%, #15122a 100%);
     border: 1px solid rgba(50, 69, 255, 0.2);
     box-shadow:
       0 20px 50px rgba(0, 0, 0, 0.25),
@@ -167,7 +167,7 @@ const cardStyle = [
       inset 0 1px 0 rgba(255, 255, 255, 0.07);
   }
 
-  /* Chip utility — override font-heading global */
+  /* Chip utility â€” override font-heading global */
   .wu-chip {
     font-style: normal !important;
   }

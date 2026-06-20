@@ -4,7 +4,8 @@
     {
       "name": "zaidly-dev",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": ["run", "dev", "--port", "4321"],
+      "cwd": "E:\\latihan\\zaidly-agency",
       "port": 4321
     }
   ]

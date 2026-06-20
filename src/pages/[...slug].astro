@@ -1,4 +1,4 @@
----
+﻿---
 export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import { client, urlFor } from '../lib/sanity';
@@ -60,7 +60,7 @@ const currentUrl = Astro.url.href;
 
   <!-- Article hero image -->
   {post.mainImage && (
-    <div class="relative w-full pt-24 bg-[#060608]">
+    <div class="relative w-full pt-24 bg-[#07091d]">
       <div class="max-w-5xl mx-auto px-6 pt-16 pb-0">
         <div class="relative rounded-[20px] overflow-hidden border border-white/[0.06]
                     shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
@@ -69,17 +69,17 @@ const currentUrl = Astro.url.href;
             class="w-full h-auto object-cover"
             alt={post.title}
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#060608]/80 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#07091d]/80 to-transparent"></div>
 
           <!-- Meta bar over image -->
           <div class="absolute bottom-0 left-0 right-0 p-6 flex flex-wrap gap-4 items-center">
-            <div class="flex items-center gap-2 bg-[#0f0f14]/90 backdrop-blur-sm
+            <div class="flex items-center gap-2 bg-[#0e1530]/90 backdrop-blur-sm
                         border border-white/[0.06] rounded-lg px-4 py-2
                         text-[10px] font-heading font-black uppercase tracking-widest text-white/60">
               <span class="text-[#3245FF]">📅</span>
               {new Date(post.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
             </div>
-            <div class="flex items-center gap-2 bg-[#0f0f14]/90 backdrop-blur-sm
+            <div class="flex items-center gap-2 bg-[#0e1530]/90 backdrop-blur-sm
                         border border-white/[0.06] rounded-lg px-4 py-2
                         text-[10px] font-heading font-black uppercase tracking-widest text-white/60">
               <span class="text-[#BC52EE]">👤</span>
@@ -92,7 +92,7 @@ const currentUrl = Astro.url.href;
   )}
 
   <!-- Main content area -->
-  <main class="pt-16 pb-32 bg-[#050507]">
+  <main class="pt-16 pb-32 bg-[#06091a]">
     <div class="max-w-6xl mx-auto px-6">
 
       <!-- Title + categories -->
@@ -113,7 +113,7 @@ const currentUrl = Astro.url.href;
         <div class="lg:hidden mb-10 rounded-[16px] overflow-hidden border border-white/[0.06]">
           <button
             id="toc-toggle"
-            class="w-full flex items-center justify-between bg-[#0f0f14] px-6 py-4 text-left"
+            class="w-full flex items-center justify-between bg-[#0e1530] px-6 py-4 text-left"
             aria-expanded="false"
             aria-controls="toc-mobile-content"
           >
@@ -125,7 +125,7 @@ const currentUrl = Astro.url.href;
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div id="toc-mobile-content" class="hidden bg-[#0a0a0f] px-6 pb-5 pt-3 space-y-4">
+          <div id="toc-mobile-content" class="hidden bg-[#090e22] px-6 pb-5 pt-3 space-y-4">
             {headings.map((h: any) => (
               <a href={`#${h.slug}`}
                  class="toc-mobile-link block text-[12px] text-white/40 hover:text-[#3245FF]
@@ -197,7 +197,7 @@ const currentUrl = Astro.url.href;
                 {post.related.map((rel: any) => (
                   <a href={`/${rel.slug}`}
                      class="group block rounded-[16px] overflow-hidden border border-white/[0.06]
-                            bg-[#0f0f14] hover:-translate-y-1 hover:border-white/[0.12]
+                            bg-[#0e1530] hover:-translate-y-1 hover:border-white/[0.12]
                             transition-all duration-300">
                     <div class="relative aspect-video overflow-hidden">
                       {rel.mainImage && (
@@ -207,7 +207,7 @@ const currentUrl = Astro.url.href;
                           alt={rel.title}
                         />
                       )}
-                      <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f14]/80 to-transparent"></div>
+                      <div class="absolute inset-0 bg-gradient-to-t from-[#0e1530]/80 to-transparent"></div>
                     </div>
                     <div class="p-5">
                       <span class="text-[9px] font-heading font-black uppercase tracking-widest text-white/30 block mb-2">
@@ -315,7 +315,7 @@ const currentUrl = Astro.url.href;
   }
 
   .prose-dark :global(pre) {
-    background: #0a0a10;
+    background: #090e22;
     border: 1px solid rgba(255,255,255,0.06);
     border-radius: 12px;
     padding: 1.5rem;

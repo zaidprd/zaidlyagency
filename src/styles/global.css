@@ -5,10 +5,10 @@
   --color-brand-secondary: #BC52EE;
   --color-brand-glow: rgba(50,69,255,0.25);
 
-  --color-bg-main:    #050507;
-  --color-bg-section: #08080b;
-  --color-bg-card:    #0f0f14;
-  --color-bg-raised:  #141419;
+  --color-bg-main:    #06091a;
+  --color-bg-section: #080d20;
+  --color-bg-card:    #0e1530;
+  --color-bg-raised:  #141d3a;
 
   --font-heading: "Poppins", sans-serif;
   --font-sans:    "Inter", sans-serif;
@@ -76,16 +76,16 @@
 
   .card-premium {
     @apply relative rounded-[24px] transition-all duration-500;
-    background: #0f0f14;
-    border: 1px solid rgba(255,255,255,0.04);
+    background: #0e1530;
+    border: 1px solid rgba(255,255,255,0.06);
   }
   .card-premium:hover {
-    border-color: rgba(50,69,255,0.3);
+    border-color: rgba(50,69,255,0.35);
     transform: translateY(-6px);
     box-shadow:
-      0 40px 80px rgba(0,0,0,0.5),
-      0 0 0 1px rgba(50,69,255,0.2),
-      inset 0 1px 0 rgba(255,255,255,0.04);
+      0 40px 80px rgba(0,0,0,0.4),
+      0 0 0 1px rgba(50,69,255,0.25),
+      inset 0 1px 0 rgba(255,255,255,0.06);
   }
 
   .section-label {
@@ -132,7 +132,7 @@
 }
 
 ::-webkit-scrollbar       { width: 4px; }
-::-webkit-scrollbar-track { background: #050507; }
+::-webkit-scrollbar-track { background: #06091a; }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(#3245FF, #BC52EE);
   border-radius: 99px;

@@ -1,4 +1,4 @@
----
+﻿---
 const plans = [
   {
     name: 'Basic',
@@ -60,7 +60,7 @@ const plans = [
 ];
 ---
 
-<section id="pricing" class="py-28 bg-[#08080b] relative overflow-hidden">
+<section id="pricing" class="py-28 bg-[#080d20] relative overflow-hidden">
 
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px]
               bg-[radial-gradient(ellipse,rgba(50,69,255,0.05)_0%,transparent_70%)]
@@ -84,7 +84,7 @@ const plans = [
           ${plan.featured
             ? 'border border-[#BC52EE]/40 shadow-[0_0_80px_rgba(188,82,238,0.15)] scale-105 z-10'
             : 'card-premium hover:border-[#3245FF]/30'}`}
-             style={plan.featured ? 'background: #0f0f14;' : ''}>
+             style={plan.featured ? 'background: #0e1530;' : ''}>
 
           {plan.featured && (
             <div class="absolute -top-4 left-1/2 -translate-x-1/2
@@ -130,7 +130,7 @@ const plans = [
     </div>
 
     <!-- Free update comparison bar -->
-    <div class="mt-16 rounded-[20px] border border-white/[0.04] bg-[#0f0f14] overflow-hidden">
+    <div class="mt-16 rounded-[20px] border border-white/[0.04] bg-[#0e1530] overflow-hidden">
       <div class="grid grid-cols-3 divide-x divide-white/[0.04]">
         {plans.map((plan) => (
           <div class="p-6 text-center">
