@@ -35,5 +35,8 @@
   },
   "overrides": {
     "vite": "^7"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "sharp", "workerd", "@img/sharp-win32-x64"]
   }
 }
