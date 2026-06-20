@@ -1,80 +1,94 @@
 ---
 import { Image } from 'astro:assets';
-// Ganti dengan foto kantor, tim, atau mockup website UMKM yang sudah jadi
-import aboutImg from '../assets/jasa-website-umkm.webp'; 
+import aboutImg from '../assets/jasa-website-umkm.webp';
 ---
 
-<section id="about" class="py-24 bg-white">
-  <div class="container mx-auto px-4">
-    <div class="flex flex-wrap items-center">
-      
-      <div class="w-full lg:w-1/2 mb-20 lg:mb-0 px-4">
-        <div class="relative">
-          
-          <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+<section id="about" class="py-28 bg-[#08080b] relative overflow-hidden">
+
+  <div class="absolute -top-20 right-0 w-[600px] h-[400px]
+              bg-[radial-gradient(ellipse,rgba(188,82,238,0.06)_0%,transparent_70%)]
+              pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-[500px] h-[300px]
+              bg-[radial-gradient(ellipse,rgba(50,69,255,0.06)_0%,transparent_70%)]
+              pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
+
+      <!-- Image side -->
+      <div class="relative">
+        <div class="absolute inset-[5%] rounded-full
+                    bg-[radial-gradient(ellipse,rgba(50,69,255,0.2)_0%,transparent_70%)]
+                    blur-[60px]"></div>
+
+        <div class="relative z-10 p-[1px] rounded-[24px]"
+             style="background: linear-gradient(135deg, rgba(50,69,255,0.4), rgba(188,82,238,0.2), transparent);">
+          <div class="rounded-[23px] overflow-hidden">
             <Image src={aboutImg} alt="Tentang Zaidly Agency" class="w-full h-auto" />
           </div>
-          
-          <div class="absolute -bottom-10 -left-10 hidden md:block bg-[#7E67F8] p-8 rounded-2xl shadow-2xl animate-bounce-slow z-20 border-4 border-white">
-            <h3 class="text-4xl font-bold text-white font-oswald">5+</h3>
-            <p class="text-white/80 text-xs uppercase tracking-widest font-bold">Tahun Pengalaman</p>
-          </div>
+        </div>
 
+        <!-- Floating experience badge -->
+        <div class="absolute -bottom-6 -right-4 z-20
+                    bg-[#0f0f14] border border-white/10 rounded-2xl px-5 py-4
+                    shadow-[0_20px_40px_rgba(0,0,0,0.5)]">
+          <div class="text-3xl font-heading font-black text-white leading-none">5+</div>
+          <div class="text-[9px] text-white/40 font-bold uppercase tracking-widest mt-1">Tahun Pengalaman</div>
         </div>
       </div>
 
-      <div class="w-full lg:w-1/2 px-4 lg:pl-16">
-        <div class="max-w-xl">
-          <span class="text-[#7E67F8] font-bold tracking-widest uppercase text-sm mb-4 block font-mulish">
-            Agency
-          </span>
-          <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-8 font-oswald leading-tight uppercase">
-            Kami Bantu Bisnis Anda <span class="text-[#7E67F8]">Naik Kelas</span> Secara Digital.
-          </h2>
-          <p class="text-slate-600 mb-8 leading-relaxed font-mulish">
-            Zaidly Agency hadir sebagai mitra digital bagi UMKM Indonesia. Kami paham bahwa website bukan sekadar pajangan, tapi mesin pencetak omzet. Itulah kenapa setiap baris kode yang kami tulis berfokus pada kecepatan dan konversi.
-          </p>
+      <!-- Text side -->
+      <div>
+        <span class="section-label">Agency</span>
 
-          <div class="space-y-6 mb-10">
-            <div class="flex items-start">
-              <div class="shrink-0 bg-[#7E67F8]/10 p-3 rounded-lg mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#7E67F8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <div>
-                <h4 class="text-lg font-bold text-slate-900 font-oswald">Desain Premium & Modern</h4>
-                <p class="text-slate-500 text-sm">Tampilan website yang berkelas bikin UMKM terlihat seperti perusahaan besar.</p>
-              </div>
+        <h2 class="font-heading font-black uppercase text-4xl md:text-5xl leading-[0.9] tracking-tighter text-white mb-6">
+          Kami Bantu Bisnis Anda
+          <span class="text-gradient-static"> Naik Kelas</span>
+          Secara Digital.
+        </h2>
+
+        <p class="text-white/50 leading-relaxed mb-8 max-w-lg">
+          Zaidly Agency hadir sebagai mitra digital bagi UMKM Indonesia. Kami paham bahwa website bukan sekadar pajangan, tapi mesin pencetak omzet. Itulah kenapa setiap baris kode yang kami tulis berfokus pada kecepatan dan konversi.
+        </p>
+
+        <div class="space-y-5 mb-10">
+
+          <div class="flex items-start gap-4">
+            <div class="mt-0.5 w-9 h-9 rounded-[10px] flex items-center justify-center shrink-0"
+                 style="background: rgba(50,69,255,0.1); border: 1px solid rgba(50,69,255,0.2);">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#3245FF" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
             </div>
-
-            <div class="flex items-start">
-              <div class="shrink-0 bg-[#7E67F8]/10 p-3 rounded-lg mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#7E67F8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <div>
-                <h4 class="text-lg font-bold text-slate-900 font-oswald">Akses Cepat & SEO Friendly</h4>
-                <p class="text-slate-500 text-sm">Website ringan saat dibuka dan mudah ditemukan calon pelanggan di Google.</p>
-              </div>
+            <div>
+              <h4 class="font-heading text-white text-base mb-1">Desain Premium & Modern</h4>
+              <p class="text-white/40 text-sm leading-relaxed">Tampilan website yang berkelas bikin UMKM terlihat seperti perusahaan besar.</p>
             </div>
           </div>
 
-          
+          <div class="flex items-start gap-4">
+            <div class="mt-0.5 w-9 h-9 rounded-[10px] flex items-center justify-center shrink-0"
+                 style="background: rgba(188,82,238,0.1); border: 1px solid rgba(188,82,238,0.2);">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#BC52EE" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-heading text-white text-base mb-1">Akses Cepat & SEO Friendly</h4>
+              <p class="text-white/40 text-sm leading-relaxed">Website ringan saat dibuka dan mudah ditemukan calon pelanggan di Google.</p>
+            </div>
+          </div>
+
         </div>
+
+        <a href="https://wa.me/6281274203815" class="btn-premium">
+          Konsultasi Gratis
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
       </div>
 
     </div>
   </div>
 </section>
-
-<style>
-  .animate-bounce-slow {
-    animation: bounceAbout 4s ease-in-out infinite;
-  }
-  @keyframes bounceAbout {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-  }
-</style>

@@ -1,72 +1,75 @@
 ---
-// Komponen Proses Kerja Zaidly Agency
+const steps = [
+  {
+    num: '01',
+    title: 'Konsultasi & Strategi',
+    desc: 'Kami dengarkan kebutuhan Anda. Apakah butuh WordPress yang mudah diedit sendiri atau Astro untuk kecepatan maksimal?',
+  },
+  {
+    num: '02',
+    title: 'Desain Kreatif',
+    desc: 'Pembuatan mockup yang modern. Jika pakai WordPress, kami siapkan desain yang kompatibel dengan sistem drag & drop.',
+  },
+  {
+    num: '03',
+    title: 'Development',
+    desc: 'Eksekusi menggunakan WordPress untuk kemudahan kelola, atau Astro untuk performa high-end yang super kencang.',
+  },
+  {
+    num: '04',
+    title: 'Training & Support',
+    desc: 'Website live! Kami ajarkan cara pakai fitur drag & drop agar Anda mahir mengelola konten website sendiri.',
+  },
+];
 ---
 
-<section id="process" class="py-24 bg-white relative overflow-hidden">
-  <div class="absolute top-0 right-0 w-1/3 h-full bg-[#F8F9FA] z-0 hidden lg:block"></div>
+<section id="process" class="py-28 bg-[#08080b] relative overflow-hidden">
 
-  <div class="container mx-auto px-4 relative z-10">
-    <div class="flex flex-wrap items-center">
-      
-      <div class="w-full lg:w-1/3 mb-16 lg:mb-0">
-        <span class="text-[#7E67F8] font-bold tracking-widest uppercase text-sm mb-4 block font-mulish">
-          Alur Kerja Kami
-        </span>
-        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-8 font-oswald uppercase leading-tight">
-          Cara Kami <span class="text-[#7E67F8]">Mewujudkan</span> Website Impian Anda.
+  <div class="absolute top-0 right-0 w-[500px] h-[500px]
+              bg-[radial-gradient(ellipse,rgba(50,69,255,0.06)_0%,transparent_70%)]
+              pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid lg:grid-cols-[1fr_2fr] gap-16 xl:gap-24 items-start">
+
+      <!-- Left: heading -->
+      <div class="lg:sticky lg:top-32">
+        <span class="section-label">Alur Kerja Kami</span>
+        <h2 class="font-heading font-black uppercase text-4xl md:text-5xl leading-[0.9] tracking-tighter text-white mb-6">
+          Cara Kami <span class="text-gradient-static">Mewujudkan</span> Website Impian Anda.
         </h2>
-        <p class="text-slate-500 font-mulish leading-relaxed mb-8">
+        <p class="text-white/40 leading-relaxed mb-8 max-w-sm">
           Proses transparan menggunakan platform yang sesuai dengan kebutuhan bisnis Anda, baik WordPress maupun Custom Code.
         </p>
-        <a href="https://wa.me/6281274203815" target="_blank" class="bg-slate-900 text-white px-8 py-5 rounded-sm font-bold text-xs uppercase tracking-widest hover:bg-[#7E67F8] transition-all duration-300 font-oswald shadow-lg inline-block">
+        <a href="https://wa.me/6281274203815" target="_blank" class="btn-premium">
           Mulai Project Sekarang
         </a>
       </div>
 
-      <div class="w-full lg:w-2/3 lg:pl-20">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-10">
-          
-          <div class="relative">
-            <span class="text-6xl font-bold text-slate-100 font-oswald absolute -top-6 -left-4 z-0">01</span>
-            <div class="relative z-10">
-              <h3 class="text-xl font-bold text-slate-900 mb-3 font-oswald uppercase">Konsultasi & Strategi</h3>
-              <p class="text-slate-500 text-sm font-mulish leading-relaxed">
-                Kami dengarkan kebutuhan Anda. Apakah butuh WordPress yang mudah diedit sendiri atau Astro untuk kecepatan maksimal?
-              </p>
-            </div>
-          </div>
+      <!-- Right: steps grid -->
+      <div class="grid sm:grid-cols-2 gap-6">
+        {steps.map((step) => (
+          <div class="card-premium p-8 group">
 
-          <div class="relative">
-            <span class="text-6xl font-bold text-slate-100 font-oswald absolute -top-6 -left-4 z-0">02</span>
-            <div class="relative z-10">
-              <h3 class="text-xl font-bold text-slate-900 mb-3 font-oswald uppercase">Desain Kreatif</h3>
-              <p class="text-slate-500 text-sm font-mulish leading-relaxed">
-                Pembuatan mockup yang modern. Jika pakai WordPress, kami siapkan desain yang kompatibel dengan sistem <em>drag & drop</em>.
-              </p>
+            <div class="text-6xl font-heading font-black leading-none mb-4
+                        bg-gradient-to-br from-white/[0.04] to-white/[0.01] bg-clip-text text-transparent
+                        text-white/[0.06]">
+              {step.num}
             </div>
-          </div>
 
-          <div class="relative">
-            <span class="text-6xl font-bold text-slate-100 font-oswald absolute -top-6 -left-4 z-0">03</span>
-            <div class="relative z-10">
-              <h3 class="text-xl font-bold text-slate-900 mb-3 font-oswald uppercase">Development</h3>
-              <p class="text-slate-500 text-sm font-mulish leading-relaxed">
-                Eksekusi menggunakan <strong>WordPress</strong> untuk kemudahan kelola, atau <strong>Astro</strong> untuk performa <em>high-end</em> yang super kencang.
-              </p>
-            </div>
-          </div>
+            <h3 class="font-heading text-white text-lg mb-3 group-hover:text-gradient-static transition-all">
+              {step.title}
+            </h3>
 
-          <div class="relative">
-            <span class="text-6xl font-bold text-slate-100 font-oswald absolute -top-6 -left-4 z-0">04</span>
-            <div class="relative z-10">
-              <h3 class="text-xl font-bold text-slate-900 mb-3 font-oswald uppercase">Training & Support</h3>
-              <p class="text-slate-500 text-sm font-mulish leading-relaxed">
-                Website live! Kami ajarkan cara pakai fitur <em>drag & drop</em> agar Anda mahir mengelola konten website sendiri.
-              </p>
-            </div>
-          </div>
+            <p class="text-white/40 text-sm leading-relaxed">
+              {step.desc}
+            </p>
 
-        </div>
+            <div class="mt-5 h-[1px] w-0 group-hover:w-full transition-all duration-500
+                        bg-gradient-to-r from-[#3245FF] to-[#BC52EE]"></div>
+
+          </div>
+        ))}
       </div>
 
     </div>

@@ -1,58 +1,48 @@
 ---
 import { Image } from 'astro:assets';
-<<<<<<< HEAD
 import heroImage from '../assets/placeholder-hero.webp';
 
 const features = [
   'Jangkau pelanggan ke seluruh Indonesia secara digital.',
-  'Keamanan High-Level + Support Maintenance 24/7.'
+  'Keamanan High-Level + Support Maintenance 24/7.',
 ];
 
 const stats = [
   { value: '100+', label: 'Proyek Selesai' },
-  { value: '98%', label: 'Klien Puas' },
-  { value: '3x', label: 'Rata-rata ROI' },
+  { value: '98%',  label: 'Klien Puas' },
+  { value: '3x',   label: 'Rata-rata ROI' },
 ];
 ---
 
 <section class="hero-section relative pt-36 pb-52 overflow-hidden">
 
-  <!-- ── BACKGROUND LAYER ── -->
-  <!-- Base dark -->
+  <!-- Background -->
   <div class="absolute inset-0 bg-[#060608]"></div>
 
-  <!-- Aurora gradient — lebih kaya dari sebelumnya -->
   <div class="absolute inset-0 pointer-events-none">
-    <!-- Biru utama: tengah atas -->
     <div class="absolute top-0 left-1/2 -translate-x-1/4 w-[900px] h-[500px]
                 bg-[radial-gradient(ellipse,rgba(50,69,255,0.18)_0%,transparent_65%)]"></div>
-    <!-- Ungu: kanan atas -->
     <div class="absolute -top-20 right-0 w-[600px] h-[600px]
                 bg-[radial-gradient(ellipse,rgba(188,82,238,0.12)_0%,transparent_70%)]"></div>
-    <!-- Teal brand: kiri bawah -->
     <div class="absolute bottom-0 -left-20 w-[500px] h-[400px]
-                bg-[radial-gradient(ellipse,rgba(0,206,209,0.08)_0%,transparent_70%)]"></div>
+                bg-[radial-gradient(ellipse,rgba(0,206,209,0.07)_0%,transparent_70%)]"></div>
   </div>
 
-  <!-- Subtle noise grain overlay -->
-  <div class="hero-grain absolute inset-0 pointer-events-none opacity-[0.025]"></div>
+  <div class="absolute inset-0 grain-overlay"></div>
 
-  <!-- Horizontal rules — garis aksen tipis -->
   <div class="absolute top-0 left-0 right-0 h-[1px]
               bg-gradient-to-r from-transparent via-[#3245FF]/40 to-transparent"></div>
 
-  <!-- ── CONTENT ── -->
+  <!-- Content -->
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <div class="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
 
-      <!-- LEFT: Text -->
+      <!-- Left: Text -->
       <div class="text-white order-last lg:order-first">
 
-        <!-- Badge atas — lebih detail dari sebelumnya -->
         <div class="flex items-center gap-3 mb-8">
-          <div class="hero-badge inline-flex items-center gap-2.5 px-4 py-2
-                      bg-[#3245FF]/10 border border-[#3245FF]/25 rounded-full
-                      backdrop-blur-sm">
+          <div class="inline-flex items-center gap-2.5 px-4 py-2
+                      bg-[#3245FF]/10 border border-[#3245FF]/25 rounded-full backdrop-blur-sm">
             <span class="relative flex h-2 w-2">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#3245FF] opacity-75"></span>
               <span class="relative inline-flex rounded-full h-2 w-2 bg-[#3245FF]"></span>
@@ -64,7 +54,6 @@ const stats = [
           <div class="h-[1px] w-8 bg-[#3245FF]/30"></div>
         </div>
 
-        <!-- Headline — ukuran lebih agresif, line-height lebih tight -->
         <h1 class="font-heading font-black uppercase leading-[0.88] tracking-tighter mb-8">
           <span class="block text-5xl md:text-6xl lg:text-[5.5rem] text-white mb-2">
             Fokus Bisnis,
@@ -77,19 +66,16 @@ const stats = [
           </span>
         </h1>
 
-        <!-- Divider -->
         <div class="flex items-center gap-4 mb-8">
           <div class="h-[2px] w-10 bg-gradient-to-r from-[#3245FF] to-[#BC52EE] rounded-full"></div>
           <div class="h-[1px] w-4 bg-white/10 rounded-full"></div>
         </div>
 
-        <!-- Subtext -->
-        <p class="text-[#a1a1aa] text-base md:text-lg font-medium max-w-md leading-relaxed mb-8">
+        <p class="text-white/50 text-base md:text-lg font-medium max-w-md leading-relaxed mb-8">
           Tingkatkan skala bisnis Anda dengan website kustom yang cepat,
           responsif, dan didesain untuk konversi maksimal.
         </p>
 
-        <!-- Feature list — checkmark lebih premium -->
         <ul class="space-y-3 mb-10">
           {features.map(item => (
             <li class="flex items-start gap-3 group">
@@ -101,14 +87,13 @@ const stats = [
                         stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <span class="text-[#a1a1aa] text-sm font-medium group-hover:text-white/80 transition-colors leading-relaxed">
+              <span class="text-white/50 text-sm font-medium group-hover:text-white/80 transition-colors leading-relaxed">
                 {item}
               </span>
             </li>
           ))}
         </ul>
 
-        <!-- CTA group -->
         <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
           <a href="https://wa.me/6281274203815"
              class="hero-btn-primary group inline-flex items-center gap-3
@@ -122,7 +107,6 @@ const stats = [
           </a>
 
           <div class="flex items-center gap-2 pl-1">
-            <!-- Avatars stack -->
             <div class="flex -space-x-2">
               {[
                 'bg-gradient-to-br from-[#3245FF] to-[#BC52EE]',
@@ -134,12 +118,11 @@ const stats = [
             </div>
             <div>
               <div class="text-[10px] font-black text-white uppercase tracking-wider">Slot Terbatas</div>
-              <div class="text-[10px] text-white/30 font-medium">Hanya 5 slot April</div>
+              <div class="text-[10px] text-white/30 font-medium">Hanya 5 slot bulan ini</div>
             </div>
           </div>
         </div>
 
-        <!-- Stats row -->
         <div class="mt-14 pt-10 border-t border-white/[0.06]">
           <div class="grid grid-cols-3 gap-6">
             {stats.map((s, i) => (
@@ -161,25 +144,21 @@ const stats = [
 
       </div>
 
-      <!-- RIGHT: Image Frame — jauh lebih premium -->
+      <!-- Right: Image Frame -->
       <div class="relative group flex justify-center lg:justify-end">
 
-        <!-- Glow behind image -->
         <div class="absolute inset-[10%] rounded-full
                     bg-[radial-gradient(ellipse,rgba(50,69,255,0.25)_0%,rgba(188,82,238,0.15)_50%,transparent_80%)]
                     blur-[60px] group-hover:scale-110 transition-transform duration-1000"></div>
 
-        <!-- Outer frame: gradient border trick -->
         <div class="hero-frame relative z-10 w-full max-w-lg">
 
-          <!-- Border gradient via ::before (pakai wrapper) -->
           <div class="relative p-[1px] rounded-[28px]"
                style="background: linear-gradient(135deg, rgba(50,69,255,0.5), rgba(188,82,238,0.3), rgba(0,206,209,0.2));">
 
-            <!-- Inner card -->
             <div class="bg-[#0c0c0e] rounded-[27px] overflow-hidden">
 
-              <!-- Top bar browser-style -->
+              <!-- Browser top bar -->
               <div class="flex items-center justify-between px-5 py-3
                           border-b border-white/[0.05] bg-[#0f0f12]">
                 <div class="flex gap-1.5">
@@ -198,7 +177,6 @@ const stats = [
                 </div>
               </div>
 
-              <!-- Image -->
               <div class="relative overflow-hidden">
                 <Image
                   src={heroImage}
@@ -207,11 +185,9 @@ const stats = [
                   height={580}
                   class="w-full h-auto transform transition-transform duration-1000 group-hover:scale-[1.03]"
                 />
-                <!-- Overlay gradient bawah -->
                 <div class="absolute inset-0 bg-gradient-to-t from-[#0c0c0e]/60 via-transparent to-transparent"></div>
               </div>
 
-              <!-- Bottom status bar -->
               <div class="px-5 py-4 flex items-center justify-between border-t border-white/[0.05]">
                 <div class="flex items-center gap-2">
                   <div class="w-1.5 h-1.5 rounded-full bg-[#28c840] animate-pulse"></div>
@@ -225,11 +201,11 @@ const stats = [
             </div>
           </div>
 
-          <!-- Floating badge: Score 100 -->
+          <!-- Floating badge: Performance -->
           <div class="absolute -top-5 -right-5 z-20
                       bg-[#0f0f12] border border-white/10 rounded-2xl px-4 py-3
-                      shadow-[0_20px_40px_rgba(0,0,0,0.5)]
-                      backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300">
+                      shadow-[0_20px_40px_rgba(0,0,0,0.5)] backdrop-blur-sm
+                      hover:-translate-y-1 transition-transform duration-300">
             <div class="text-xl font-black text-white leading-none">100</div>
             <div class="text-[9px] text-[#28c840] font-bold uppercase tracking-widest mt-0.5">Performance</div>
           </div>
@@ -237,109 +213,32 @@ const stats = [
           <!-- Floating badge: SEO -->
           <div class="absolute -bottom-5 -left-5 z-20
                       bg-[#0f0f12] border border-white/10 rounded-2xl px-4 py-3
-                      shadow-[0_20px_40px_rgba(0,0,0,0.5)]
-                      backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300">
+                      shadow-[0_20px_40px_rgba(0,0,0,0.5)] backdrop-blur-sm
+                      hover:-translate-y-1 transition-transform duration-300">
             <div class="text-xl font-black bg-gradient-to-r from-[#3245FF] to-[#BC52EE]
                         bg-clip-text text-transparent leading-none">#1</div>
             <div class="text-[9px] text-white/40 font-bold uppercase tracking-widest mt-0.5">Google Rank</div>
           </div>
 
-=======
-
-import heroRight from '../assets/hero-right.webp'; 
-import triangle from '../assets/triangle.webp';   
-import circle from '../assets/circle.webp';       
-import halfCircle from '../assets/half-circle.webp'; 
-import rectangle from '../assets/rectangle.webp';   
----
-
-<section class="relative z-10 bg-[#F8F9FA] overflow-hidden pt-32 pb-20 lg:pt-52 lg:pb-40 flex items-center min-h-175">
-  
-  <div class="absolute top-[12%] left-[35%] z-0 w-12 md:w-16 opacity-40 animate-patroli">
-    <Image src={circle} alt="" aria-hidden="true" />
-  </div>
-
-  <div class="absolute top-[40%] left-5 md:left-10 z-0 w-16 md:w-20 opacity-60 animate-bounce-slow">
-    <Image src={triangle} alt="" aria-hidden="true" />
-  </div>
-
-  <div class="absolute top-[40%] right-5 md:right-10 z-0 w-12 md:w-16 opacity-40 animate-mutar-slow">
-    <Image src={rectangle} alt="" aria-hidden="true" />
-  </div>
-
-  <div class="absolute bottom-[15%] left-[10%] md:left-[30%] z-0 w-10 md:w-14 opacity-30 animate-mutar-slow">
-    <Image src={halfCircle} alt="" aria-hidden="true" class="rotate-180" />
-  </div>
-
-  <div class="container mx-auto px-4 relative z-10">
-    <div class="flex flex-wrap items-center">
-      
-      <div class="w-full lg:w-1/2 self-center">
-        <div class="max-w-2xl mb-12 lg:mb-0">
-          <span class="inline-block text-[#6c54ec] font-bold tracking-widest uppercase mb-4 font-mulish text-sm">
-            Solusi Digital Terpercaya untuk UMKM
-          </span>
-          
-          <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.2] md:leading-[1.1] mb-8 font-oswald uppercase tracking-tighter">
-            Bikin Bisnis Kamu 
-            <span class="inline-block bg-linear-to-r from-[#7E67F8] via-[#3B82F6] to-[#7E67F8] bg-size-[200%_auto] bg-clip-text text-transparent animate-gradient-flow italic">
-              Online & Makin Laris.
-            </span>
-          </h1>
-
-          <p class="text-lg text-slate-600 mb-10 font-mulish leading-relaxed max-w-lg">
-            Ubah pengunjung jadi pembeli dengan website yang user-friendly. Kami bantu kelola kebutuhan digital bisnis Anda mulai dari nol hingga go-online.
-          </p>
-
-          <a href="/contact" title="Hubungi Zaidly Agency untuk Konsultasi Gratis" class="group relative overflow-hidden inline-block bg-[#7E67F8] text-white px-10 py-5 rounded-sm font-bold transition-all duration-300 shadow-xl font-oswald uppercase tracking-widest text-sm hover:scale-110 active:scale-95">
-            <div class="absolute inset-0 block animate-button-shimmer pointer-events-none">
-              <div class="h-full w-1/2 bg-linear-to-r from-transparent via-white/30 to-transparent transform -skew-x-20"></div>
-            </div>
-            <span class="relative z-10 text-white">Konsultasi Gratis</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="w-full lg:w-1/2 relative">
-        <div class="relative lg:text-right">
-          <Image src={heroRight} alt="Ilustrasi Jasa Website UMKM oleh Zaidly Agency" class="max-w-full h-auto ml-auto relative z-20" />
-          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#7E67F8]/20 blur-[100px] rounded-full z-10"></div>
->>>>>>> f4bee64676614fd8603ba343448a5b05eea2fc86
         </div>
       </div>
 
     </div>
   </div>
-<<<<<<< HEAD
 
   <!-- Bottom fade -->
   <div class="absolute bottom-0 left-0 right-0 h-32
-              bg-gradient-to-t from-[#080809] to-transparent pointer-events-none"></div>
+              bg-gradient-to-t from-[#050507] to-transparent pointer-events-none"></div>
 
 </section>
 
 <style>
   @reference "../styles/global.css";
 
-  .hero-section {
-    font-style: normal;
-  }
+  .hero-section { font-style: normal; }
 
-  /* Grain texture via SVG filter */
-  .hero-grain {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    background-size: 200px 200px;
-  }
-
-  /* Animated gradient headline */
   .hero-gradient-text {
-    background: linear-gradient(
-      90deg,
-      #3245FF 0%,
-      #BC52EE 40%,
-      #3245FF 80%,
-      #00ced1 100%
-    );
+    background: linear-gradient(90deg, #3245FF 0%, #BC52EE 40%, #3245FF 80%, #00ced1 100%);
     background-size: 250% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -352,63 +251,18 @@ import rectangle from '../assets/rectangle.webp';
     100% { background-position: 250% center; }
   }
 
-  /* CTA button */
   .hero-btn-primary {
     background: linear-gradient(135deg, #3245FF, #BC52EE);
-    box-shadow:
-      0 8px 24px rgba(50, 69, 255, 0.35),
-      inset 0 1px 0 rgba(255,255,255,0.15);
+    box-shadow: 0 8px 24px rgba(50,69,255,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
   }
   .hero-btn-primary:hover {
-    box-shadow:
-      0 16px 40px rgba(50, 69, 255, 0.5),
-      inset 0 1px 0 rgba(255,255,255,0.15);
+    box-shadow: 0 16px 40px rgba(50,69,255,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
   }
 
-  /* Frame hover lift */
   .hero-frame {
     transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   .group:hover .hero-frame {
     transform: translateY(-6px);
-=======
-</section>
-
-<style>
-  /* Animasi tetap sama, tidak ada perubahan */
-  @keyframes gradient-flow {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
-  }
-  .animate-gradient-flow {
-    animation: gradient-flow 4s linear infinite;
-    display: inline-block;
-  }
-
-  @keyframes button-shimmer {
-    0% { transform: translateX(-150%); }
-    100% { transform: translateX(150%); }
-  }
-  .animate-button-shimmer {
-    animation: button-shimmer 3s infinite ease-in-out;
-  }
-
-  .animate-patroli { animation: patroli 10s ease-in-out infinite; }
-  @keyframes patroli {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(350px); }
-  }
-
-  .animate-mutar-slow { animation: mutar 15s linear infinite; }
-  @keyframes mutar {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .animate-bounce-slow { animation: bounce 5s ease-in-out infinite; }
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
->>>>>>> f4bee64676614fd8603ba343448a5b05eea2fc86
   }
 </style>

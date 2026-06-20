@@ -1,45 +1,17 @@
 ---
-<<<<<<< HEAD
 import '../styles/global.css';
-interface Props { title: string; }
-const { title } = Astro.props;
----
-<!doctype html>
-<html lang="id">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>{title} | Zaidly Agency</title>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@800;900&display=swap" rel="stylesheet">
-	</head>
-	<body class="bg-bg-main">
-		<div class="fixed inset-0 z-[-1] opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-		
-		<div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-primary/10 blur-[120px] rounded-full z-[-2]"></div>
-		<div class="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-secondary/10 blur-[120px] rounded-full z-[-2]"></div>
-
-		<slot />
-	</body>
-</html>
-=======
-import Header from '../components/Header.astro'; 
-import Footer from '../components/Footer.astro'; 
-import '../styles/global.css';
-import { ClientRouter } from 'astro:transitions';
-import '@fontsource/mulish/400.css';
-import '@fontsource/mulish/700.css';
-import '@fontsource/oswald/400.css';
-import '@fontsource/oswald/700.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
-    title: string;
-    description?: string;
-    ogImage?: string;
-    keywords?: string;
+  title: string;
+  description?: string;
+  ogImage?: string;
+  keywords?: string;
 }
 
-const { 
-  title, 
+const {
+  title,
   description = "Zaidly Agency membantu UMKM go-online dengan jasa pembuatan website profesional, cepat, dan terjangkau.",
   ogImage = "/og-image.svg",
   keywords = "jasa website umkm, bikin website murah, jasa digital agency, website profesional"
@@ -71,7 +43,7 @@ const schema = JSON.stringify({
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
@@ -97,26 +69,19 @@ const schema = JSON.stringify({
 
     <script type="application/ld+json" set:html={schema}></script>
 
-    <ClientRouter />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@800;900&display=swap" rel="stylesheet" />
+
   </head>
-  <body class="bg-white font-sans text-slate-900 overflow-x-hidden m-0 p-0 box-border antialiased flex flex-col min-h-screen">
-    <Header />
-    <main class="grow" transition:animate="fade">
-      <slot /> 
+  <body class="bg-[#050507] text-white overflow-x-hidden m-0 p-0 antialiased">
+
+    <!-- Ambient background orbs -->
+    <div class="fixed top-[-15%] left-[-10%] w-[55%] h-[55%] bg-[#3245FF]/[0.05] blur-[140px] rounded-full z-[-2] pointer-events-none"></div>
+    <div class="fixed bottom-[-15%] right-[-10%] w-[55%] h-[55%] bg-[#BC52EE]/[0.05] blur-[140px] rounded-full z-[-2] pointer-events-none"></div>
+
+    <Navbar />
+    <main>
+      <slot />
     </main>
     <Footer />
   </body>
 </html>
-
-<style is:global>
-  html { scroll-behavior: smooth; }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Oswald', sans-serif !important;
-    text-transform: uppercase;
-  }
-  body { font-family: 'Mulish', sans-serif; }
-  main { min-height: 70vh; }
-  @keyframes shimmer { 100% { transform: translateX(100%); } }
-  .animate-shimmer { animation: shimmer 2s infinite; }
-</style>
->>>>>>> f4bee64676614fd8603ba343448a5b05eea2fc86

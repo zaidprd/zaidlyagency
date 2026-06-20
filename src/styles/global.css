@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-<<<<<<< HEAD
   --color-brand-primary: #3245FF;
   --color-brand-secondary: #BC52EE;
   --color-brand-glow: rgba(50,69,255,0.25);
@@ -42,7 +41,6 @@
 
 @layer components {
 
-  /* ── Buttons ── */
   .btn-premium {
     @apply relative overflow-hidden inline-flex items-center justify-center gap-2
            px-10 py-4 rounded-xl
@@ -76,9 +74,8 @@
     box-shadow: 0 8px 24px rgba(50,69,255,0.15);
   }
 
-  /* ── Cards ── */
   .card-premium {
-    @apply relative rounded-[28px] transition-all duration-500;
+    @apply relative rounded-[24px] transition-all duration-500;
     background: #0f0f14;
     border: 1px solid rgba(255,255,255,0.04);
   }
@@ -91,9 +88,8 @@
       inset 0 1px 0 rgba(255,255,255,0.04);
   }
 
-  /* ── Labels / Tags ── */
-  .label-brand {
-    @apply inline-flex items-center gap-2
+  .section-label {
+    @apply inline-flex items-center gap-2 mb-5
            px-3 py-1.5 rounded-full
            text-[9px] font-black uppercase tracking-[0.3em];
     color: #3245FF;
@@ -101,15 +97,6 @@
     border: 1px solid rgba(50,69,255,0.2);
   }
 
-  /* ── Section divider line ── */
-  .divider-brand {
-    @apply mx-auto;
-    height: 1px;
-    width: 8rem;
-    background: linear-gradient(to right, transparent, #3245FF, transparent);
-  }
-
-  /* ── Gradient text ── */
   .text-gradient {
     background: linear-gradient(90deg, #3245FF 0%, #BC52EE 50%, #3245FF 100%);
     background-size: 200% auto;
@@ -118,6 +105,7 @@
     -webkit-text-fill-color: transparent;
     animation: gradientShift 4s linear infinite;
   }
+
   .text-gradient-static {
     background: linear-gradient(135deg, #3245FF, #BC52EE);
     -webkit-background-clip: text;
@@ -126,15 +114,9 @@
   }
 }
 
-/* ── Keyframes ── */
 @keyframes gradientShift {
   0%   { background-position: 0% center; }
   100% { background-position: 200% center; }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(50,69,255,0.3); }
-  50%       { box-shadow: 0 0 40px rgba(188,82,238,0.5); }
 }
 
 @keyframes float {
@@ -142,7 +124,6 @@
   50%       { transform: translateY(-8px); }
 }
 
-/* ── Utility: noise grain ── */
 .grain-overlay {
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -150,37 +131,9 @@
   opacity: 0.025;
 }
 
-/* ── Scrollbar ── */
 ::-webkit-scrollbar       { width: 4px; }
 ::-webkit-scrollbar-track { background: #050507; }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(#3245FF, #BC52EE);
   border-radius: 99px;
-=======
-  --font-sans: "Mulish", ui-sans-serif, system-ui;
-  --font-oswald: "Oswald", sans-serif;
-
-  /* DAFTARKAN SEMUA ANIMASI DI SINI */
-  --animate-patroli: patroli 10s ease-in-out infinite;
-  --animate-mutar: mutar 10s linear infinite;
-  --animate-melayang: melayang 5s ease-in-out infinite;
-}
-
-/* 1. Jalan Jauh (Untuk si Bulat) */
-@keyframes patroli {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(350px); } /* <--- Ini pasti jauh ke kanan */
-}
-
-/* 2. Berputar 360 Derajat (Untuk Kotak & Half Circle) */
-@keyframes mutar {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* 3. Naik Turun (Untuk Triangle) */
-@keyframes melayang {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-50px); }
->>>>>>> f4bee64676614fd8603ba343448a5b05eea2fc86
 }

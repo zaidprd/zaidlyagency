@@ -1,35 +1,4 @@
 ---
-<<<<<<< HEAD
-// src/pages/index.astro
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
-import SayaButuh from '../components/SayaButuh.astro';
-import Packages from '../components/Packages.astro';
-import WhyUs from '../components/WhyUs.astro';
-import Support from '../components/Support.astro';
-import Footer from '../components/Footer.astro';
-import PromoBar from '../components/PromoBar.astro';
----
-
-<Layout title="Zaidly Agency | Jasa Pembuatan Website Profesional">
-    <header class="relative z-[120]">
-        <PromoBar /> 
-        <Navbar />
-    </header>
-
-    <main class="flex flex-col relative z-10">
-        <Hero />
-        <div class="bg-[#001f1f]"> <SayaButuh />
-            <Packages />
-            <WhyUs />
-            <Support />
-        </div>
-    </main>
-
-    <Footer />
-</Layout>
-=======
 export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
@@ -38,10 +7,10 @@ import Services from '../components/Services.astro';
 import Process from '../components/Process.astro';
 import Portfolio from '../components/Portfolio.astro';
 import Pricing from '../components/Pricing.astro';
-import CTA from '../components/CTA.astro'; 
+import CTA from '../components/CTA.astro';
 ---
 
-<Layout 
+<Layout
   title="Zaidly Agency - Jasa Website UMKM Profesional & Terjangkau"
   description="Zaidly Agency membantu UMKM Indonesia go-online dengan website profesional, cepat, dan mudah dikelola. Mulai Rp 588.000. Konsultasi gratis via WhatsApp!"
   keywords="jasa website umkm, bikin website murah jakarta, jasa pembuatan website profesional, website umkm indonesia, jasa digital agency jakarta"
@@ -54,4 +23,3 @@ import CTA from '../components/CTA.astro';
   <Pricing />
   <CTA />
 </Layout>
->>>>>>> f4bee64676614fd8603ba343448a5b05eea2fc86

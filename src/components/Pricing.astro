@@ -1,176 +1,144 @@
 ---
-// Komponen Harga Zaidly Agency - Update Biaya Perpanjangan & Clean Code
+const plans = [
+  {
+    name: 'Basic',
+    price: 'IDR 588.000',
+    period: '/ setahun',
+    renewal: 'IDR 500.000',
+    freeUpdate: '1 Halaman',
+    featured: false,
+    accentColor: '#3245FF',
+    features: [
+      { label: 'Halaman Website',   value: '5 Halaman' },
+      { label: 'Waktu Pengerjaan',  value: 'Max 5 Hari Kerja' },
+      { label: 'Free Domain',       value: '.com / .id', highlight: true },
+      { label: 'Free Hosting',      value: 'Entry 1GB' },
+      { label: 'Email Bisnis & SSL', value: 'Gratis', highlight: true },
+      { label: 'Optimasi SEO',      value: '3 Artikel SEO' },
+      { label: 'Image Editing',     value: '5 Image + 1 Logo' },
+    ],
+    waText: 'Halo%20Zaid,%20saya%20tertarik%20Paket%20Basic',
+  },
+  {
+    name: 'Pro',
+    price: 'IDR 1.000.000',
+    period: '/ setahun',
+    renewal: 'IDR 700.000',
+    freeUpdate: '2 Halaman',
+    featured: true,
+    accentColor: '#BC52EE',
+    features: [
+      { label: 'Halaman Website',   value: '5 Halaman' },
+      { label: 'Waktu Pengerjaan',  value: 'Max 6 Hari Kerja' },
+      { label: 'Free Domain',       value: '.com / .id', highlight: true },
+      { label: 'Free Hosting',      value: 'Unlimited Small' },
+      { label: 'Email Bisnis & SSL', value: 'Gratis', highlight: true },
+      { label: 'Optimasi SEO',      value: '6 Artikel SEO' },
+      { label: 'Image Editing',     value: '10 Image + 1 Logo' },
+    ],
+    waText: 'Halo%20Zaid,%20saya%20tertarik%20Paket%20Pro',
+  },
+  {
+    name: 'Business',
+    price: 'IDR 2.588.000',
+    period: '/ setahun',
+    renewal: 'IDR 1.000.000',
+    freeUpdate: '3 Halaman',
+    featured: false,
+    accentColor: '#3245FF',
+    features: [
+      { label: 'Halaman Website',   value: '5 Halaman' },
+      { label: 'Waktu Pengerjaan',  value: 'Max 6 Hari Kerja' },
+      { label: 'Free Domain',       value: '.com / .id', highlight: true },
+      { label: 'Free Hosting',      value: 'Unlimited Small' },
+      { label: 'Email Bisnis & SSL', value: 'Gratis', highlight: true },
+      { label: 'Optimasi SEO',      value: '12 Artikel SEO' },
+      { label: 'Image Editing',     value: '15 Image + 1 Logo' },
+    ],
+    waText: 'Halo%20Zaid,%20saya%20tertarik%20Paket%20Business',
+  },
+];
 ---
 
-<section id="pricing" class="py-24 bg-[#F8F9FA]">
-  <div class="container mx-auto px-4">
-    
+<section id="pricing" class="py-28 bg-[#08080b] relative overflow-hidden">
+
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px]
+              bg-[radial-gradient(ellipse,rgba(50,69,255,0.05)_0%,transparent_70%)]
+              pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+
     <div class="text-center max-w-2xl mx-auto mb-16">
-      <span class="text-[#7E67F8] font-bold tracking-widest uppercase text-sm mb-4 block font-mulish">
-        Paket Investasi Digital
-      </span>
-      <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 font-oswald uppercase leading-tight">
-        Pilihan Paket <span class="text-[#7E67F8]">Terbaik</span> Untuk Bisnis Anda.
+      <span class="section-label">Paket Investasi Digital</span>
+      <h2 class="font-heading font-black uppercase text-4xl md:text-5xl leading-[0.9] tracking-tighter text-white mb-6">
+        Pilihan Paket <span class="text-gradient-static">Terbaik</span> Untuk Bisnis Anda.
       </h2>
-      <p class="text-slate-500 font-mulish text-sm">
+      <p class="text-white/40 text-sm leading-relaxed">
         Harga transparan untuk pembuatan website profesional berbasis WordPress Drag & Drop.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      
-      <div class="bg-white p-10 rounded-sm shadow-sm border border-slate-100 flex flex-col hover:shadow-2xl transition-all duration-500">
-        <h3 class="text-3xl font-bold text-[#3B82F6] mb-2 font-oswald uppercase">Basic</h3>
-        <div class="mb-2">
-          <span class="text-3xl font-bold text-slate-900 font-oswald italic uppercase tracking-tighter">IDR 588.000</span>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+      {plans.map((plan) => (
+        <div class={`relative flex flex-col rounded-[24px] p-8 transition-all duration-500
+          ${plan.featured
+            ? 'border border-[#BC52EE]/40 shadow-[0_0_80px_rgba(188,82,238,0.15)] scale-105 z-10'
+            : 'card-premium hover:border-[#3245FF]/30'}`}
+             style={plan.featured ? 'background: #0f0f14;' : ''}>
+
+          {plan.featured && (
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2
+                        px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.3em] text-white"
+                 style="background: linear-gradient(135deg, #3245FF, #BC52EE);">
+              Paling Populer
+            </div>
+          )}
+
+          <h3 class="font-heading text-2xl mb-3"
+              style={`color: ${plan.accentColor};`}>{plan.name}</h3>
+
+          <div class="mb-1">
+            <span class="text-2xl font-heading font-black text-white">{plan.price}</span>
+          </div>
+          <p class="text-white/30 text-[10px] font-bold uppercase tracking-widest mb-8">{plan.period}</p>
+
+          <ul class="space-y-4 mb-8 pt-6 border-t border-white/[0.05] flex-1">
+            {plan.features.map((f) => (
+              <li class="flex flex-col">
+                <span class="text-[9px] text-white/30 uppercase font-bold tracking-widest">{f.label}</span>
+                <span class={`text-sm font-bold mt-0.5 ${f.highlight ? '' : 'text-white/80'}`}
+                      style={f.highlight ? `color: ${plan.accentColor};` : ''}>{f.value}</span>
+              </li>
+            ))}
+            <li class="flex flex-col pt-4 border-t border-white/[0.05]">
+              <span class="text-[9px] text-white/30 uppercase font-bold tracking-widest">Biaya Perpanjangan</span>
+              <span class="text-sm font-bold text-white/80 mt-0.5">{plan.renewal}</span>
+            </li>
+          </ul>
+
+          <a href={`https://wa.me/6281274203815?text=${plan.waText}`}
+             target="_blank"
+             class="block text-center py-4 rounded-xl font-black text-[11px] uppercase tracking-[0.2em]
+                    text-white transition-all duration-300 hover:-translate-y-0.5 active:scale-95"
+             style={`background: linear-gradient(135deg, ${plan.accentColor}, ${plan.featured ? '#3245FF' : '#BC52EE'});
+                    box-shadow: 0 8px 24px ${plan.accentColor}40;`}>
+            ORDER NOW
+          </a>
+
         </div>
-        <p class="text-slate-400 text-[10px] uppercase font-bold mb-8 italic">/ setahun</p>
-        
-        <ul class="space-y-4 mb-10 grow border-t pt-6 border-slate-50">
-          <li class="flex flex-col text-sm text-slate-600 font-mulish">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Halaman Website</span>
-            <span class="font-bold text-slate-900">5 Halaman</span>
-          </li>
-          <li class="flex flex-col text-sm text-slate-600 font-mulish">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Waktu Pengerjaan</span>
-            <span class="font-bold text-slate-900">Max 5 Hari Kerja</span>
-          </li>
-          <li class="flex items-center gap-2 text-sm text-[#22C55E] font-bold italic">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-            Free Domain (.com/.id)
-          </li>
-          <li class="flex flex-col text-sm text-[#3B82F6] font-bold italic">
-             <span class="text-[10px] text-slate-400 uppercase font-bold">Free Hosting</span>
-             Entry 1GB
-          </li>
-          <li class="flex items-center gap-2 text-sm text-[#22C55E] font-bold">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-            Free Email Bisnis & SSL
-          </li>
-          <li class="flex flex-col text-sm text-[#7E67F8] font-bold">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Optimasi SEO</span>
-            3 Artikel SEO
-          </li>
-          <li class="flex flex-col text-sm text-slate-600 font-mulish">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Image Editing</span>
-            <span class="font-bold italic text-xs">5 Image + 1 Logo</span>
-          </li>
-          <li class="flex flex-col text-sm text-slate-900 font-bold border-t pt-4">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Biaya Perpanjangan</span>
-            IDR 500.000
-          </li>
-        </ul>
-
-        <a href="https://wa.me/6281274203815?text=Halo%20Zaid,%20saya%20tertarik%20Paket%20Basic" target="_blank" class="block text-center bg-[#84cc16] text-white py-4 rounded-md font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all font-oswald shadow-lg">ORDER NOW</a>
-      </div>
-
-      <div class="bg-white p-10 rounded-sm shadow-2xl border-t-8 border-[#3B82F6] relative transform scale-105 z-10 flex flex-col">
-        <h3 class="text-3xl font-bold text-[#3B82F6] mb-2 font-oswald uppercase">Pro</h3>
-        <div class="mb-2">
-          <span class="text-3xl font-bold text-slate-900 font-oswald italic uppercase tracking-tighter">IDR 1.000.000</span>
-        </div>
-        <p class="text-slate-400 text-[10px] uppercase font-bold mb-8 italic">/ setahun</p>
-
-        <ul class="space-y-4 mb-10 grow border-t pt-6 border-slate-50">
-          <li class="flex flex-col text-sm text-slate-600 font-mulish">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Halaman Website</span>
-            <span class="font-bold text-slate-900">5 Halaman</span>
-          </li>
-          <li class="flex flex-col text-sm text-slate-600 font-mulish">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Waktu Pengerjaan</span>
-            <span class="font-bold text-slate-900">Max 6 Hari Kerja</span>
-          </li>
-          <li class="flex items-center gap-2 text-sm text-[#22C55E] font-bold italic">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-            Free Domain (.com/.id)
-          </li>
-          <li class="flex flex-col text-sm text-[#3B82F6] font-bold italic">
-             <span class="text-[10px] text-slate-400 uppercase font-bold">Free Hosting</span>
-             Unlimited Small
-          </li>
-          <li class="flex items-center gap-2 text-sm text-[#22C55E] font-bold">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-            Free Email Bisnis & SSL
-          </li>
-          <li class="flex flex-col text-sm text-[#7E67F8] font-bold">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Optimasi SEO</span>
-            6 Artikel SEO
-          </li>
-          <li class="flex flex-col text-sm text-slate-600 font-mulish">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Image Editing</span>
-            <span class="font-bold italic text-xs">10 Image + 1 Logo</span>
-          </li>
-          <li class="flex flex-col text-sm text-slate-900 font-bold border-t pt-4">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Biaya Perpanjangan</span>
-            IDR 700.000
-          </li>
-        </ul>
-
-        <a href="https://wa.me/6281274203815?text=Halo%20Zaid,%20saya%20tertarik%20Paket%20Pro" target="_blank" class="block text-center bg-[#84cc16] text-white py-4 rounded-md font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all font-oswald shadow-lg">ORDER NOW</a>
-      </div>
-
-      <div class="bg-white p-10 rounded-sm shadow-sm border border-slate-100 flex flex-col hover:shadow-2xl transition-all duration-500">
-        <h3 class="text-3xl font-bold text-[#3B82F6] mb-2 font-oswald uppercase">Business</h3>
-        <div class="mb-2">
-          <span class="text-3xl font-bold text-slate-900 font-oswald italic uppercase tracking-tighter">IDR 2.588.000</span>
-        </div>
-        <p class="text-slate-400 text-[10px] uppercase font-bold mb-8 italic">/ setahun</p>
-
-        <ul class="space-y-4 mb-10 grow border-t pt-6 border-slate-50">
-          <li class="flex flex-col text-sm text-slate-600 font-mulish">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Halaman Website</span>
-            <span class="font-bold text-slate-900">5 Halaman</span>
-          </li>
-          <li class="flex flex-col text-sm text-slate-600 font-mulish">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Waktu Pengerjaan</span>
-            <span class="font-bold text-slate-900">Max 6 Hari Kerja</span>
-          </li>
-          <li class="flex items-center gap-2 text-sm text-[#22C55E] font-bold italic">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-            Free Domain (.com/.id)
-          </li>
-          <li class="flex flex-col text-sm text-[#3B82F6] font-bold italic">
-             <span class="text-[10px] text-slate-400 uppercase font-bold">Free Hosting</span>
-             Unlimited Small
-          </li>
-          <li class="flex items-center gap-2 text-sm text-[#22C55E] font-bold">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-            Free Email Bisnis & SSL
-          </li>
-          <li class="flex flex-col text-sm text-[#7E67F8] font-bold">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Optimasi SEO</span>
-            12 Artikel SEO
-          </li>
-          <li class="flex flex-col text-sm text-slate-600 font-mulish">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Image Editing</span>
-            <span class="font-bold italic text-xs">15 Image + 1 Logo</span>
-          </li>
-          <li class="flex flex-col text-sm text-slate-900 font-bold border-t pt-4">
-            <span class="text-[10px] text-slate-400 uppercase font-bold">Biaya Perpanjangan</span>
-            IDR 1.000.000
-          </li>
-        </ul>
-
-        <a href="https://wa.me/6281274203815?text=Halo%20Zaid,%20saya%20tertarik%20Paket%20Business" target="_blank" class="block text-center bg-[#84cc16] text-white py-4 rounded-md font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all font-oswald shadow-lg">ORDER NOW</a>
-      </div>
-
+      ))}
     </div>
 
-    <div class="mt-20 border-t pt-10 border-slate-200">
-       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center bg-white p-8 border shadow-sm">
-          <div class="flex flex-col gap-2">
-             <span class="text-[10px] uppercase font-bold text-slate-400">Basic</span>
-             <span class="font-bold text-slate-900 uppercase italic">Free Update 1 Halaman</span>
+    <!-- Free update comparison bar -->
+    <div class="mt-16 rounded-[20px] border border-white/[0.04] bg-[#0f0f14] overflow-hidden">
+      <div class="grid grid-cols-3 divide-x divide-white/[0.04]">
+        {plans.map((plan) => (
+          <div class="p-6 text-center">
+            <span class="text-[9px] text-white/30 uppercase font-bold tracking-widest block mb-2">{plan.name}</span>
+            <span class="font-heading text-white text-sm">Free Update {plan.freeUpdate}</span>
           </div>
-          <div class="flex flex-col gap-2 border-x border-slate-100">
-             <span class="text-[10px] uppercase font-bold text-slate-400">Pro</span>
-             <span class="font-bold text-slate-900 uppercase italic">Free Update 2 Halaman</span>
-          </div>
-          <div class="flex flex-col gap-2">
-             <span class="text-[10px] uppercase font-bold text-slate-400">Business</span>
-             <span class="font-bold text-slate-900 uppercase italic">Free Update 3 Halaman</span>
-          </div>
-       </div>
+        ))}
+      </div>
     </div>
 
   </div>

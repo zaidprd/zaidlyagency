@@ -1,11 +1,18 @@
 ---
-<<<<<<< HEAD
 const year = new Date().getFullYear();
 
 const services = [
-  { label: 'Custom Website',  href: '#selection' },
-  { label: 'Web Application', href: '#app' },
-  { label: 'Digital Branding', href: '#branding' },
+  { label: 'Landing Page',     href: '#services' },
+  { label: 'Website UMKM',     href: '#services' },
+  { label: 'Company Profile',  href: '#services' },
+  { label: 'Jasa Artikel SEO', href: '#services' },
+];
+
+const nav = [
+  { label: 'Home',      href: '/' },
+  { label: 'Blog',      href: '/blog' },
+  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Kontak',    href: '/contact' },
 ];
 
 const socials = [
@@ -15,35 +22,26 @@ const socials = [
 ];
 ---
 
-<footer class="ft relative overflow-hidden border-t border-brand-primary/15">
+<footer class="ft relative overflow-hidden border-t border-[#3245FF]/10">
 
-  <!-- Base gradient — bukan flat hitam, ada nuansa navy bawah -->
   <div class="absolute inset-0 bg-gradient-to-b from-[#07070d] to-[#050507]"></div>
 
-  <!-- Glow atas: pudar dari bawah hero/section -->
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[250px]
-              bg-[radial-gradient(ellipse_at_50%_0%,rgba(50,69,255,0.1)_0%,transparent_70%)]
+              bg-[radial-gradient(ellipse_at_50%_0%,rgba(50,69,255,0.08)_0%,transparent_70%)]
               pointer-events-none"></div>
-
-  <!-- Glow ungu kiri bawah -->
   <div class="absolute -bottom-16 -left-16 w-[350px] h-[350px]
-              bg-[radial-gradient(ellipse,rgba(188,82,238,0.07)_0%,transparent_70%)]
+              bg-[radial-gradient(ellipse,rgba(188,82,238,0.06)_0%,transparent_70%)]
               pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-6 py-24 relative z-10">
 
-    <!-- Top shimmer divider -->
     <div class="h-[1px] mb-20
-                bg-gradient-to-r from-transparent via-brand-primary/35
-                to-brand-secondary/25 to-transparent"></div>
+                bg-gradient-to-r from-transparent via-[#3245FF]/30 to-[#BC52EE]/20 to-transparent"></div>
 
-    <!-- Grid: brand col + 2 link cols -->
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 items-start mb-20">
 
-      <!-- Brand col (span 2) -->
+      <!-- Brand col -->
       <div class="lg:col-span-2 space-y-6">
-
-        <!-- Logo -->
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-[10px] flex items-center justify-center
                       font-black text-lg text-white
@@ -51,28 +49,25 @@ const socials = [
                style="background: linear-gradient(135deg, #3245FF, #BC52EE);">
             Z
           </div>
-          <div class="text-[22px] font-black uppercase tracking-tighter text-white leading-none">
+          <div class="text-[22px] font-heading font-black uppercase tracking-tighter text-white leading-none">
             ZAIDLY<span class="text-gradient-static">.</span>
           </div>
         </div>
 
-        <!-- Tagline -->
         <p class="text-white/35 text-sm font-medium leading-relaxed max-w-xs">
           Partner strategis
           <span class="text-white/70 font-bold">Transformasi Digital</span>
           untuk UMKM & Perusahaan dengan teknologi web modern kelas dunia.
         </p>
 
-        <!-- Social buttons -->
         <div class="flex gap-2">
           {socials.map((s) => (
             <a href={s.href} target="_blank" rel="noopener"
-               class="ft-social w-9 h-9 rounded-[8px] border border-white/[0.07]
+               class="w-9 h-9 rounded-[8px] border border-white/[0.07]
                       bg-white/[0.03] flex items-center justify-center
                       text-[9px] font-black uppercase tracking-widest text-white/35
-                      transition-all duration-300 hover:border-brand-primary/40
-                      hover:text-white hover:bg-brand-primary/10
-                      hover:-translate-y-0.5">
+                      transition-all duration-300 hover:border-[#3245FF]/40
+                      hover:text-white hover:bg-[#3245FF]/10 hover:-translate-y-0.5">
               {s.label}
             </a>
           ))}
@@ -81,16 +76,17 @@ const socials = [
 
       <!-- Layanan col -->
       <div class="space-y-5">
-        <h4 class="ft-col-title text-[9px] font-black uppercase tracking-[0.35em] text-brand-primary">
+        <h4 class="text-[9px] font-black uppercase tracking-[0.35em] text-[#3245FF]"
+            style="font-family: var(--font-heading); letter-spacing: 0.35em;">
           Layanan
         </h4>
         <nav class="flex flex-col gap-4">
           {services.map((s) => (
             <a href={s.href}
-               class="ft-link group inline-flex items-center gap-2
+               class="group inline-flex items-center gap-2
                       text-[11px] font-bold uppercase tracking-[0.15em]
                       text-white/30 hover:text-white transition-colors duration-300">
-              <span class="w-0 h-[1px] bg-brand-primary rounded-full
+              <span class="w-0 h-[1px] bg-[#3245FF] rounded-full
                            group-hover:w-3 transition-all duration-300"></span>
               {s.label}
             </a>
@@ -100,7 +96,8 @@ const socials = [
 
       <!-- Kontak col -->
       <div class="space-y-5">
-        <h4 class="ft-col-title text-[9px] font-black uppercase tracking-[0.35em] text-brand-primary">
+        <h4 class="text-[9px] font-black uppercase tracking-[0.35em] text-[#3245FF]"
+            style="font-family: var(--font-heading); letter-spacing: 0.35em;">
           Hubungi Kami
         </h4>
         <div class="flex flex-col gap-3">
@@ -110,75 +107,21 @@ const socials = [
           <p class="text-white/55 text-[12px] font-semibold uppercase tracking-wide">
             Jakarta, Indonesia
           </p>
-          <p class="text-[12px] font-black text-gradient-static">
-            @zaidly.agency
-          </p>
+          <a href="tel:+6281274203815"
+             class="text-[12px] font-black text-gradient-static hover:opacity-80 transition-opacity">
+            +62 812 7420 3815
+          </a>
         </div>
-=======
-const currentYear = new Date().getFullYear();
----
-
-<footer class="bg-slate-900 pt-20 pb-10 text-white">
-  <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-      
-      <div class="lg:col-span-1">
-        <a href="/" class="text-3xl font-bold text-white font-oswald uppercase tracking-tighter block mb-6">
-          Zaid<span class="text-[#7E67F8]">ly</span>
-        </a>
-        <p class="text-slate-400 text-sm font-mulish leading-relaxed">
-          Zaidly Agency adalah mitra pertumbuhan digital untuk UMKM. Kami fokus pada pembuatan website WordPress yang kencang, indah, dan mudah dikelola sendiri.
-        </p>
-      </div>
-
-      <div>
-        <h4 class="text-lg font-bold font-oswald uppercase mb-6 tracking-widest">Navigasi</h4>
-        <ul class="space-y-4 text-slate-400 text-sm font-mulish">
-          <li><a href="/" class="hover:text-[#7E67F8] transition-colors uppercase tracking-widest text-[10px] font-bold">Home</a></li>
-          <li><a href="/blog" class="hover:text-[#7E67F8] transition-colors uppercase tracking-widest text-[10px] font-bold">Blog</a></li>
-          <li><a href="/contact" class="hover:text-[#7E67F8] transition-colors uppercase tracking-widest text-[10px] font-bold">Contact</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="text-lg font-bold font-oswald uppercase mb-6 tracking-widest">Layanan</h4>
-        <ul class="space-y-4 text-slate-400 text-sm font-mulish">
-          <li><a href="#services" class="hover:text-[#7E67F8] transition-colors">Landing Page</a></li>
-          <li><a href="#services" class="hover:text-[#7E67F8] transition-colors">Website UMKM</a></li>
-          <li><a href="#services" class="hover:text-[#7E67F8] transition-colors">Company Profile</a></li>
-          <li><a href="#services" class="hover:text-[#7E67F8] transition-colors">Artikel SEO</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="text-lg font-bold font-oswald uppercase mb-6 tracking-widest">Hubungi Kami</h4>
-        <ul class="space-y-4 text-slate-400 text-sm font-mulish">
-          <li class="flex items-start">
-            <span class="text-[#7E67F8] mr-3 mt-1">📍</span>
-            Jl. H Taha, Kebon Jeruk, Jakarta, Indonesia
-          </li>
-          <li class="flex items-start">
-            <span class="text-[#7E67F8] mr-3 mt-1">📧</span>
-            halo@zaidly.com
-          </li>
-          <li class="flex items-start font-bold text-white">
-            <span class="text-[#7E67F8] mr-3 mt-1">📞</span>
-            <a href="tel:+6281274203815" class="hover:text-[#7E67F8] transition-colors">+62 812 7420 3815</a>
-          </li>
-        </ul>
->>>>>>> f4bee64676614fd8603ba343448a5b05eea2fc86
       </div>
 
     </div>
 
-<<<<<<< HEAD
-    <!-- Bottom bar -->
     <div class="pt-8 border-t border-white/[0.04]
                 flex flex-col md:flex-row justify-between items-center gap-5">
 
       <div class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20">
         &copy; {year} ZAIDLY AGENCY.
-        <span class="text-brand-primary/40 ml-1">ALL RIGHTS RESERVED.</span>
+        <span class="text-[#3245FF]/40 ml-1">ALL RIGHTS RESERVED.</span>
       </div>
 
       <div class="flex gap-8 text-[10px] font-bold uppercase tracking-[0.15em] text-white/20">
@@ -192,28 +135,5 @@ const currentYear = new Date().getFullYear();
 
 <style>
   @reference "../styles/global.css";
-
-  .ft {
-    font-style: normal;
-  }
-
-  /* Hover shadow per social button */
-  .ft-social:hover {
-    box-shadow: 0 8px 20px rgba(50, 69, 255, 0.2);
-  }
-
-  /* Col title: gak kena global h4 uppercase override */
-  .ft-col-title {
-    font-style: normal !important;
-    text-transform: uppercase;
-  }
+  .ft { font-style: normal; }
 </style>
-=======
-    <div class="pt-8 border-t border-slate-800 text-center">
-      <p class="text-slate-500 text-[10px] font-mulish tracking-[0.3em] uppercase">
-        &copy; {currentYear} All Rights Reserved. Crafted with ❤️ by Zaid.
-      </p>
-    </div>
-  </div>
-</footer>
->>>>>>> f4bee64676614fd8603ba343448a5b05eea2fc86
