@@ -1,0 +1,312 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/placeholder-hero.webp';
+
+const features = [
+  'Jangkau pelanggan ke seluruh Indonesia secara digital.',
+  'Keamanan High-Level + Support Maintenance 24/7.'
+];
+
+const stats = [
+  { value: '100+', label: 'Proyek Selesai' },
+  { value: '98%', label: 'Klien Puas' },
+  { value: '3x', label: 'Rata-rata ROI' },
+];
+---
+
+<section class="hero-section relative pt-36 pb-52 overflow-hidden">
+
+  <!-- ── BACKGROUND LAYER ── -->
+  <!-- Base dark -->
+  <div class="absolute inset-0 bg-[#060608]"></div>
+
+  <!-- Aurora gradient — lebih kaya dari sebelumnya -->
+  <div class="absolute inset-0 pointer-events-none">
+    <!-- Biru utama: tengah atas -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/4 w-[900px] h-[500px]
+                bg-[radial-gradient(ellipse,rgba(50,69,255,0.18)_0%,transparent_65%)]"></div>
+    <!-- Ungu: kanan atas -->
+    <div class="absolute -top-20 right-0 w-[600px] h-[600px]
+                bg-[radial-gradient(ellipse,rgba(188,82,238,0.12)_0%,transparent_70%)]"></div>
+    <!-- Teal brand: kiri bawah -->
+    <div class="absolute bottom-0 -left-20 w-[500px] h-[400px]
+                bg-[radial-gradient(ellipse,rgba(0,206,209,0.08)_0%,transparent_70%)]"></div>
+  </div>
+
+  <!-- Subtle noise grain overlay -->
+  <div class="hero-grain absolute inset-0 pointer-events-none opacity-[0.025]"></div>
+
+  <!-- Horizontal rules — garis aksen tipis -->
+  <div class="absolute top-0 left-0 right-0 h-[1px]
+              bg-gradient-to-r from-transparent via-[#3245FF]/40 to-transparent"></div>
+
+  <!-- ── CONTENT ── -->
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
+
+      <!-- LEFT: Text -->
+      <div class="text-white order-last lg:order-first">
+
+        <!-- Badge atas — lebih detail dari sebelumnya -->
+        <div class="flex items-center gap-3 mb-8">
+          <div class="hero-badge inline-flex items-center gap-2.5 px-4 py-2
+                      bg-[#3245FF]/10 border border-[#3245FF]/25 rounded-full
+                      backdrop-blur-sm">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#3245FF] opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-[#3245FF]"></span>
+            </span>
+            <span class="text-[#3245FF] font-black text-[10px] uppercase tracking-[0.3em]">
+              High-End Digital Agency
+            </span>
+          </div>
+          <div class="h-[1px] w-8 bg-[#3245FF]/30"></div>
+        </div>
+
+        <!-- Headline — ukuran lebih agresif, line-height lebih tight -->
+        <h1 class="font-heading font-black uppercase leading-[0.88] tracking-tighter mb-8">
+          <span class="block text-5xl md:text-6xl lg:text-[5.5rem] text-white mb-2">
+            Fokus Bisnis,
+          </span>
+          <span class="block text-5xl md:text-6xl lg:text-[5.5rem] hero-gradient-text">
+            Biar Kami
+          </span>
+          <span class="block text-5xl md:text-6xl lg:text-[5.5rem] hero-gradient-text">
+            Urus.
+          </span>
+        </h1>
+
+        <!-- Divider -->
+        <div class="flex items-center gap-4 mb-8">
+          <div class="h-[2px] w-10 bg-gradient-to-r from-[#3245FF] to-[#BC52EE] rounded-full"></div>
+          <div class="h-[1px] w-4 bg-white/10 rounded-full"></div>
+        </div>
+
+        <!-- Subtext -->
+        <p class="text-[#a1a1aa] text-base md:text-lg font-medium max-w-md leading-relaxed mb-8">
+          Tingkatkan skala bisnis Anda dengan website kustom yang cepat,
+          responsif, dan didesain untuk konversi maksimal.
+        </p>
+
+        <!-- Feature list — checkmark lebih premium -->
+        <ul class="space-y-3 mb-10">
+          {features.map(item => (
+            <li class="flex items-start gap-3 group">
+              <div class="mt-0.5 w-5 h-5 rounded-lg bg-gradient-to-br from-[#3245FF] to-[#BC52EE]
+                          flex items-center justify-center shrink-0
+                          shadow-[0_4px_12px_rgba(50,69,255,0.35)]">
+                <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                  <path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span class="text-[#a1a1aa] text-sm font-medium group-hover:text-white/80 transition-colors leading-relaxed">
+                {item}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <!-- CTA group -->
+        <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+          <a href="https://wa.me/6281274203815"
+             class="hero-btn-primary group inline-flex items-center gap-3
+                    px-8 py-4 rounded-2xl font-black text-[11px] uppercase tracking-[0.25em]
+                    text-white transition-all duration-300 hover:-translate-y-1 active:scale-95">
+            <span>MULAI PROYEK SEKARANG</span>
+            <svg class="transition-transform duration-300 group-hover:translate-x-1"
+                 width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+
+          <div class="flex items-center gap-2 pl-1">
+            <!-- Avatars stack -->
+            <div class="flex -space-x-2">
+              {[
+                'bg-gradient-to-br from-[#3245FF] to-[#BC52EE]',
+                'bg-gradient-to-br from-[#00ced1] to-[#3245FF]',
+                'bg-gradient-to-br from-[#BC52EE] to-[#ff4500]',
+              ].map((grad) => (
+                <div class={`w-7 h-7 rounded-full border-2 border-[#060608] ${grad}`}></div>
+              ))}
+            </div>
+            <div>
+              <div class="text-[10px] font-black text-white uppercase tracking-wider">Slot Terbatas</div>
+              <div class="text-[10px] text-white/30 font-medium">Hanya 5 slot April</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats row -->
+        <div class="mt-14 pt-10 border-t border-white/[0.06]">
+          <div class="grid grid-cols-3 gap-6">
+            {stats.map((s, i) => (
+              <div class="relative">
+                {i < stats.length - 1 && (
+                  <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-8 bg-white/10"></div>
+                )}
+                <div class="text-2xl md:text-3xl font-black text-white mb-0.5
+                            bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
+                  {s.value}
+                </div>
+                <div class="text-[11px] text-white/35 font-semibold uppercase tracking-wider">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Image Frame — jauh lebih premium -->
+      <div class="relative group flex justify-center lg:justify-end">
+
+        <!-- Glow behind image -->
+        <div class="absolute inset-[10%] rounded-full
+                    bg-[radial-gradient(ellipse,rgba(50,69,255,0.25)_0%,rgba(188,82,238,0.15)_50%,transparent_80%)]
+                    blur-[60px] group-hover:scale-110 transition-transform duration-1000"></div>
+
+        <!-- Outer frame: gradient border trick -->
+        <div class="hero-frame relative z-10 w-full max-w-lg">
+
+          <!-- Border gradient via ::before (pakai wrapper) -->
+          <div class="relative p-[1px] rounded-[28px]"
+               style="background: linear-gradient(135deg, rgba(50,69,255,0.5), rgba(188,82,238,0.3), rgba(0,206,209,0.2));">
+
+            <!-- Inner card -->
+            <div class="bg-[#0c0c0e] rounded-[27px] overflow-hidden">
+
+              <!-- Top bar browser-style -->
+              <div class="flex items-center justify-between px-5 py-3
+                          border-b border-white/[0.05] bg-[#0f0f12]">
+                <div class="flex gap-1.5">
+                  <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></div>
+                  <div class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></div>
+                </div>
+                <div class="flex-1 mx-4">
+                  <div class="bg-[#060608] border border-white/[0.06] rounded-lg px-3 py-1 text-center">
+                    <span class="text-[10px] text-white/30 font-mono">zaidly.id/project</span>
+                  </div>
+                </div>
+                <div class="flex gap-1.5 opacity-40">
+                  <div class="w-4 h-4 rounded bg-white/10"></div>
+                  <div class="w-4 h-4 rounded bg-white/10"></div>
+                </div>
+              </div>
+
+              <!-- Image -->
+              <div class="relative overflow-hidden">
+                <Image
+                  src={heroImage}
+                  alt="Zaidly Agency Premium Preview"
+                  width={800}
+                  height={580}
+                  class="w-full h-auto transform transition-transform duration-1000 group-hover:scale-[1.03]"
+                />
+                <!-- Overlay gradient bawah -->
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0c0c0e]/60 via-transparent to-transparent"></div>
+              </div>
+
+              <!-- Bottom status bar -->
+              <div class="px-5 py-4 flex items-center justify-between border-t border-white/[0.05]">
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-[#28c840] animate-pulse"></div>
+                  <span class="text-[10px] text-white/40 font-semibold uppercase tracking-widest">Live Preview</span>
+                </div>
+                <span class="text-[10px] font-black uppercase tracking-widest
+                             bg-gradient-to-r from-[#3245FF] to-[#BC52EE] bg-clip-text text-transparent">
+                  Zaidly Edition
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating badge: Score 100 -->
+          <div class="absolute -top-5 -right-5 z-20
+                      bg-[#0f0f12] border border-white/10 rounded-2xl px-4 py-3
+                      shadow-[0_20px_40px_rgba(0,0,0,0.5)]
+                      backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300">
+            <div class="text-xl font-black text-white leading-none">100</div>
+            <div class="text-[9px] text-[#28c840] font-bold uppercase tracking-widest mt-0.5">Performance</div>
+          </div>
+
+          <!-- Floating badge: SEO -->
+          <div class="absolute -bottom-5 -left-5 z-20
+                      bg-[#0f0f12] border border-white/10 rounded-2xl px-4 py-3
+                      shadow-[0_20px_40px_rgba(0,0,0,0.5)]
+                      backdrop-blur-sm hover:-translate-y-1 transition-transform duration-300">
+            <div class="text-xl font-black bg-gradient-to-r from-[#3245FF] to-[#BC52EE]
+                        bg-clip-text text-transparent leading-none">#1</div>
+            <div class="text-[9px] text-white/40 font-bold uppercase tracking-widest mt-0.5">Google Rank</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom fade -->
+  <div class="absolute bottom-0 left-0 right-0 h-32
+              bg-gradient-to-t from-[#080809] to-transparent pointer-events-none"></div>
+
+</section>
+
+<style>
+  @reference "../styles/global.css";
+
+  .hero-section {
+    font-style: normal;
+  }
+
+  /* Grain texture via SVG filter */
+  .hero-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  /* Animated gradient headline */
+  .hero-gradient-text {
+    background: linear-gradient(
+      90deg,
+      #3245FF 0%,
+      #BC52EE 40%,
+      #3245FF 80%,
+      #00ced1 100%
+    );
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: heroGradientShift 4s linear infinite;
+  }
+
+  @keyframes heroGradientShift {
+    0%   { background-position: 0% center; }
+    100% { background-position: 250% center; }
+  }
+
+  /* CTA button */
+  .hero-btn-primary {
+    background: linear-gradient(135deg, #3245FF, #BC52EE);
+    box-shadow:
+      0 8px 24px rgba(50, 69, 255, 0.35),
+      inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .hero-btn-primary:hover {
+    box-shadow:
+      0 16px 40px rgba(50, 69, 255, 0.5),
+      inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+
+  /* Frame hover lift */
+  .hero-frame {
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .group:hover .hero-frame {
+    transform: translateY(-6px);
+  }
+</style>

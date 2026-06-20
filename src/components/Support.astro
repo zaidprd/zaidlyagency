@@ -1,0 +1,160 @@
+---
+const partners = [
+  { name: 'PRODUK LOKAL', icon: '🏪' },
+  { name: 'CORPORATE',    icon: '🏢' },
+  { name: 'GOVERNMENT',   icon: '🏛️' },
+  { name: 'STARTUP',      icon: '🚀' },
+];
+
+const trust = [
+  'Respon < 1 Jam',
+  'Konsultasi Gratis',
+  'No Commitment',
+];
+---
+
+<section class="py-36 bg-[#0a0a10] relative overflow-hidden">
+
+  <!-- Aurora background: biru kiri, ungu kanan — bukan flat hitam -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 -left-20 w-[600px] h-[500px]
+                bg-[radial-gradient(ellipse,rgba(50,69,255,0.07)_0%,transparent_70%)]"></div>
+    <div class="absolute bottom-0 -right-20 w-[500px] h-[500px]
+                bg-[radial-gradient(ellipse,rgba(188,82,238,0.06)_0%,transparent_70%)]"></div>
+  </div>
+
+  <!-- Top fade dari section terang sebelumnya -->
+  <div class="absolute top-0 left-0 right-0 h-24
+              bg-gradient-to-b from-[#f4f4f8] to-transparent pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+    <!-- ── Section label ── -->
+    <div class="flex items-center justify-center gap-4 mb-20">
+      <div class="h-[1px] w-8 bg-brand-primary/40"></div>
+      <span class="text-brand-primary font-black text-[10px] uppercase tracking-[0.4em]">
+        Support UMKM, Perusahaan & Pemerintahan
+      </span>
+      <div class="h-[1px] w-8 bg-brand-primary/40"></div>
+    </div>
+
+    <!-- ── Partner logos / icons ── -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-24">
+      {partners.map((p) => (
+        <div class="sp-partner group flex flex-col items-center gap-4 py-8 px-4
+                    rounded-[20px] border border-white/[0.04] bg-white/[0.02]
+                    cursor-default transition-all duration-500
+                    hover:border-brand-primary/20 hover:bg-brand-primary/[0.03]">
+
+          <span class="text-4xl grayscale opacity-30 group-hover:grayscale-0
+                        group-hover:opacity-100 group-hover:scale-110
+                        transition-all duration-500">
+            {p.icon}
+          </span>
+
+          <span class="text-[10px] font-black uppercase tracking-[0.25em]
+                        text-white/20 group-hover:text-white/70
+                        transition-colors duration-500">
+            {p.name}
+          </span>
+        </div>
+      ))}
+    </div>
+
+    <!-- ── CTA Block: dark navy dengan dual glow ── -->
+    <div class="sp-cta group relative rounded-[40px] overflow-hidden
+                border border-brand-primary/20
+                shadow-[0_40px_100px_rgba(0,0,0,0.5)]">
+
+      <!-- Base gradient background — bukan solid hitam -->
+      <div class="absolute inset-0 bg-gradient-to-br from-[#0d0d1a] via-[#110d20] to-[#0d0d1a]"></div>
+
+      <!-- Glow ungu: kanan atas -->
+      <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full
+                  bg-[radial-gradient(ellipse,rgba(188,82,238,0.18)_0%,transparent_70%)]
+                  group-hover:scale-125 transition-transform duration-1000"></div>
+
+      <!-- Glow biru: kiri bawah -->
+      <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full
+                  bg-[radial-gradient(ellipse,rgba(50,69,255,0.15)_0%,transparent_70%)]"></div>
+
+      <!-- Top edge shimmer -->
+      <div class="absolute top-0 left-1/4 right-1/4 h-[1px]
+                  bg-gradient-to-r from-transparent via-brand-primary/50 to-transparent"></div>
+
+      <!-- Content -->
+      <div class="relative z-10 text-center py-20 px-8 md:px-20">
+
+        <!-- Animated badge -->
+        <div class="inline-flex items-center gap-2 mb-8
+                    bg-brand-primary/10 border border-brand-primary/25 rounded-full
+                    px-5 py-2">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-brand-primary"></span>
+          </span>
+          <span class="text-[9px] font-black uppercase tracking-[0.3em] text-[#818cff]">
+            Konsultasi Gratis
+          </span>
+        </div>
+
+        <!-- Headline -->
+        <h3 class="text-4xl md:text-6xl xl:text-7xl mb-6 text-white leading-[0.9] tracking-tighter">
+          TERTARIK DENGAN<br/>
+          <span class="text-gradient">LAYANAN KAMI?</span>
+        </h3>
+
+        <p class="text-white/40 text-base md:text-lg font-medium leading-relaxed
+                  max-w-xl mx-auto mb-12">
+          Konsultasikan kebutuhan digital Anda sekarang. Klik tombol di bawah
+          untuk terhubung langsung via WhatsApp.
+        </p>
+
+        <!-- CTA Button: pakai btn-premium dari global -->
+        <a href="https://wa.me/6281274203815?text=Halo Zaidly, saya ingin konsultasi"
+           class="btn-premium text-sm">
+          Hubungi WhatsApp Sekarang
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M11.997 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.402A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.52 2 11.997 2z"/>
+          </svg>
+        </a>
+
+        <!-- Divider -->
+        <div class="my-10 h-[1px] max-w-sm mx-auto
+                    bg-gradient-to-r from-transparent via-brand-primary/25 to-transparent"></div>
+
+        <!-- Trust signals -->
+        <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+          {trust.map((t) => (
+            <div class="flex items-center gap-2">
+              <div class="w-1.5 h-1.5 rounded-full bg-brand-primary"></div>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-white/25">{t}</span>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @reference "../styles/global.css";
+
+  /* Partner card hover shadow */
+  .sp-partner:hover {
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  /* CTA block hover: border naik */
+  .sp-cta:hover {
+    border-color: rgba(50, 69, 255, 0.35);
+    box-shadow:
+      0 60px 120px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(50, 69, 255, 0.2);
+  }
+</style>

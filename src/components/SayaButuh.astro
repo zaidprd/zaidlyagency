@@ -1,0 +1,187 @@
+---
+/* Section 1: SAYA BUTUH WEBSITE
+   Premium version — tiap card punya accent warna sendiri
+*/
+const needs = [
+  { 
+    title: 'READY CONTENT', 
+    icon: '📄', 
+    desc: 'Materi sudah siap? Kami eksekusi menjadi digital asset yang high-converting.',
+    accent: '#3b82f6',       // biru elektrik
+    accentMid: '#1d4ed8',
+    glow: 'rgba(59,130,246,0.15)',
+    border: 'rgba(59,130,246,0.3)',
+    tag: 'Content First'
+  },
+  { 
+    title: 'ASSET READY', 
+    icon: '📋', 
+    desc: 'Punya brosur atau company profile? Kami transformasikan ke visual modern.',
+    accent: '#f59e0b',       // amber
+    accentMid: '#d97706',
+    glow: 'rgba(245,158,11,0.15)',
+    border: 'rgba(245,158,11,0.3)',
+    tag: 'Transform Ready'
+  },
+  { 
+    title: 'FULL SERVICE', 
+    icon: '💡', 
+    desc: 'Belum punya ide? Biarkan tim kreatif kami membangun narasi bisnis Anda.',
+    accent: '#10b981',       // emerald
+    accentMid: '#059669',
+    glow: 'rgba(16,185,129,0.15)',
+    border: 'rgba(16,185,129,0.3)',
+    tag: 'Zero to Hero'
+  }
+];
+---
+
+<section class="needs-section py-40 relative overflow-hidden">
+
+  <!-- Background texture: gradient mesh bukan flat black -->
+  <div class="absolute inset-0 bg-[#080809]">
+    <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-brand-primary/8 blur-[160px] rounded-full"></div>
+    <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#3b82f6]/6 blur-[120px] rounded-full"></div>
+    <!-- Subtle grid pattern -->
+    <div class="grid-pattern absolute inset-0 opacity-[0.015]"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+    <!-- Header -->
+    <div class="mb-24 flex flex-col md:flex-row items-end justify-between gap-10">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="h-[1px] w-8 bg-brand-primary"></div>
+          <span class="text-brand-primary font-bold text-[10px] tracking-[0.5em] uppercase">Project Phase</span>
+        </div>
+        <h2 class="text-5xl md:text-7xl leading-[0.9] text-white font-heading font-black uppercase">
+          SAYA BUTUH WEBSITE <br/>
+          <span class="text-gradient">DAN SAYA...</span>
+        </h2>
+      </div>
+      <div class="h-[1px] flex-1 bg-gradient-to-r from-white/10 to-transparent mb-4 hidden md:block"></div>
+    </div>
+
+    <!-- Cards: tiap card punya "DNA warna" sendiri -->
+    <div class="grid md:grid-cols-3 gap-6">
+      {needs.map((need, i) => (
+        <div
+          class="need-card group relative rounded-[28px] p-10 transition-all duration-500 hover:-translate-y-3 overflow-hidden"
+          style={`
+            --card-accent: ${need.accent};
+            --card-glow: ${need.glow};
+            --card-border: ${need.border};
+          `}
+        >
+          <!-- Solid dark base -->
+          <div class="absolute inset-0 bg-[#111113] rounded-[28px]"></div>
+          <!-- Colored glow layer (muncul saat hover) -->
+          <div class="card-glow absolute inset-0 rounded-[28px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style={`background: radial-gradient(ellipse at 30% 30%, ${need.glow} 0%, transparent 70%);`}>
+          </div>
+          <!-- Border dengan accent color -->
+          <div class="card-border absolute inset-0 rounded-[28px] border border-white/5 group-hover:border-[var(--card-accent)]/30 transition-colors duration-500"></div>
+
+          <!-- Nomor besar di belakang, pakai accent color -->
+          <div class="absolute top-4 right-6 font-black text-8xl leading-none select-none"
+            style={`color: ${need.accent}; opacity: 0.06;`}>
+            0{i + 1}
+          </div>
+
+          <!-- Content -->
+          <div class="relative z-10">
+
+            <!-- Tag pill atas -->
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full mb-8"
+              style={`background: ${need.glow}; border: 1px solid ${need.border};`}>
+              <div class="w-1.5 h-1.5 rounded-full" style={`background: ${need.accent};`}></div>
+              <span class="text-[10px] font-bold tracking-widest uppercase"
+                style={`color: ${need.accent};`}>{need.tag}</span>
+            </div>
+
+            <!-- Icon box — warna per card -->
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-8 transition-all duration-500"
+              style={`background: ${need.glow}; border: 1px solid ${need.border};`}>
+              {need.icon}
+            </div>
+
+            <!-- Nomor kecil + Title -->
+            <div class="flex items-baseline gap-3 mb-4">
+              <span class="text-xs font-black tabular-nums" style={`color: ${need.accent}; opacity: 0.6;`}>0{i+1}</span>
+              <h3 class="text-xl font-black uppercase tracking-tight text-white group-hover:text-[var(--card-accent)] transition-colors duration-300">
+                {need.title}
+              </h3>
+            </div>
+
+            <p class="text-white/40 text-sm leading-relaxed font-medium group-hover:text-white/70 transition-colors duration-300">
+              {need.desc}
+            </p>
+
+            <!-- Bottom bar — warna accent melebar saat hover -->
+            <div class="mt-10 relative h-[2px] rounded-full overflow-hidden bg-white/5">
+              <div class="bar-fill absolute left-0 top-0 h-full w-8 group-hover:w-full transition-all duration-700 rounded-full"
+                style={`background: linear-gradient(to right, ${need.accent}, ${need.accentMid});`}>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA Bottom: gradient 3 warna bukan polos -->
+    <div class="mt-24 relative rounded-[40px] overflow-hidden group">
+      <!-- Background: gradient dari dark ke teal dengan perpaduan warna section -->
+      <div class="absolute inset-0 bg-gradient-to-br from-[#0f0f11] via-[#0d1a20] to-[#0a0a0b]"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-primary/10 via-[#3b82f6]/5 to-[#10b981]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+      <!-- Border gradient -->
+      <div class="absolute inset-0 rounded-[40px] border border-white/5 group-hover:border-brand-primary/20 transition-colors duration-500"></div>
+      <!-- Top edge accent line -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[1px] bg-gradient-to-r from-transparent via-brand-primary/60 to-transparent"></div>
+
+      <div class="relative z-10 text-center p-16 md:p-20">
+        <!-- Label kecil -->
+        <div class="inline-flex items-center gap-2 mb-6">
+          <div class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></div>
+          <span class="text-brand-primary text-[10px] font-bold tracking-[0.4em] uppercase">Konsultasi Gratis</span>
+        </div>
+        <h3 class="text-3xl md:text-5xl mb-10 text-white font-heading font-black uppercase tracking-tighter">
+          SUDAH SIAP UNTUK <span class="text-gradient">NAIK KELAS?</span>
+        </h3>
+        <a href="https://wa.me/6281274203815"
+          class="inline-flex items-center gap-3 px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest text-[#0a0a0b] bg-brand-primary hover:bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_40px_rgba(0,206,209,0.4)] active:scale-95">
+          KONSULTASI GRATIS SEKARANG
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.472 3.528A12 12 0 1 0 3.528 20.472 12 12 0 0 0 20.472 3.528zM12 21.5a9.5 9.5 0 1 1 0-19 9.5 9.5 0 0 1 0 19zm4.5-9.5H8.5l3-3-1.06-1.06L6.38 12l4.06 4.06L11.5 15l-3-3h8v-1.5z"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @reference "../styles/global.css";
+
+  .needs-section {
+    background: #080809;
+  }
+
+  .grid-pattern {
+    background-image:
+      linear-gradient(rgba(255,255,255,1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-primary to-brand-secondary bg-clip-text text-transparent;
+  }
+
+  /* Tiap card ada shadow dengan warna accent-nya sendiri saat hover */
+  .need-card:hover {
+    box-shadow:
+      0 30px 60px rgba(0,0,0,0.5),
+      0 0 0 1px var(--card-accent, transparent),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+</style>

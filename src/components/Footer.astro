@@ -1,0 +1,155 @@
+---
+const year = new Date().getFullYear();
+
+const services = [
+  { label: 'Custom Website',  href: '#selection' },
+  { label: 'Web Application', href: '#app' },
+  { label: 'Digital Branding', href: '#branding' },
+];
+
+const socials = [
+  { label: 'IG', href: 'https://instagram.com/zaidly.agency' },
+  { label: 'in', href: 'https://linkedin.com' },
+  { label: 'WA', href: 'https://wa.me/6281274203815' },
+];
+---
+
+<footer class="ft relative overflow-hidden border-t border-brand-primary/15">
+
+  <!-- Base gradient — bukan flat hitam, ada nuansa navy bawah -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[#07070d] to-[#050507]"></div>
+
+  <!-- Glow atas: pudar dari bawah hero/section -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[250px]
+              bg-[radial-gradient(ellipse_at_50%_0%,rgba(50,69,255,0.1)_0%,transparent_70%)]
+              pointer-events-none"></div>
+
+  <!-- Glow ungu kiri bawah -->
+  <div class="absolute -bottom-16 -left-16 w-[350px] h-[350px]
+              bg-[radial-gradient(ellipse,rgba(188,82,238,0.07)_0%,transparent_70%)]
+              pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 py-24 relative z-10">
+
+    <!-- Top shimmer divider -->
+    <div class="h-[1px] mb-20
+                bg-gradient-to-r from-transparent via-brand-primary/35
+                to-brand-secondary/25 to-transparent"></div>
+
+    <!-- Grid: brand col + 2 link cols -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 items-start mb-20">
+
+      <!-- Brand col (span 2) -->
+      <div class="lg:col-span-2 space-y-6">
+
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-[10px] flex items-center justify-center
+                      font-black text-lg text-white
+                      shadow-[0_4px_16px_rgba(50,69,255,0.4)]"
+               style="background: linear-gradient(135deg, #3245FF, #BC52EE);">
+            Z
+          </div>
+          <div class="text-[22px] font-black uppercase tracking-tighter text-white leading-none">
+            ZAIDLY<span class="text-gradient-static">.</span>
+          </div>
+        </div>
+
+        <!-- Tagline -->
+        <p class="text-white/35 text-sm font-medium leading-relaxed max-w-xs">
+          Partner strategis
+          <span class="text-white/70 font-bold">Transformasi Digital</span>
+          untuk UMKM & Perusahaan dengan teknologi web modern kelas dunia.
+        </p>
+
+        <!-- Social buttons -->
+        <div class="flex gap-2">
+          {socials.map((s) => (
+            <a href={s.href} target="_blank" rel="noopener"
+               class="ft-social w-9 h-9 rounded-[8px] border border-white/[0.07]
+                      bg-white/[0.03] flex items-center justify-center
+                      text-[9px] font-black uppercase tracking-widest text-white/35
+                      transition-all duration-300 hover:border-brand-primary/40
+                      hover:text-white hover:bg-brand-primary/10
+                      hover:-translate-y-0.5">
+              {s.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Layanan col -->
+      <div class="space-y-5">
+        <h4 class="ft-col-title text-[9px] font-black uppercase tracking-[0.35em] text-brand-primary">
+          Layanan
+        </h4>
+        <nav class="flex flex-col gap-4">
+          {services.map((s) => (
+            <a href={s.href}
+               class="ft-link group inline-flex items-center gap-2
+                      text-[11px] font-bold uppercase tracking-[0.15em]
+                      text-white/30 hover:text-white transition-colors duration-300">
+              <span class="w-0 h-[1px] bg-brand-primary rounded-full
+                           group-hover:w-3 transition-all duration-300"></span>
+              {s.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      <!-- Kontak col -->
+      <div class="space-y-5">
+        <h4 class="ft-col-title text-[9px] font-black uppercase tracking-[0.35em] text-brand-primary">
+          Hubungi Kami
+        </h4>
+        <div class="flex flex-col gap-3">
+          <p class="text-white/55 text-[12px] font-semibold tracking-wide">
+            hello@zaidly.com
+          </p>
+          <p class="text-white/55 text-[12px] font-semibold uppercase tracking-wide">
+            Jakarta, Indonesia
+          </p>
+          <p class="text-[12px] font-black text-gradient-static">
+            @zaidly.agency
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="pt-8 border-t border-white/[0.04]
+                flex flex-col md:flex-row justify-between items-center gap-5">
+
+      <div class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20">
+        &copy; {year} ZAIDLY AGENCY.
+        <span class="text-brand-primary/40 ml-1">ALL RIGHTS RESERVED.</span>
+      </div>
+
+      <div class="flex gap-8 text-[10px] font-bold uppercase tracking-[0.15em] text-white/20">
+        <a href="#" class="hover:text-white/60 transition-colors duration-300">Privacy Policy</a>
+        <a href="#" class="hover:text-white/60 transition-colors duration-300">Terms of Service</a>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<style>
+  @reference "../styles/global.css";
+
+  .ft {
+    font-style: normal;
+  }
+
+  /* Hover shadow per social button */
+  .ft-social:hover {
+    box-shadow: 0 8px 20px rgba(50, 69, 255, 0.2);
+  }
+
+  /* Col title: gak kena global h4 uppercase override */
+  .ft-col-title {
+    font-style: normal !important;
+    text-transform: uppercase;
+  }
+</style>

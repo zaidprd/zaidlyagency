@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #3245FF;
+  --color-brand-secondary: #BC52EE;
+  --color-brand-glow: rgba(50,69,255,0.25);
+
+  --color-bg-main:    #050507;
+  --color-bg-section: #08080b;
+  --color-bg-card:    #0f0f14;
+  --color-bg-raised:  #141419;
+
+  --font-heading: "Poppins", sans-serif;
+  --font-sans:    "Inter", sans-serif;
+}
+
+@layer base {
+  html {
+    @apply bg-bg-main text-white scroll-smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply m-0 p-0 font-sans;
+  }
+
+  ::selection {
+    background-color: #3245FF;
+    color: #ffffff;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: var(--font-heading);
+    font-style: normal !important;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+  }
+}
+
+@layer components {
+
+  /* ── Buttons ── */
+  .btn-premium {
+    @apply relative overflow-hidden inline-flex items-center justify-center gap-2
+           px-10 py-4 rounded-xl
+           font-black text-[11px] tracking-[0.25em] uppercase text-white
+           transition-all duration-300
+           hover:-translate-y-0.5 active:scale-[0.97];
+    background: linear-gradient(135deg, #3245FF, #BC52EE);
+    box-shadow:
+      0 8px 24px rgba(50,69,255,0.35),
+      inset 0 1px 0 rgba(255,255,255,0.12);
+  }
+  .btn-premium:hover {
+    box-shadow:
+      0 16px 40px rgba(50,69,255,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+
+  .btn-ghost {
+    @apply relative inline-flex items-center justify-center gap-2
+           px-10 py-4 rounded-xl
+           font-black text-[11px] tracking-[0.25em] uppercase
+           transition-all duration-300
+           hover:-translate-y-0.5 active:scale-[0.97];
+    color: #3245FF;
+    border: 1px solid rgba(50,69,255,0.35);
+    background: transparent;
+  }
+  .btn-ghost:hover {
+    background: rgba(50,69,255,0.08);
+    border-color: rgba(50,69,255,0.6);
+    box-shadow: 0 8px 24px rgba(50,69,255,0.15);
+  }
+
+  /* ── Cards ── */
+  .card-premium {
+    @apply relative rounded-[28px] transition-all duration-500;
+    background: #0f0f14;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+  .card-premium:hover {
+    border-color: rgba(50,69,255,0.3);
+    transform: translateY(-6px);
+    box-shadow:
+      0 40px 80px rgba(0,0,0,0.5),
+      0 0 0 1px rgba(50,69,255,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  /* ── Labels / Tags ── */
+  .label-brand {
+    @apply inline-flex items-center gap-2
+           px-3 py-1.5 rounded-full
+           text-[9px] font-black uppercase tracking-[0.3em];
+    color: #3245FF;
+    background: rgba(50,69,255,0.08);
+    border: 1px solid rgba(50,69,255,0.2);
+  }
+
+  /* ── Section divider line ── */
+  .divider-brand {
+    @apply mx-auto;
+    height: 1px;
+    width: 8rem;
+    background: linear-gradient(to right, transparent, #3245FF, transparent);
+  }
+
+  /* ── Gradient text ── */
+  .text-gradient {
+    background: linear-gradient(90deg, #3245FF 0%, #BC52EE 50%, #3245FF 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 4s linear infinite;
+  }
+  .text-gradient-static {
+    background: linear-gradient(135deg, #3245FF, #BC52EE);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* ── Keyframes ── */
+@keyframes gradientShift {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(50,69,255,0.3); }
+  50%       { box-shadow: 0 0 40px rgba(188,82,238,0.5); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* ── Utility: noise grain ── */
+.grain-overlay {
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.025;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: #050507; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#3245FF, #BC52EE);
+  border-radius: 99px;
+}

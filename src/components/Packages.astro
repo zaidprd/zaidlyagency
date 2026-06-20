@@ -1,0 +1,344 @@
+---
+/* Section: Packages — Modern Premium Pricing */
+const packages = [
+  {
+    name: 'Starter UMKM',
+    price: '1.5JT',
+    priceNote: '/Project',
+    desc: 'Cocok untuk bisnis baru yang ingin tampil profesional, cepat online, dan mudah dipercaya calon pelanggan.',
+    features: [
+      { text: 'Landing Page Cepat & Elegan', hot: false },
+      { text: 'Free Domain .com', hot: false },
+      { text: 'Setup Cloudflare', hot: false },
+      { text: 'Mobile Friendly', hot: false },
+    ],
+    highlight: false,
+    tier: 'starter',
+    tag: 'Entry Level',
+    accent: '#60a5fa',
+    accentDark: '#2563eb',
+    glow: 'rgba(96,165,250,0.16)',
+    borderBase: 'rgba(96,165,250,0.14)',
+    borderHover: 'rgba(96,165,250,0.4)',
+    tagBg: 'rgba(96,165,250,0.1)',
+  },
+  {
+    name: 'Business Pro',
+    price: '3.5JT',
+    priceNote: '/Project',
+    desc: 'Solusi lengkap untuk bisnis berkembang yang butuh website lebih kuat, tampil premium, dan siap menghasilkan konversi.',
+    features: [
+      { text: 'Hingga 10 Halaman', hot: true },
+      { text: 'CMS Sanity untuk Blog', hot: true },
+      { text: 'Desain Custom Premium', hot: false },
+      { text: 'SEO Optimized', hot: false },
+    ],
+    highlight: true,
+    tier: 'pro',
+    tag: 'Paling Laris',
+    accent: '#00ced1',
+    accentDark: '#0891b2',
+    glow: 'rgba(0,206,209,0.18)',
+    borderBase: 'rgba(0,206,209,0.22)',
+    borderHover: 'rgba(0,206,209,0.6)',
+    tagBg: 'rgba(0,206,209,0.12)',
+  },
+  {
+    name: 'Custom App',
+    price: 'ASK ME',
+    priceNote: '',
+    desc: 'Untuk kebutuhan sistem, dashboard, booking, e-commerce, atau aplikasi custom yang dibangun sesuai alur bisnis Anda.',
+    features: [
+      { text: 'Sistem & Workflow Custom', hot: true },
+      { text: 'E-commerce Ready', hot: true },
+      { text: 'Full Maintenance', hot: false },
+      { text: 'High Security Setup', hot: false },
+    ],
+    highlight: false,
+    tier: 'custom',
+    tag: 'Enterprise',
+    accent: '#a78bfa',
+    accentDark: '#7c3aed',
+    glow: 'rgba(167,139,250,0.16)',
+    borderBase: 'rgba(167,139,250,0.14)',
+    borderHover: 'rgba(167,139,250,0.4)',
+    tagBg: 'rgba(167,139,250,0.1)',
+  }
+];
+---
+
+<section id="packages" class="pkg-section relative overflow-hidden py-28 md:py-36">
+  <!-- Background -->
+  <div class="absolute inset-0 bg-[#06070a]"></div>
+  <div class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.02),transparent_30%,transparent_70%,rgba(255,255,255,0.02))]"></div>
+
+  <!-- Ambient glow -->
+  <div class="pointer-events-none absolute inset-0">
+    <div class="absolute -top-24 -left-24 h-[420px] w-[420px] rounded-full blur-3xl bg-[radial-gradient(circle,rgba(96,165,250,0.14)_0%,transparent_70%)]"></div>
+    <div class="absolute left-1/2 top-1/4 h-[520px] w-[520px] -translate-x-1/2 rounded-full blur-3xl bg-[radial-gradient(circle,rgba(0,206,209,0.12)_0%,transparent_70%)]"></div>
+    <div class="absolute -bottom-24 -right-24 h-[420px] w-[420px] rounded-full blur-3xl bg-[radial-gradient(circle,rgba(167,139,250,0.14)_0%,transparent_70%)]"></div>
+  </div>
+
+  <!-- Grid -->
+  <div class="pkg-grid absolute inset-0 pointer-events-none opacity-[0.04]"></div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-6">
+    <!-- Header -->
+    <div class="mx-auto mb-20 max-w-3xl text-center md:mb-24">
+      <div class="mb-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 backdrop-blur-md">
+        <span class="h-2 w-2 rounded-full bg-brand-primary shadow-[0_0_20px_rgba(0,206,209,0.8)]"></span>
+        <span class="text-[10px] font-black uppercase tracking-[0.35em] text-white/60">
+          Pricing Packages
+        </span>
+      </div>
+
+      <h2 class="text-4xl font-black uppercase leading-[0.95] tracking-tight text-white md:text-6xl lg:text-7xl">
+        Pilih Paket
+        <span class="pkg-text-gradient block">Sesuai Kebutuhan</span>
+      </h2>
+
+      <p class="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-white/45 md:text-base">
+        Dari landing page cepat untuk UMKM sampai sistem custom untuk kebutuhan bisnis yang lebih kompleks.
+        Semua dibuat dengan desain premium, performa kencang, dan fondasi yang siap berkembang.
+      </p>
+
+      <div class="mx-auto mt-8 h-px w-32 bg-gradient-to-r from-transparent via-brand-primary/70 to-transparent"></div>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid items-stretch gap-6 lg:grid-cols-3">
+      {packages.map((pkg, i) => (
+        <article
+          class={`pkg-card group relative flex h-full flex-col overflow-hidden rounded-[30px] transition-all duration-500 ${
+            pkg.highlight
+              ? 'lg:-translate-y-4 lg:scale-[1.02] lg:shadow-2xl'
+              : 'hover:-translate-y-2'
+          }`}
+          style={`
+            --pk-accent: ${pkg.accent};
+            --pk-accent-dark: ${pkg.accentDark};
+            --pk-glow: ${pkg.glow};
+            --pk-border: ${pkg.borderBase};
+            --pk-border-hover: ${pkg.borderHover};
+            --pk-tag-bg: ${pkg.tagBg};
+          `}
+        >
+          <!-- Border -->
+          <div class="absolute inset-0 rounded-[30px] border border-[color:var(--pk-border)] transition-all duration-500 group-hover:border-[color:var(--pk-border-hover)]"></div>
+
+          <!-- Glass layer -->
+          <div class="absolute inset-0 rounded-[30px] bg-white/[0.03] backdrop-blur-xl"></div>
+
+          <!-- Glow -->
+          <div class="absolute inset-0 rounded-[30px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            style={`background: radial-gradient(circle at 50% 0%, ${pkg.glow} 0%, transparent 65%);`}>
+          </div>
+
+          {pkg.highlight && (
+            <>
+              <div class="absolute inset-x-8 top-0 h-px"
+                style={`background: linear-gradient(to right, transparent, ${pkg.accent}, transparent); opacity: .9;`}>
+              </div>
+              <div class="absolute -top-px left-1/2 h-24 w-40 -translate-x-1/2 blur-2xl"
+                style={`background: radial-gradient(circle, ${pkg.glow} 0%, transparent 70%);`}>
+              </div>
+            </>
+          )}
+
+          <div class="relative z-10 flex h-full flex-col p-8 md:p-10">
+            <!-- Top -->
+            <div class="mb-8 flex items-start justify-between gap-4">
+              <div
+                class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5"
+                style={`background:${pkg.tagBg}; border-color:${pkg.borderBase};`}
+              >
+                {pkg.highlight && (
+                  <span class="relative flex h-2 w-2">
+                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
+                      style={`background:${pkg.accent};`}></span>
+                    <span class="relative inline-flex h-2 w-2 rounded-full"
+                      style={`background:${pkg.accent};`}></span>
+                  </span>
+                )}
+                <span
+                  class="text-[10px] font-black uppercase tracking-[0.28em]"
+                  style={`color:${pkg.accent};`}
+                >
+                  {pkg.tag}
+                </span>
+              </div>
+
+              <span
+                class="text-3xl font-black leading-none tracking-tight"
+                style={`color:${pkg.accent}; opacity:.14;`}
+              >
+                0{i + 1}
+              </span>
+            </div>
+
+            <!-- Title -->
+            <div class="mb-8">
+              <h3 class="text-2xl font-black uppercase tracking-tight text-white transition-colors duration-300 group-hover:text-[color:var(--pk-accent)]">
+                {pkg.name}
+              </h3>
+              <p class="mt-3 text-sm leading-relaxed text-white/45">
+                {pkg.desc}
+              </p>
+            </div>
+
+            <!-- Price -->
+            <div class="relative mb-8 pb-8">
+              <div
+                class="absolute bottom-0 left-0 right-0 h-px"
+                style={`background: linear-gradient(to right, transparent, ${pkg.accent}66, transparent);`}
+              ></div>
+
+              <div class="flex items-end gap-2">
+                <span class="text-white font-black leading-none tracking-tighter text-[clamp(2.6rem,5vw,4rem)]">
+                  {pkg.price}
+                </span>
+                {pkg.priceNote && (
+                  <span class="mb-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-white/30">
+                    {pkg.priceNote}
+                  </span>
+                )}
+              </div>
+
+              {pkg.highlight && (
+                <div class="mt-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path
+                      d="M6 1l1.2 3.6H11L8.4 7l.9 3.6L6 8.8 2.7 10.6l.9-3.6L1 4.6h3.8L6 1z"
+                      fill={pkg.accent}
+                    />
+                  </svg>
+                  <span class="text-[10px] font-black uppercase tracking-[0.24em]" style={`color:${pkg.accent};`}>
+                    Best Value
+                  </span>
+                </div>
+              )}
+            </div>
+
+            <!-- Features -->
+            <ul class="mb-10 flex-grow space-y-4">
+              {pkg.features.map((feature) => (
+                <li class="group/item flex items-center gap-3">
+                  <div
+                    class="flex h-6 w-6 shrink-0 items-center justify-center rounded-xl border transition-all duration-300"
+                    style={`background:${pkg.tagBg}; border-color:${pkg.borderBase};`}
+                  >
+                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true">
+                      <path
+                        d="M1 4l2.5 2.5L9 1"
+                        stroke={pkg.accent}
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+
+                  <span class={`flex items-center gap-2 text-sm font-medium transition-colors duration-200 ${
+                    feature.hot ? 'text-white/75' : 'text-white/50 group-hover/item:text-white/70'
+                  }`}>
+                    {feature.text}
+                    {feature.hot && (
+                      <span
+                        class="rounded-full px-2 py-0.5 text-[9px] font-black uppercase tracking-[0.18em]"
+                        style={`background:${pkg.tagBg}; color:${pkg.accent};`}
+                      >
+                        Hot
+                      </span>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <!-- CTA -->
+            <a
+              href={`https://wa.me/6281274203815?text=${encodeURIComponent(`Halo Zaidly, saya tertarik dengan paket ${pkg.name}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Pilih paket ${pkg.name}`}
+              class={`pkg-btn w-full rounded-2xl px-6 py-4 text-center text-[11px] font-black uppercase tracking-[0.24em] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] ${
+                pkg.highlight ? 'pkg-btn-primary' : 'pkg-btn-ghost'
+              }`}
+              style={`--btn-accent:${pkg.accent}; --btn-glow:${pkg.glow}; --btn-dark:${pkg.accentDark};`}
+            >
+              {pkg.price === 'ASK ME' ? 'Diskusi Sekarang' : 'Pilih Paket Ini'}
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Bottom note -->
+    <div class="mt-14 text-center">
+      <p class="text-xs font-medium uppercase tracking-[0.24em] text-white/25">
+        Semua paket sudah termasuk konsultasi awal gratis dan revisi sesuai scope
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference "../styles/global.css";
+
+  .pkg-section {
+    font-style: normal;
+  }
+
+  .pkg-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100% 84px, 84px 100%;
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  }
+
+  .pkg-text-gradient {
+    @apply bg-gradient-to-r from-brand-primary via-cyan-300 to-brand-secondary bg-clip-text text-transparent;
+  }
+
+  .pkg-card {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 12px 40px rgba(0, 0, 0, 0.28);
+  }
+
+  .pkg-card:hover {
+    box-shadow:
+      0 30px 80px rgba(0, 0, 0, 0.5),
+      0 0 0 1px var(--pk-border-hover),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .pkg-btn-primary {
+    color: #071014;
+    background: linear-gradient(135deg, var(--btn-accent), var(--btn-dark));
+    box-shadow:
+      0 10px 30px var(--btn-glow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
+
+  .pkg-btn-primary:hover {
+    box-shadow:
+      0 18px 44px var(--btn-glow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
+
+  .pkg-btn-ghost {
+    color: var(--btn-accent);
+    border: 1px solid color-mix(in srgb, var(--btn-accent) 75%, transparent);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  }
+
+  .pkg-btn-ghost:hover {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--btn-accent) 12%, transparent), rgba(255, 255, 255, 0.02));
+    box-shadow: 0 10px 30px var(--btn-glow);
+  }
+</style>
