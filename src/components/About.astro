@@ -1,15 +1,12 @@
-﻿---
+---
 import { Image } from 'astro:assets';
 import aboutImg from '../assets/jasa-website-umkm.webp';
 ---
 
-<section id="about" class="py-28 bg-[#080d20] relative overflow-hidden">
+<section id="about" class="py-28 bg-[#0E100E] relative overflow-hidden">
 
   <div class="absolute -top-20 right-0 w-[600px] h-[400px]
-              bg-[radial-gradient(ellipse,rgba(188,82,238,0.06)_0%,transparent_70%)]
-              pointer-events-none"></div>
-  <div class="absolute bottom-0 left-0 w-[500px] h-[300px]
-              bg-[radial-gradient(ellipse,rgba(50,69,255,0.06)_0%,transparent_70%)]
+              bg-[radial-gradient(ellipse,rgba(62,207,142,0.05)_0%,transparent_70%)]
               pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
@@ -18,22 +15,20 @@ import aboutImg from '../assets/jasa-website-umkm.webp';
       <!-- Image side -->
       <div class="relative">
         <div class="absolute inset-[5%] rounded-full
-                    bg-[radial-gradient(ellipse,rgba(50,69,255,0.2)_0%,transparent_70%)]
+                    bg-[radial-gradient(ellipse,rgba(62,207,142,0.14)_0%,transparent_70%)]
                     blur-[60px]"></div>
 
-        <div class="relative z-10 p-[1px] rounded-[24px]"
-             style="background: linear-gradient(135deg, rgba(50,69,255,0.4), rgba(188,82,238,0.2), transparent);">
-          <div class="rounded-[23px] overflow-hidden">
-            <Image src={aboutImg} alt="Tentang Zaidly Agency" class="w-full h-auto" />
-          </div>
+        <div class="relative z-10 rounded-[24px] overflow-hidden border border-white/10
+                    shadow-[0_30px_60px_rgba(0,0,0,0.45)]">
+          <Image src={aboutImg} alt="Tentang Zaidly Agency" class="w-full h-auto" />
         </div>
 
         <!-- Floating experience badge -->
         <div class="absolute -bottom-6 -right-4 z-20
-                    bg-[#0e1530] border border-white/10 rounded-2xl px-5 py-4
+                    bg-[#141614] border border-white/10 rounded-2xl px-5 py-4
                     shadow-[0_20px_40px_rgba(0,0,0,0.5)]">
-          <div class="text-3xl font-heading font-black text-white leading-none">5+</div>
-          <div class="text-[9px] text-white/40 font-bold uppercase tracking-widest mt-1">Tahun Pengalaman</div>
+          <div class="text-3xl font-heading font-extrabold text-[#3ECF8E] leading-none">5+</div>
+          <div class="text-[10px] text-white/45 font-semibold mt-1">Tahun Pengalaman</div>
         </div>
       </div>
 
@@ -41,41 +36,41 @@ import aboutImg from '../assets/jasa-website-umkm.webp';
       <div>
         <span class="section-label">Agency</span>
 
-        <h2 class="font-heading font-black uppercase text-4xl md:text-5xl leading-[0.9] tracking-tighter text-white mb-6">
-          Kami Bantu Bisnis Anda
-          <span class="text-gradient-static"> Naik Kelas</span>
-          Secara Digital.
+        <h2 class="font-heading font-extrabold text-4xl md:text-[2.75rem] leading-[1.1] tracking-tight text-white mb-6">
+          Kami bantu bisnis Anda
+          <span class="word-accent">naik kelas</span>
+          secara digital.
         </h2>
 
-        <p class="text-white/50 leading-relaxed mb-8 max-w-lg">
+        <p class="text-white/55 leading-relaxed mb-8 max-w-lg">
           Zaidly Agency hadir sebagai mitra digital bagi UMKM Indonesia. Kami paham bahwa website bukan sekadar pajangan, tapi mesin pencetak omzet. Itulah kenapa setiap baris kode yang kami tulis berfokus pada kecepatan dan konversi.
         </p>
 
         <div class="space-y-5 mb-10">
 
           <div class="flex items-start gap-4">
-            <div class="mt-0.5 w-9 h-9 rounded-[10px] flex items-center justify-center shrink-0"
-                 style="background: rgba(50,69,255,0.1); border: 1px solid rgba(50,69,255,0.2);">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#3245FF" stroke-width="2">
+            <div class="mt-0.5 w-10 h-10 rounded-xl flex items-center justify-center shrink-0
+                        bg-[#3ECF8E]/[0.08] border border-[#3ECF8E]/20">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#3ECF8E" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
             </div>
             <div>
-              <h4 class="font-heading text-white text-base mb-1">Desain Premium & Modern</h4>
-              <p class="text-white/40 text-sm leading-relaxed">Tampilan website yang berkelas bikin UMKM terlihat seperti perusahaan besar.</p>
+              <h4 class="font-heading font-bold text-white text-base mb-1">Desain Premium & Modern</h4>
+              <p class="text-white/45 text-sm leading-relaxed">Tampilan website yang berkelas bikin UMKM terlihat seperti perusahaan besar.</p>
             </div>
           </div>
 
           <div class="flex items-start gap-4">
-            <div class="mt-0.5 w-9 h-9 rounded-[10px] flex items-center justify-center shrink-0"
-                 style="background: rgba(188,82,238,0.1); border: 1px solid rgba(188,82,238,0.2);">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#BC52EE" stroke-width="2">
+            <div class="mt-0.5 w-10 h-10 rounded-xl flex items-center justify-center shrink-0
+                        bg-[#A3E635]/[0.08] border border-[#A3E635]/20">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
             <div>
-              <h4 class="font-heading text-white text-base mb-1">Akses Cepat & SEO Friendly</h4>
-              <p class="text-white/40 text-sm leading-relaxed">Website ringan saat dibuka dan mudah ditemukan calon pelanggan di Google.</p>
+              <h4 class="font-heading font-bold text-white text-base mb-1">Akses Cepat & SEO Friendly</h4>
+              <p class="text-white/45 text-sm leading-relaxed">Website ringan saat dibuka dan mudah ditemukan calon pelanggan di Google.</p>
             </div>
           </div>
 

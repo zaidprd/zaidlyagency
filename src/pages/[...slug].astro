@@ -1,4 +1,4 @@
-﻿---
+---
 export const prerender = true;
 import Layout from '../layouts/Layout.astro';
 import { client, urlFor } from '../lib/sanity';
@@ -60,7 +60,7 @@ const currentUrl = Astro.url.href;
 
   <!-- Article hero image -->
   {post.mainImage && (
-    <div class="relative w-full pt-24 bg-[#07091d]">
+    <div class="relative w-full pt-24 bg-[#0B0C0B]">
       <div class="max-w-5xl mx-auto px-6 pt-16 pb-0">
         <div class="relative rounded-[20px] overflow-hidden border border-white/[0.06]
                     shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
@@ -69,20 +69,20 @@ const currentUrl = Astro.url.href;
             class="w-full h-auto object-cover"
             alt={post.title}
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#07091d]/80 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0B0C0B]/80 to-transparent"></div>
 
           <!-- Meta bar over image -->
           <div class="absolute bottom-0 left-0 right-0 p-6 flex flex-wrap gap-4 items-center">
-            <div class="flex items-center gap-2 bg-[#0e1530]/90 backdrop-blur-sm
+            <div class="flex items-center gap-2 bg-[#141614]/90 backdrop-blur-sm
                         border border-white/[0.06] rounded-lg px-4 py-2
                         text-[10px] font-heading font-black uppercase tracking-widest text-white/60">
-              <span class="text-[#3245FF]">📅</span>
+              <span class="text-[#3ECF8E]">📅</span>
               {new Date(post.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
             </div>
-            <div class="flex items-center gap-2 bg-[#0e1530]/90 backdrop-blur-sm
+            <div class="flex items-center gap-2 bg-[#141614]/90 backdrop-blur-sm
                         border border-white/[0.06] rounded-lg px-4 py-2
                         text-[10px] font-heading font-black uppercase tracking-widest text-white/60">
-              <span class="text-[#BC52EE]">👤</span>
+              <span class="text-[#A3E635]">👤</span>
               By {post.author?.name || 'Zaid'}
             </div>
           </div>
@@ -92,7 +92,7 @@ const currentUrl = Astro.url.href;
   )}
 
   <!-- Main content area -->
-  <main class="pt-16 pb-32 bg-[#06091a]">
+  <main class="pt-16 pb-32 bg-[#0B0C0B]">
     <div class="max-w-6xl mx-auto px-6">
 
       <!-- Title + categories -->
@@ -113,14 +113,14 @@ const currentUrl = Astro.url.href;
         <div class="lg:hidden mb-10 rounded-[16px] overflow-hidden border border-white/[0.06]">
           <button
             id="toc-toggle"
-            class="w-full flex items-center justify-between bg-[#0e1530] px-6 py-4 text-left"
+            class="w-full flex items-center justify-between bg-[#141614] px-6 py-4 text-left"
             aria-expanded="false"
             aria-controls="toc-mobile-content"
           >
             <span class="font-heading font-black text-[10px] uppercase tracking-[0.3em] text-white">
               Daftar Isi
             </span>
-            <svg id="toc-chevron" class="w-5 h-5 text-[#3245FF] transition-transform duration-300"
+            <svg id="toc-chevron" class="w-5 h-5 text-[#3ECF8E] transition-transform duration-300"
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
@@ -128,7 +128,7 @@ const currentUrl = Astro.url.href;
           <div id="toc-mobile-content" class="hidden bg-[#090e22] px-6 pb-5 pt-3 space-y-4">
             {headings.map((h: any) => (
               <a href={`#${h.slug}`}
-                 class="toc-mobile-link block text-[12px] text-white/40 hover:text-[#3245FF]
+                 class="toc-mobile-link block text-[12px] text-white/40 hover:text-[#3ECF8E]
                         font-heading font-black uppercase tracking-wide transition-colors">
                 {h.text}
               </a>
@@ -156,7 +156,7 @@ const currentUrl = Astro.url.href;
               {post.categories?.map((cat: string) => (
                 <span class="px-3 py-1.5 rounded-lg border border-white/[0.08]
                              text-[10px] font-heading font-black uppercase tracking-widest
-                             text-white/40 hover:text-[#3245FF] hover:border-[#3245FF]/30
+                             text-white/40 hover:text-[#3ECF8E] hover:border-[#3ECF8E]/30
                              transition-all cursor-default">
                   {cat}
                 </span>
@@ -197,7 +197,7 @@ const currentUrl = Astro.url.href;
                 {post.related.map((rel: any) => (
                   <a href={`/${rel.slug}`}
                      class="group block rounded-[16px] overflow-hidden border border-white/[0.06]
-                            bg-[#0e1530] hover:-translate-y-1 hover:border-white/[0.12]
+                            bg-[#141614] hover:-translate-y-1 hover:border-white/[0.12]
                             transition-all duration-300">
                     <div class="relative aspect-video overflow-hidden">
                       {rel.mainImage && (
@@ -207,7 +207,7 @@ const currentUrl = Astro.url.href;
                           alt={rel.title}
                         />
                       )}
-                      <div class="absolute inset-0 bg-gradient-to-t from-[#0e1530]/80 to-transparent"></div>
+                      <div class="absolute inset-0 bg-gradient-to-t from-[#141614]/80 to-transparent"></div>
                     </div>
                     <div class="p-5">
                       <span class="text-[9px] font-heading font-black uppercase tracking-widest text-white/30 block mb-2">
@@ -238,7 +238,7 @@ const currentUrl = Astro.url.href;
                   headings.map((h: any) => (
                     <a href={`#${h.slug}`}
                        class="block text-[12px] font-heading font-black uppercase tracking-wide
-                              text-white/40 hover:text-[#3245FF] transition-colors leading-relaxed">
+                              text-white/40 hover:text-[#3ECF8E] transition-colors leading-relaxed">
                       {h.text}
                     </a>
                   ))
@@ -260,7 +260,7 @@ const currentUrl = Astro.url.href;
   /* Prose dark — article body typography */
   .prose-dark :global(h2),
   .prose-dark :global(h3) {
-    font-family: "Poppins", sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: -0.03em;
@@ -280,12 +280,12 @@ const currentUrl = Astro.url.href;
   }
 
   .prose-dark :global(a) {
-    color: #3245FF;
+    color: #3ECF8E;
     text-decoration: underline;
     text-underline-offset: 3px;
     transition: color 0.2s;
   }
-  .prose-dark :global(a:hover) { color: #BC52EE; }
+  .prose-dark :global(a:hover) { color: #A3E635; }
 
   .prose-dark :global(strong) { color: rgba(255,255,255,0.8); font-weight: 700; }
 
@@ -298,7 +298,7 @@ const currentUrl = Astro.url.href;
   .prose-dark :global(li) { margin-bottom: 0.5rem; }
 
   .prose-dark :global(blockquote) {
-    border-left: 3px solid #3245FF;
+    border-left: 3px solid #3ECF8E;
     padding-left: 1.5rem;
     margin-left: 0;
     color: rgba(255,255,255,0.60);
@@ -306,12 +306,12 @@ const currentUrl = Astro.url.href;
   }
 
   .prose-dark :global(code) {
-    background: rgba(50,69,255,0.1);
-    border: 1px solid rgba(50,69,255,0.2);
+    background: rgba(62,207,142,0.1);
+    border: 1px solid rgba(62,207,142,0.2);
     border-radius: 6px;
     padding: 0.15em 0.4em;
     font-size: 0.85em;
-    color: #BC52EE;
+    color: #A3E635;
   }
 
   .prose-dark :global(pre) {

@@ -1,4 +1,4 @@
-﻿---
+---
 const services = [
   {
     tag: 'WP Drag & Drop',
@@ -6,7 +6,6 @@ const services = [
     desc: 'Halaman penjualan konversi tinggi. Dibuat dengan sistem drag & drop, memudahkan Anda ganti teks/gambar promo kapan saja.',
     href: '/blog',
     icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />`,
-    accent: '#3245FF',
   },
   {
     tag: 'WP Drag & Drop',
@@ -14,7 +13,6 @@ const services = [
     desc: 'Paket ekonomis fitur lengkap. Pakai WordPress yang user-friendly, orang awam pun bisa update katalog produk sendiri.',
     href: '/blog',
     icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />`,
-    accent: '#BC52EE',
   },
   {
     tag: 'WP Drag & Drop',
@@ -22,7 +20,6 @@ const services = [
     desc: 'Desain premium untuk kredibilitas bisnis. Kami sertakan panduan cara edit konten dengan sistem drag & drop yang praktis.',
     href: '/portfolio',
     icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />`,
-    accent: '#3245FF',
   },
   {
     tag: 'SEO Content',
@@ -30,26 +27,25 @@ const services = [
     desc: 'Optimasi konten agar website muncul di Google. Artikel berkualitas untuk menarik trafik potensial ke website WordPress Anda.',
     href: '/blog',
     icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />`,
-    accent: '#BC52EE',
   },
 ];
 ---
 
-<section id="services" class="py-28 bg-[#06091a] relative overflow-hidden">
+<section id="services" class="py-28 bg-[#0B0C0B] relative overflow-hidden">
 
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px]
-              bg-[radial-gradient(ellipse,rgba(50,69,255,0.05)_0%,transparent_70%)]
+              bg-[radial-gradient(ellipse,rgba(62,207,142,0.04)_0%,transparent_70%)]
               pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
 
     <div class="text-center max-w-2xl mx-auto mb-16">
       <span class="section-label">Layanan Unggulan</span>
-      <h2 class="font-heading font-black uppercase text-4xl md:text-5xl leading-[0.9] tracking-tighter text-white mb-6">
-        Solusi Digital <span class="text-gradient-static">Terpadu</span> Untuk Bisnis Anda.
+      <h2 class="font-heading font-extrabold text-4xl md:text-[2.75rem] leading-[1.1] tracking-tight text-white mb-6">
+        Solusi digital <span class="word-accent">terpadu</span> untuk bisnis Anda.
       </h2>
-      <p class="text-white/40 text-sm md:text-base leading-relaxed">
-        Kami membangun website berbasis <strong class="text-white/70">WordPress</strong> yang sangat mudah dikelola. Tanpa perlu paham koding, Anda bisa edit konten sendiri hanya dengan drag & drop.
+      <p class="text-white/50 text-sm md:text-base leading-relaxed">
+        Kami membangun website berbasis <strong class="text-white/80">WordPress</strong> yang sangat mudah dikelola. Tanpa perlu paham koding, Anda bisa edit konten sendiri hanya dengan drag & drop.
       </p>
     </div>
 
@@ -57,28 +53,28 @@ const services = [
       {services.map((s) => (
         <div class="group card-premium p-7 flex flex-col">
 
-          <div class="text-[8px] font-black uppercase tracking-[0.25em] mb-5 self-start
-                      px-2 py-1 rounded-full"
-               style={`color: ${s.accent}; background: ${s.accent}18; border: 1px solid ${s.accent}28;`}>
+          <div class="text-[10px] font-semibold uppercase tracking-[0.15em] mb-5 self-start
+                      px-2.5 py-1 rounded-full text-[#3ECF8E]
+                      bg-[#3ECF8E]/[0.08] border border-[#3ECF8E]/20">
             {s.tag}
           </div>
 
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-500"
-               style={`background: ${s.accent}12; border: 1px solid ${s.accent}22;`}>
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-all duration-500
+                      bg-white/[0.04] border border-white/[0.08]
+                      group-hover:bg-[#3ECF8E]/[0.08] group-hover:border-[#3ECF8E]/25">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                 stroke={s.accent} set:html={s.icon}></svg>
+                 stroke="#3ECF8E" set:html={s.icon}></svg>
           </div>
 
-          <h3 class="font-heading text-white text-lg mb-3">{s.title}</h3>
+          <h3 class="font-heading font-bold text-white text-lg mb-3">{s.title}</h3>
 
-          <p class="text-white/40 text-xs leading-relaxed flex-1 mb-5">{s.desc}</p>
+          <p class="text-white/45 text-sm leading-relaxed flex-1 mb-5">{s.desc}</p>
 
           <a href={s.href}
-             class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em]
-                    transition-colors duration-300"
-             style={`color: ${s.accent};`}>
-            Read More
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+             class="inline-flex items-center gap-2 text-sm font-semibold text-[#3ECF8E]
+                    transition-all duration-300 group-hover:gap-3">
+            Selengkapnya
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </a>

@@ -8,8 +8,8 @@ const apps = [
     tagline: 'AI Content Generator #1 Indonesia',
     desc: 'Platform berbasis AI untuk generate artikel SEO-optimized dalam bahasa Indonesia. Dukung multi-model AI (Gemini, GPT, Claude), auto-publish ke WordPress dengan integrasi Yoast SEO, dan bulk generate hingga 100 artikel sekaligus.',
     url: 'https://seo.zaidly.com/',
-    accent: '#3245FF',
-    accentSecondary: '#BC52EE',
+    accent: '#3ECF8E',
+    accentSecondary: '#A3E635',
     features: ['Generate artikel < 60 detik', 'Auto-publish ke WordPress', 'Bulk 100 artikel', 'Multi-model AI'],
     tags: ['AI', 'SEO', 'WordPress', 'Content'],
     badge: 'Most Popular',
@@ -17,13 +17,15 @@ const apps = [
   {
     name: 'KapurPad',
     tagline: 'Catatan Harian Digital',
-    desc: 'Aplikasi pencatatan harian yang bersih, ringan, dan intuitif. Tulis, kelola, dan akses catatan Anda kapan saja dari browser. Tidak perlu install, langsung pakai.',
-    url: 'http://kapurpad.netlify.app/',
-    accent: '#BC52EE',
-    accentSecondary: '#3245FF',
-    features: ['Antarmuka bersih', 'Akses kapan saja', 'Ringan & cepat', 'No install'],
-    tags: ['Notes', 'Diary', 'Productivity'],
+    desc: 'Aplikasi Android untuk pencatatan harian yang bersih, ringan, dan intuitif. Tulis dan kelola catatan Anda langsung dari HP. Download APK-nya secara gratis lewat tombol di bawah.',
+    url: 'https://drive.google.com/file/d/1rIo0VeQBM_b68zSQc2Dh869n4gLxtacw/view?usp=sharing',
+    accent: '#A3E635',
+    accentSecondary: '#3ECF8E',
+    features: ['Antarmuka bersih', 'Ringan & cepat', 'Android APK', 'Gratis'],
+    tags: ['Notes', 'Diary', 'Android'],
     badge: null,
+    cta: 'Download APK',
+    note: 'Aplikasi ini 100% aman digunakan. Saat ini belum tersedia di Play Store karena biaya pendaftaran developer ($25) — versi APK ini sama persis, bedanya hanya belum diunggah ke Play Store.',
   },
   {
     name: 'CompanyGen.AI',
@@ -31,7 +33,7 @@ const apps = [
     desc: 'Generate website company profile profesional menggunakan AI dalam hitungan menit tanpa coding. Preview gratis, bayar hanya saat publish. Mulai dari Rp 25.000 — solusi terjangkau untuk UMKM.',
     url: 'https://web-generet.vercel.app/',
     accent: '#06b6d4',
-    accentSecondary: '#3245FF',
+    accentSecondary: '#3ECF8E',
     features: ['AI-generated website', 'Free demo preview', '7 halaman website', 'Mulai Rp 25.000'],
     tags: ['AI', 'Website', 'Company Profile'],
     badge: 'New',
@@ -42,7 +44,7 @@ const apps = [
     desc: 'Tool konversi file JPG, PNG & PDF secara online dan gratis. Tidak perlu install software, tidak perlu daftar akun — langsung convert di browser dengan tampilan yang bersih dan minimalis.',
     url: 'https://konversi.pages.dev/',
     accent: '#10b981',
-    accentSecondary: '#3245FF',
+    accentSecondary: '#3ECF8E',
     features: ['JPG ↔ PNG ↔ PDF', 'Browser-based', 'Gratis selamanya', 'Tanpa daftar akun'],
     tags: ['Tools', 'Convert', 'PDF', 'Image'],
     badge: 'Free',
@@ -60,13 +62,13 @@ const apps = [
     <div class="absolute inset-0 bg-[#060608]"></div>
     <!-- Ambient glow -->
     <div class="absolute top-0 left-1/3 w-[600px] h-[400px]
-                bg-[radial-gradient(ellipse,rgba(50,69,255,0.12)_0%,transparent_65%)]
+                bg-[radial-gradient(ellipse,rgba(62,207,142,0.12)_0%,transparent_65%)]
                 pointer-events-none"></div>
     <div class="absolute top-0 right-1/4 w-[500px] h-[300px]
-                bg-[radial-gradient(ellipse,rgba(188,82,238,0.10)_0%,transparent_65%)]
+                bg-[radial-gradient(ellipse,rgba(163,230,53,0.10)_0%,transparent_65%)]
                 pointer-events-none"></div>
     <div class="absolute bottom-0 left-0 right-0 h-[1px]
-                bg-gradient-to-r from-transparent via-[#3245FF]/30 to-transparent"></div>
+                bg-gradient-to-r from-transparent via-[#3ECF8E]/30 to-transparent"></div>
 
     <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
       <span class="section-label mx-auto">Built by Zaidly</span>
@@ -167,13 +169,19 @@ const apps = [
                           transition-all duration-300 hover:-translate-y-0.5 active:scale-95"
                    style={`background: linear-gradient(135deg, ${app.accent}, ${app.accentSecondary});
                            box-shadow: 0 8px 24px ${app.accent}40;`}>
-                  Buka Aplikasi
+                  {app.cta ?? 'Buka Aplikasi'}
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
                     <polyline points="15,3 21,3 21,9"/>
                     <line x1="10" y1="14" x2="21" y2="3"/>
                   </svg>
                 </a>
+                {app.note && (
+                  <p class="mt-5 max-w-lg text-[12px] leading-relaxed text-white/40
+                            border border-white/[0.07] bg-white/[0.02] rounded-xl px-4 py-3">
+                    <span class="font-bold" style={`color: ${app.accent};`}>Catatan:</span> {app.note}
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -186,7 +194,7 @@ const apps = [
     <div class="max-w-7xl mx-auto px-6 mt-32">
       <div class="relative rounded-[28px] border border-white/[0.06] bg-[#0a0a0f]
                   overflow-hidden p-16 text-center">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(50,69,255,0.08)_0%,transparent_65%)]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(62,207,142,0.08)_0%,transparent_65%)]"></div>
         <div class="relative z-10">
           <span class="section-label mx-auto">Mau Punya Aplikasi Sendiri?</span>
           <h2 class="font-heading font-black uppercase text-4xl md:text-6xl leading-[0.85]

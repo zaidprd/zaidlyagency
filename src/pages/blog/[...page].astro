@@ -1,4 +1,4 @@
-﻿---
+---
 export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import { client, urlFor } from '../../lib/sanity';
@@ -27,12 +27,12 @@ const { page } = Astro.props;
 
   <!-- Page header -->
   <section class="relative pt-40 pb-20 overflow-hidden">
-    <div class="absolute inset-0 bg-[#07091d]"></div>
+    <div class="absolute inset-0 bg-[#0B0C0B]"></div>
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px]
-                bg-[radial-gradient(ellipse,rgba(50,69,255,0.15)_0%,transparent_65%)]
+                bg-[radial-gradient(ellipse,rgba(62,207,142,0.15)_0%,transparent_65%)]
                 pointer-events-none"></div>
     <div class="absolute bottom-0 left-0 right-0 h-[1px]
-                bg-gradient-to-r from-transparent via-[#3245FF]/30 to-transparent"></div>
+                bg-gradient-to-r from-transparent via-[#3ECF8E]/30 to-transparent"></div>
 
     <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
       <span class="section-label mx-auto">Our Insights</span>
@@ -43,7 +43,7 @@ const { page } = Astro.props;
   </section>
 
   <!-- Articles -->
-  <main class="py-24 bg-[#06091a]">
+  <main class="py-24 bg-[#0B0C0B]">
     <div class="max-w-4xl mx-auto px-6 space-y-32">
 
       {page.data.map((post: any) => (
@@ -59,17 +59,17 @@ const { page } = Astro.props;
                   alt={post.mainImage.alt || post.title}
                   class="w-full h-auto transition-transform duration-700 group-hover:scale-[1.02]"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-[#06091a]/60 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0B0C0B]/60 to-transparent"></div>
               </a>
 
               <div class="absolute bottom-5 left-5 flex items-center gap-4
-                          bg-[#0e1530]/90 backdrop-blur-sm border border-white/[0.06]
+                          bg-[#141614]/90 backdrop-blur-sm border border-white/[0.06]
                           rounded-xl px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest">
                 <span class="text-white/50">
                   {new Date(post.publishedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
                 </span>
                 <span class="w-px h-3 bg-white/20"></span>
-                <span class="text-[#3245FF]">By {post.authorName || 'Zaid'}</span>
+                <span class="text-[#3ECF8E]">By {post.authorName || 'Zaid'}</span>
               </div>
             </div>
           )}
@@ -94,9 +94,9 @@ const { page } = Astro.props;
 
             <div class="pt-4">
               <a href={`/${post.slug}`}
-                 class="inline-flex items-center gap-3 text-[#3245FF] font-black text-[10px] uppercase tracking-[0.3em] group/link">
+                 class="inline-flex items-center gap-3 text-[#3ECF8E] font-black text-[10px] uppercase tracking-[0.3em] group/link">
                 Read Full Article
-                <span class="w-8 h-px bg-[#3245FF] transition-all duration-300 group-hover/link:w-14"></span>
+                <span class="w-8 h-px bg-[#3ECF8E] transition-all duration-300 group-hover/link:w-14"></span>
               </a>
             </div>
           </div>

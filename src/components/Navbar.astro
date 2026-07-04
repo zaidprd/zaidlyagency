@@ -7,280 +7,419 @@ const links = [
 ];
 ---
 
-<nav class="navbar sticky top-0 z-[100]">
+<nav id="main-nav" class="navbar">
 
-  <div class="navbar-bg absolute inset-0"></div>
+  <div class="navbar-bg"></div>
+  <div class="navbar-shimmer"></div>
 
-  <div class="absolute bottom-0 left-0 right-0 h-[1px]
-              bg-gradient-to-r from-transparent via-[#3245FF]/30 to-transparent"></div>
-
-  <div class="max-w-7xl mx-auto px-6 h-[64px] flex items-center justify-between relative z-10">
+  <div class="nav-inner">
 
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-2.5 group cursor-pointer no-underline">
-      <div class="w-8 h-8 rounded-[9px] flex items-center justify-center
-                  font-black text-base text-white shrink-0
-                  transition-transform duration-500 group-hover:rotate-12"
-           style="background: linear-gradient(135deg, #3245FF, #BC52EE);
-                  box-shadow: 0 4px 14px rgba(50,69,255,0.4);">
-        Z
-      </div>
-      <div class="text-[18px] font-black uppercase tracking-tighter text-white leading-none">
-        ZAIDLY<span class="text-gradient-static">.</span>
-      </div>
+    <a href="/" class="logo-link">
+      <div class="logo-icon">Z</div>
+      <div class="logo-text">zaidly<span class="logo-dot">.</span></div>
     </a>
 
-    <!-- Nav links (desktop only) -->
-    <ul class="hidden md:flex items-center gap-9 list-none m-0 p-0">
-      {links.map((l) => (
+    <!-- Desktop links -->
+    <ul class="desktop-links">
+      {links.map(l => (
         <li>
-          <a href={l.href}
-             class="nav-link relative text-[10px] font-black uppercase tracking-[0.3em]
-                    text-white/40 hover:text-white transition-colors duration-300 no-underline">
-            {l.label}
-            <span class="nav-underline absolute -bottom-1 left-0 h-[1.5px] w-0
-                         transition-all duration-300 rounded-full"
-                  style="background: linear-gradient(90deg, #3245FF, #BC52EE);"></span>
-          </a>
+          <a href={l.href} class="desktop-link">{l.label}</a>
         </li>
       ))}
     </ul>
 
-    <!-- CTA desktop -->
-    <a href="https://wa.me/6281274203815"
-       class="nav-cta hidden md:inline-flex items-center gap-2
-              px-6 py-[10px] rounded-[10px]
-              text-[10px] font-black uppercase tracking-[0.2em] text-white
-              transition-all duration-300 hover:-translate-y-0.5 active:scale-95">
+    <!-- Desktop CTA -->
+    <a href="https://wa.me/6281274203815" class="cta-btn desktop-cta">
       Hubungi WA
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" class="shrink-0">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.997 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.402A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.52 2 11.997 2z"/>
-      </svg>
     </a>
 
-    <!-- Hamburger (mobile only) -->
-    <button
-      id="nav-hamburger"
-      class="md:hidden relative flex flex-col justify-center items-center
-             w-10 h-10 rounded-[10px] transition-colors duration-200
-             hover:bg-white/[0.06] active:bg-white/10 touch-manipulation"
-      aria-label="Toggle Menu"
-      aria-expanded="false"
-      aria-controls="mobile-drawer"
-      style="min-width:40px; min-height:40px;"
-    >
-      <span id="ham-l1" class="ham-line"></span>
-      <span id="ham-l2" class="ham-line my-[4.5px]"></span>
-      <span id="ham-l3" class="ham-line" style="width:12px;"></span>
+    <!-- Hamburger -->
+    <button id="ham-btn" class="ham-btn" aria-label="Buka menu" aria-expanded="false">
+      <span class="bar bar1"></span>
+      <span class="bar bar2"></span>
+      <span class="bar bar3"></span>
     </button>
 
   </div>
 </nav>
 
-<!-- Backdrop (full-screen, behind drawer) -->
-<div id="nav-backdrop" class="nav-backdrop"></div>
+<!-- Backdrop -->
+<div id="nav-back" class="nav-back"></div>
 
-<!-- Right-side drawer -->
-<div
-  id="mobile-drawer"
-  class="mobile-drawer"
-  aria-hidden="true"
-  role="dialog"
-  aria-label="Menu navigasi"
->
-  <!-- Header drawer -->
-  <div class="flex items-center justify-between mb-8">
-    <span class="text-[9px] font-black uppercase tracking-[0.35em] text-white/25">
-      Menu
-    </span>
-    <button
-      id="drawer-close"
-      class="w-8 h-8 flex items-center justify-center rounded-[8px]
-             bg-white/[0.04] hover:bg-white/[0.08] transition-colors"
-      aria-label="Tutup menu"
-    >
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor"
-           stroke-width="2" stroke-linecap="round" class="text-white/50">
-        <path d="M1 1l10 10M11 1L1 11"/>
-      </svg>
-    </button>
-  </div>
+<!-- Right Drawer -->
+<div id="nav-drawer" class="nav-drawer" aria-hidden="true">
+  <div class="drawer-inner">
 
-  <!-- Nav links in drawer -->
-  <nav class="flex flex-col gap-1 mb-8">
-    {links.map((l) => (
-      <a
-        href={l.href}
-        class="drawer-link flex items-center justify-between
-               px-4 py-4 rounded-[12px]
-               text-[12px] font-black uppercase tracking-[0.25em]
-               text-white/50 hover:text-white hover:bg-white/[0.05]
-               transition-all duration-200 no-underline group"
-      >
-        <span>{l.label}</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2.5" stroke-linecap="round"
-             class="text-white/20 group-hover:text-[#3245FF] group-hover:translate-x-1 transition-all">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
+    <div class="drawer-top">
+      <span class="drawer-label">Menu</span>
+      <button id="drawer-x" class="drawer-x" aria-label="Tutup">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+             stroke-width="2.2" stroke-linecap="round">
+          <path d="M1 1l12 12M13 1L1 13"/>
         </svg>
-      </a>
-    ))}
-  </nav>
+      </button>
+    </div>
 
-  <!-- CTA in drawer -->
-  <div class="mt-auto pt-6 border-t border-white/[0.06]">
-    <a
-      href="https://wa.me/6281274203815"
-      class="nav-cta flex items-center justify-center gap-2.5
-             w-full py-4 rounded-[14px]
-             text-[11px] font-black uppercase tracking-[0.2em] text-white
-             transition-all duration-300 active:scale-95"
-    >
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.997 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.402A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.52 2 11.997 2z"/>
-      </svg>
-      Hubungi via WhatsApp
-    </a>
+    <nav class="drawer-nav">
+      {links.map(l => (
+        <a href={l.href} class="drawer-link">
+          <span>{l.label}</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      ))}
+    </nav>
+
+    <div class="drawer-cta-wrap">
+      <a href="https://wa.me/6281274203815" class="cta-btn drawer-cta">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.997 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.402A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.52 2 11.997 2z"/>
+        </svg>
+        Hubungi via WhatsApp
+      </a>
+    </div>
+
   </div>
 </div>
 
 <style>
-  @reference "../styles/global.css";
+/* ── NAVBAR ─────────────────────────────── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.navbar-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(11,12,11,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.navbar-shimmer {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(62,207,142,0.3), transparent);
+}
+.nav-inner {
+  position: relative;
+  z-index: 10;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
 
-  .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+/* ── LOGO ── */
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 16px;
+  color: #07100B;
+  background: #3ECF8E;
+  box-shadow: 0 4px 14px rgba(62,207,142,0.3);
+  transition: transform 0.5s ease;
+  flex-shrink: 0;
+}
+.logo-link:hover .logo-icon { transform: rotate(12deg); }
+.logo-text {
+  font-size: 19px;
+  font-weight: 800;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  letter-spacing: -0.03em;
+  color: white;
+  line-height: 1;
+}
+.logo-dot { color: #3ECF8E; }
 
+/* ── DESKTOP NAV ── */
+.desktop-links {
+  display: none;
+  list-style: none;
+  margin: 0; padding: 0;
+  align-items: center;
+  gap: 32px;
+}
+@media (min-width: 768px) {
+  .desktop-links { display: flex; }
+}
+.desktop-link {
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.desktop-link:hover { color: #3ECF8E; }
+
+/* ── CTA BUTTON ── */
+.cta-btn {
+  background: #3ECF8E;
+  box-shadow: 0 4px 16px rgba(62,207,142,0.25);
+  color: #07100B;
+  font-weight: 700;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 13px;
+  text-decoration: none;
+  border-radius: 99px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: box-shadow 0.25s, transform 0.2s, background 0.25s;
+}
+.cta-btn:hover { background: #4ADF9D; box-shadow: 0 8px 28px rgba(62,207,142,0.4); transform: translateY(-1px); }
+.cta-btn:active { transform: scale(0.97); }
+
+.desktop-cta {
+  display: none;
+  padding: 10px 22px;
+}
+@media (min-width: 768px) {
+  .desktop-cta { display: inline-flex; }
+}
+
+/* ── HAMBURGER ── */
+.ham-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 10px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  flex-shrink: 0;
+}
+.ham-btn:hover { background: rgba(255,255,255,0.06); }
+.ham-btn:active { background: rgba(255,255,255,0.1); }
+
+@media (min-width: 768px) {
+  .ham-btn { display: none; }
+}
+
+.bar {
+  display: block;
+  height: 2px;
+  background: rgba(255,255,255,0.75);
+  border-radius: 99px;
+  transition: transform 0.28s ease, opacity 0.2s ease, width 0.28s ease;
+}
+.bar1 { width: 22px; }
+.bar2 { width: 22px; }
+.bar3 { width: 13px; }
+
+/* Hamburger → X */
+.ham-open .bar1 { transform: translateY(7px) rotate(45deg); }
+.ham-open .bar2 { opacity: 0; transform: scaleX(0); }
+.ham-open .bar3 { transform: translateY(-7px) rotate(-45deg); width: 22px; }
+
+/* ── BACKDROP ── */
+.nav-back {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 199;
+  background: rgba(0,0,0,0.45);
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-back.open { display: block; }
+
+/* ── DRAWER ── */
+.nav-drawer {
+  position: fixed;
+  top: 64px;
+  right: 0;
+  width: 82vw;
+  max-width: 320px;
+  height: 80vh;
+  z-index: 200;
+  background: rgba(14,16,14,0.97);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-left: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom-left-radius: 20px;
+  box-shadow: -16px 16px 60px rgba(0,0,0,0.55);
+  transform: translateX(105%);
+  transition: transform 0.3s cubic-bezier(0.32,0,0.1,1);
+  overscroll-behavior: contain;
+  overflow-y: auto;
+}
+.nav-drawer.open {
+  transform: translateX(0);
+}
+
+@media (min-width: 768px) {
+  .nav-drawer { display: none !important; }
+  .nav-back   { display: none !important; }
+}
+
+/* ── DRAWER INNER ── */
+.drawer-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px 18px 24px;
+}
+.drawer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.drawer-label {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.3);
+}
+.drawer-x {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.drawer-x:hover { background: rgba(255,255,255,0.1); color: white; }
+
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+.drawer-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.drawer-link:hover,
+.drawer-link:active {
+  background: rgba(62,207,142,0.08);
+  color: white;
+}
+.drawer-link svg {
+  color: rgba(255,255,255,0.2);
+  transition: transform 0.18s, color 0.18s;
+  flex-shrink: 0;
+}
+.drawer-link:hover svg { transform: translateX(4px); color: #3ECF8E; }
+
+.drawer-cta-wrap {
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.drawer-cta {
+  width: 100%;
+  justify-content: center;
+  padding: 14px 20px;
+  font-size: 14px;
+  border-radius: 99px;
+}
+
+/* Scroll darken */
+@supports (animation-timeline: scroll()) {
   .navbar-bg {
-    background: rgba(6, 9, 26, 0.82);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    animation: navDarken linear both;
+    animation-timeline: scroll();
+    animation-range: 0px 100px;
   }
-
-  /* Hamburger lines */
-  .ham-line {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: rgba(255,255,255,0.70);
-    border-radius: 99px;
-    transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+  @keyframes navDarken {
+    from { background: rgba(11,12,11,0.0); }
+    to   { background: rgba(11,12,11,0.95); }
   }
-
-  /* Hamburger → X */
-  #nav-hamburger.is-open #ham-l1 { transform: translateY(6.5px) rotate(45deg); }
-  #nav-hamburger.is-open #ham-l2 { opacity: 0; transform: scaleX(0); }
-  #nav-hamburger.is-open #ham-l3 { transform: translateY(-6.5px) rotate(-45deg); width: 20px !important; }
-
-  /* Desktop nav underline */
-  .nav-link:hover .nav-underline { width: 100%; }
-
-  /* CTA gradient */
-  .nav-cta {
-    background: linear-gradient(135deg, #3245FF, #BC52EE);
-    box-shadow: 0 4px 16px rgba(50, 69, 255, 0.35);
-  }
-  .nav-cta:hover { box-shadow: 0 8px 28px rgba(50, 69, 255, 0.5); }
-
-  /* === BACKDROP === */
-  .nav-backdrop {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 150;
-    background: rgba(0, 0, 0, 0.40);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-  }
-  .nav-backdrop.is-open { display: block; }
-
-  /* === RIGHT DRAWER === */
-  .mobile-drawer {
-    position: fixed;
-    top: 64px;              /* below navbar */
-    right: 0;
-    width: 82vw;
-    max-width: 340px;
-    height: 80vh;
-    z-index: 200;
-    display: flex;
-    flex-direction: column;
-    padding: 24px 20px 24px;
-    background: rgba(8, 13, 32, 0.92);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    border-left: 1px solid rgba(255, 255, 255, 0.07);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom-left-radius: 24px;
-    box-shadow: -20px 20px 60px rgba(0, 0, 0, 0.5);
-    /* slide-in from right */
-    transform: translateX(calc(100% + 4px));
-    transition: transform 0.32s cubic-bezier(0.32, 0, 0, 1);
-    pointer-events: none;
-    overflow-y: auto;
-  }
-
-  .mobile-drawer.is-open {
-    transform: translateX(0);
-    pointer-events: auto;
-  }
-
-  /* Only show drawer on mobile */
-  @media (min-width: 768px) {
-    .mobile-drawer { display: none !important; }
-    .nav-backdrop  { display: none !important; }
-  }
-
-  /* Scroll darken on navbar */
-  @supports (animation-timeline: scroll()) {
-    .navbar-bg {
-      animation: navDarken linear both;
-      animation-timeline: scroll();
-      animation-range: 0px 100px;
-    }
-    @keyframes navDarken {
-      from { background: rgba(6, 9, 26, 0.0); }
-      to   { background: rgba(6, 9, 26, 0.95); }
-    }
-  }
+}
 </style>
 
 <script>
-  const hamburger  = document.getElementById('nav-hamburger')!;
-  const drawer     = document.getElementById('mobile-drawer')!;
-  const backdrop   = document.getElementById('nav-backdrop')!;
-  const closeBtn   = document.getElementById('drawer-close')!;
+(function () {
+  var ham   = document.getElementById('ham-btn');
+  var back  = document.getElementById('nav-back');
+  var drw   = document.getElementById('nav-drawer');
+  var xBtn  = document.getElementById('drawer-x');
 
-  function open() {
-    drawer.classList.add('is-open');
-    backdrop.classList.add('is-open');
-    hamburger.classList.add('is-open');
-    hamburger.setAttribute('aria-expanded', 'true');
-    drawer.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+  if (!ham || !back || !drw) return;
+
+  function openDrawer() {
+    drw.classList.add('open');
+    back.classList.add('open');
+    ham.classList.add('ham-open');
+    ham.setAttribute('aria-expanded', 'true');
+    drw.setAttribute('aria-hidden', 'false');
   }
 
-  function close() {
-    drawer.classList.remove('is-open');
-    backdrop.classList.remove('is-open');
-    hamburger.classList.remove('is-open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    drawer.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+  function closeDrawer() {
+    drw.classList.remove('open');
+    back.classList.remove('open');
+    ham.classList.remove('ham-open');
+    ham.setAttribute('aria-expanded', 'false');
+    drw.setAttribute('aria-hidden', 'true');
   }
 
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.contains('is-open') ? close() : open();
+  ham.addEventListener('click', function () {
+    ham.classList.contains('ham-open') ? closeDrawer() : openDrawer();
   });
 
-  closeBtn.addEventListener('click', close);
-  backdrop.addEventListener('click', close);
+  if (xBtn) xBtn.addEventListener('click', closeDrawer);
+  back.addEventListener('click', closeDrawer);
 
-  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  drw.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', closeDrawer);
+  });
 
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
-  window.addEventListener('resize', () => { if (window.innerWidth >= 768) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeDrawer();
+  });
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth >= 768) closeDrawer();
+  });
+}());
 </script>

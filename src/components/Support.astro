@@ -1,9 +1,9 @@
-﻿---
+---
 const partners = [
-  { name: 'PRODUK LOKAL', icon: 'ðŸª' },
-  { name: 'CORPORATE',    icon: 'ðŸ¢' },
-  { name: 'GOVERNMENT',   icon: 'ðŸ›ï¸' },
-  { name: 'STARTUP',      icon: 'ðŸš€' },
+  { name: 'PRODUK LOKAL', icon: '🏪' },
+  { name: 'CORPORATE',    icon: '🏢' },
+  { name: 'GOVERNMENT',   icon: '🏛️' },
+  { name: 'STARTUP',      icon: '🚀' },
 ];
 
 const trust = [
@@ -15,12 +15,12 @@ const trust = [
 
 <section class="py-36 bg-[#090e22] relative overflow-hidden">
 
-  <!-- Aurora background: biru kiri, ungu kanan â€” bukan flat hitam -->
+  <!-- Aurora background: biru kiri, ungu kanan — bukan flat hitam -->
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-0 -left-20 w-[600px] h-[500px]
-                bg-[radial-gradient(ellipse,rgba(50,69,255,0.07)_0%,transparent_70%)]"></div>
+                bg-[radial-gradient(ellipse,rgba(62,207,142,0.07)_0%,transparent_70%)]"></div>
     <div class="absolute bottom-0 -right-20 w-[500px] h-[500px]
-                bg-[radial-gradient(ellipse,rgba(188,82,238,0.06)_0%,transparent_70%)]"></div>
+                bg-[radial-gradient(ellipse,rgba(163,230,53,0.06)_0%,transparent_70%)]"></div>
   </div>
 
   <!-- Top fade dari section terang sebelumnya -->
@@ -29,7 +29,7 @@ const trust = [
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
 
-    <!-- â”€â”€ Section label â”€â”€ -->
+    <!-- ── Section label ── -->
     <div class="flex items-center justify-center gap-4 mb-20">
       <div class="h-[1px] w-8 bg-brand-primary/40"></div>
       <span class="text-brand-primary font-black text-[10px] uppercase tracking-[0.4em]">
@@ -38,7 +38,7 @@ const trust = [
       <div class="h-[1px] w-8 bg-brand-primary/40"></div>
     </div>
 
-    <!-- â”€â”€ Partner logos / icons â”€â”€ -->
+    <!-- ── Partner logos / icons ── -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-24">
       {partners.map((p) => (
         <div class="sp-partner group flex flex-col items-center gap-4 py-8 px-4
@@ -61,22 +61,22 @@ const trust = [
       ))}
     </div>
 
-    <!-- â”€â”€ CTA Block: dark navy dengan dual glow â”€â”€ -->
+    <!-- ── CTA Block: dark navy dengan dual glow ── -->
     <div class="sp-cta group relative rounded-[40px] overflow-hidden
                 border border-brand-primary/20
                 shadow-[0_40px_100px_rgba(0,0,0,0.5)]">
 
-      <!-- Base gradient background â€” bukan solid hitam -->
+      <!-- Base gradient background — bukan solid hitam -->
       <div class="absolute inset-0 bg-gradient-to-br from-[#0d0d1a] via-[#110d20] to-[#0d0d1a]"></div>
 
       <!-- Glow ungu: kanan atas -->
       <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full
-                  bg-[radial-gradient(ellipse,rgba(188,82,238,0.18)_0%,transparent_70%)]
+                  bg-[radial-gradient(ellipse,rgba(163,230,53,0.18)_0%,transparent_70%)]
                   group-hover:scale-125 transition-transform duration-1000"></div>
 
       <!-- Glow biru: kiri bawah -->
       <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full
-                  bg-[radial-gradient(ellipse,rgba(50,69,255,0.15)_0%,transparent_70%)]"></div>
+                  bg-[radial-gradient(ellipse,rgba(62,207,142,0.15)_0%,transparent_70%)]"></div>
 
       <!-- Top edge shimmer -->
       <div class="absolute top-0 left-1/4 right-1/4 h-[1px]

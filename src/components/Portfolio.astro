@@ -1,4 +1,4 @@
-﻿---
+---
 import { Image } from 'astro:assets';
 import port1 from '../assets/portfolio-1.webp';
 import port2 from '../assets/portfolio-4.webp';
@@ -11,30 +11,30 @@ const projects = [
 ];
 ---
 
-<section id="portfolio" class="py-28 bg-[#06091a] relative overflow-hidden">
+<section id="portfolio" class="py-28 bg-[#0B0C0B] relative overflow-hidden">
 
   <div class="absolute bottom-0 right-0 w-[500px] h-[400px]
-              bg-[radial-gradient(ellipse,rgba(188,82,238,0.06)_0%,transparent_70%)]
+              bg-[radial-gradient(ellipse,rgba(62,207,142,0.05)_0%,transparent_70%)]
               pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
 
     <div class="text-center max-w-2xl mx-auto mb-16">
       <span class="section-label">Portfolio Kami</span>
-      <h2 class="font-heading font-black uppercase text-4xl md:text-5xl leading-[0.9] tracking-tighter text-white mb-6">
-        Karya <span class="text-gradient-static">Terbaru</span> Untuk Klien Istimewa.
+      <h2 class="font-heading font-extrabold text-4xl md:text-[2.75rem] leading-[1.1] tracking-tight text-white mb-6">
+        Karya <span class="word-accent">terbaru</span> untuk klien istimewa.
       </h2>
-      <p class="text-white/40 text-sm md:text-base leading-relaxed">
+      <p class="text-white/50 text-sm md:text-base leading-relaxed">
         Lihat bagaimana kami membantu berbagai bisnis dan UMKM bertransformasi secara digital dengan website yang modern dan performa tinggi.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {projects.map((p) => (
-        <div class="group relative rounded-[20px] overflow-hidden
-                    border border-white/[0.04] hover:border-[#3245FF]/30
+        <div class="group relative rounded-3xl overflow-hidden
+                    border border-white/[0.07] hover:border-[#3ECF8E]/35
                     transition-all duration-500 hover:-translate-y-2
-                    shadow-[0_0_0_0] hover:shadow-[0_30px_60px_rgba(0,0,0,0.5)]">
+                    hover:shadow-[0_30px_60px_rgba(0,0,0,0.5)]">
 
           <div class="overflow-hidden">
             <Image
@@ -44,11 +44,11 @@ const projects = [
             />
           </div>
 
-          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0e]/95 via-[#0a0a0e]/40 to-transparent
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0B0C0B]/95 via-[#0B0C0B]/40 to-transparent
                       opacity-0 group-hover:opacity-100 transition-opacity duration-500
                       flex flex-col justify-end p-7">
-            <span class="text-[#3245FF] font-black text-[10px] uppercase tracking-[0.3em] mb-2">{p.category}</span>
-            <h3 class="font-heading text-white text-2xl">{p.title}</h3>
+            <span class="text-[#3ECF8E] font-semibold text-xs uppercase tracking-[0.15em] mb-2">{p.category}</span>
+            <h3 class="font-heading font-bold text-white text-2xl">{p.title}</h3>
           </div>
 
         </div>

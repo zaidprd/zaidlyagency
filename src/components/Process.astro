@@ -1,4 +1,4 @@
-﻿---
+---
 const steps = [
   {
     num: '01',
@@ -23,10 +23,10 @@ const steps = [
 ];
 ---
 
-<section id="process" class="py-28 bg-[#080d20] relative overflow-hidden">
+<section id="process" class="py-28 bg-[#0E100E] relative overflow-hidden">
 
   <div class="absolute top-0 right-0 w-[500px] h-[500px]
-              bg-[radial-gradient(ellipse,rgba(50,69,255,0.06)_0%,transparent_70%)]
+              bg-[radial-gradient(ellipse,rgba(62,207,142,0.05)_0%,transparent_70%)]
               pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
@@ -35,10 +35,10 @@ const steps = [
       <!-- Left: heading -->
       <div class="lg:sticky lg:top-32">
         <span class="section-label">Alur Kerja Kami</span>
-        <h2 class="font-heading font-black uppercase text-4xl md:text-5xl leading-[0.9] tracking-tighter text-white mb-6">
-          Cara Kami <span class="text-gradient-static">Mewujudkan</span> Website Impian Anda.
+        <h2 class="font-heading font-extrabold text-4xl md:text-[2.75rem] leading-[1.1] tracking-tight text-white mb-6">
+          Cara kami <span class="word-accent">mewujudkan</span> website impian Anda.
         </h2>
-        <p class="text-white/40 leading-relaxed mb-8 max-w-sm">
+        <p class="text-white/50 leading-relaxed mb-8 max-w-sm">
           Proses transparan menggunakan platform yang sesuai dengan kebutuhan bisnis Anda, baik WordPress maupun Custom Code.
         </p>
         <a href="https://wa.me/6281274203815" target="_blank" class="btn-premium">
@@ -51,22 +51,22 @@ const steps = [
         {steps.map((step) => (
           <div class="card-premium p-8 group">
 
-            <div class="text-6xl font-heading font-black leading-none mb-4
-                        bg-gradient-to-br from-white/[0.04] to-white/[0.01] bg-clip-text text-transparent
-                        text-white/[0.06]">
+            <div class="inline-flex items-center justify-center w-11 h-11 rounded-full mb-5
+                        border border-[#3ECF8E]/25 bg-[#3ECF8E]/[0.06]
+                        text-[#3ECF8E] font-bold text-sm
+                        group-hover:bg-[#3ECF8E] group-hover:text-[#07100B] transition-colors duration-500">
               {step.num}
             </div>
 
-            <h3 class="font-heading text-white text-lg mb-3 group-hover:text-gradient-static transition-all">
+            <h3 class="font-heading font-bold text-white text-lg mb-3">
               {step.title}
             </h3>
 
-            <p class="text-white/40 text-sm leading-relaxed">
+            <p class="text-white/45 text-sm leading-relaxed">
               {step.desc}
             </p>
 
-            <div class="mt-5 h-[1px] w-0 group-hover:w-full transition-all duration-500
-                        bg-gradient-to-r from-[#3245FF] to-[#BC52EE]"></div>
+            <div class="mt-5 h-[1px] w-0 group-hover:w-full transition-all duration-500 bg-[#3ECF8E]/60"></div>
 
           </div>
         ))}

@@ -1,4 +1,4 @@
-﻿---
+---
 const year = new Date().getFullYear();
 
 const services = [
@@ -22,52 +22,45 @@ const socials = [
 ];
 ---
 
-<footer class="ft relative overflow-hidden border-t border-[#3245FF]/10">
+<footer class="ft relative overflow-hidden border-t border-white/[0.06]">
 
-  <div class="absolute inset-0 bg-gradient-to-b from-[#07070d] to-[#06091a]"></div>
+  <div class="absolute inset-0 bg-[#0A0B0A]"></div>
 
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[250px]
-              bg-[radial-gradient(ellipse_at_50%_0%,rgba(50,69,255,0.08)_0%,transparent_70%)]
-              pointer-events-none"></div>
-  <div class="absolute -bottom-16 -left-16 w-[350px] h-[350px]
-              bg-[radial-gradient(ellipse,rgba(188,82,238,0.06)_0%,transparent_70%)]
+              bg-[radial-gradient(ellipse_at_50%_0%,rgba(62,207,142,0.06)_0%,transparent_70%)]
               pointer-events-none"></div>
 
-  <div class="max-w-7xl mx-auto px-6 py-24 relative z-10">
+  <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
 
-    <div class="h-[1px] mb-20
-                bg-gradient-to-r from-transparent via-[#3245FF]/30 to-[#BC52EE]/20 to-transparent"></div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 items-start mb-20">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 items-start mb-16">
 
       <!-- Brand col -->
       <div class="lg:col-span-2 space-y-6">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-[10px] flex items-center justify-center
-                      font-black text-lg text-white
-                      shadow-[0_4px_16px_rgba(50,69,255,0.4)]"
-               style="background: linear-gradient(135deg, #3245FF, #BC52EE);">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center
+                      font-extrabold text-lg text-[#07100B] bg-[#3ECF8E]
+                      shadow-[0_4px_16px_rgba(62,207,142,0.3)]">
             Z
           </div>
-          <div class="text-[22px] font-heading font-black uppercase tracking-tighter text-white leading-none">
-            ZAIDLY<span class="text-gradient-static">.</span>
+          <div class="text-[22px] font-heading font-extrabold tracking-tight text-white leading-none">
+            zaidly<span class="text-[#3ECF8E]">.</span>
           </div>
         </div>
 
-        <p class="text-white/35 text-sm font-medium leading-relaxed max-w-xs">
+        <p class="text-white/45 text-sm leading-relaxed max-w-xs">
           Partner strategis
-          <span class="text-white/70 font-bold">Transformasi Digital</span>
-          untuk UMKM & Perusahaan dengan teknologi web modern kelas dunia.
+          <span class="text-white/80 font-semibold">transformasi digital</span>
+          untuk UMKM & perusahaan dengan teknologi web modern kelas dunia.
         </p>
 
         <div class="flex gap-2">
           {socials.map((s) => (
             <a href={s.href} target="_blank" rel="noopener"
-               class="w-9 h-9 rounded-[8px] border border-white/[0.07]
+               class="w-9 h-9 rounded-lg border border-white/[0.08]
                       bg-white/[0.03] flex items-center justify-center
-                      text-[9px] font-black uppercase tracking-widest text-white/35
-                      transition-all duration-300 hover:border-[#3245FF]/40
-                      hover:text-white hover:bg-[#3245FF]/10 hover:-translate-y-0.5">
+                      text-[10px] font-bold text-white/45
+                      transition-all duration-300 hover:border-[#3ECF8E]/45
+                      hover:text-[#3ECF8E] hover:bg-[#3ECF8E]/[0.08] hover:-translate-y-0.5">
               {s.label}
             </a>
           ))}
@@ -76,17 +69,15 @@ const socials = [
 
       <!-- Layanan col -->
       <div class="space-y-5">
-        <h4 class="text-[9px] font-black uppercase tracking-[0.35em] text-[#3245FF]"
-            style="font-family: var(--font-heading); letter-spacing: 0.35em;">
+        <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-[#3ECF8E]">
           Layanan
         </h4>
-        <nav class="flex flex-col gap-4">
+        <nav class="flex flex-col gap-3.5">
           {services.map((s) => (
             <a href={s.href}
-               class="group inline-flex items-center gap-2
-                      text-[11px] font-bold uppercase tracking-[0.15em]
-                      text-white/30 hover:text-white transition-colors duration-300">
-              <span class="w-0 h-[1px] bg-[#3245FF] rounded-full
+               class="group inline-flex items-center gap-2 text-sm font-medium
+                      text-white/45 hover:text-white transition-colors duration-300">
+              <span class="w-0 h-[1px] bg-[#3ECF8E] rounded-full
                            group-hover:w-3 transition-all duration-300"></span>
               {s.label}
             </a>
@@ -96,19 +87,18 @@ const socials = [
 
       <!-- Kontak col -->
       <div class="space-y-5">
-        <h4 class="text-[9px] font-black uppercase tracking-[0.35em] text-[#3245FF]"
-            style="font-family: var(--font-heading); letter-spacing: 0.35em;">
+        <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-[#3ECF8E]">
           Hubungi Kami
         </h4>
         <div class="flex flex-col gap-3">
-          <p class="text-white/55 text-[12px] font-semibold tracking-wide">
+          <p class="text-white/60 text-sm">
             hello@zaidly.com
           </p>
-          <p class="text-white/55 text-[12px] font-semibold uppercase tracking-wide">
+          <p class="text-white/60 text-sm">
             Jakarta, Indonesia
           </p>
           <a href="tel:+6281274203815"
-             class="text-[12px] font-black text-gradient-static hover:opacity-80 transition-opacity">
+             class="text-sm font-bold text-[#3ECF8E] hover:opacity-80 transition-opacity">
             +62 812 7420 3815
           </a>
         </div>
@@ -116,24 +106,19 @@ const socials = [
 
     </div>
 
-    <div class="pt-8 border-t border-white/[0.04]
+    <div class="pt-8 border-t border-white/[0.06]
                 flex flex-col md:flex-row justify-between items-center gap-5">
 
-      <div class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/20">
-        &copy; {year} ZAIDLY AGENCY.
-        <span class="text-[#3245FF]/40 ml-1">ALL RIGHTS RESERVED.</span>
+      <div class="text-xs text-white/30">
+        &copy; {year} Zaidly Agency.
+        <span class="text-white/40 ml-1">All rights reserved.</span>
       </div>
 
-      <div class="flex gap-8 text-[10px] font-bold uppercase tracking-[0.15em] text-white/20">
-        <a href="#" class="hover:text-white/60 transition-colors duration-300">Privacy Policy</a>
-        <a href="#" class="hover:text-white/60 transition-colors duration-300">Terms of Service</a>
+      <div class="flex gap-8 text-xs text-white/30">
+        <a href="#" class="hover:text-white/70 transition-colors duration-300">Privacy Policy</a>
+        <a href="#" class="hover:text-white/70 transition-colors duration-300">Terms of Service</a>
       </div>
 
     </div>
   </div>
 </footer>
-
-<style>
-  @reference "../styles/global.css";
-  .ft { font-style: normal; }
-</style>
