@@ -26,8 +26,59 @@ renderer.heading = function ({ text, depth }: { text: string; depth: number }) {
 };
 marked.use({ renderer });
 
+const escapeHtml = (text = '') => text
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+  .replace(/'/g, '&#039;');
+
+function renderPromptBlock(block: any): string {
+  const title = escapeHtml(block.title || 'Prompt');
+  const description = block.description
+    ? `<p class="prompt-block__description">${escapeHtml(block.description)}</p>`
+    : '';
+  const model = block.recommendedModel
+    ? `<span>${escapeHtml(block.recommendedModel)}</span>`
+    : '';
+  const tested = block.lastTestedAt
+    ? `<span>Terakhir diuji ${new Date(block.lastTestedAt).toLocaleDateString('id-ID', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      })}</span>`
+    : '';
+  const meta = model || tested
+    ? `<div class="prompt-block__meta">${model}${tested}</div>`
+    : '';
+  const downloadButton = block.allowDownload !== false
+    ? '<button type="button" class="prompt-action" data-prompt-download>Download .txt</button>'
+    : '';
+
+  return `<section class="prompt-block" data-prompt-block>
+    <div class="prompt-block__header">
+      <div>
+        <span class="prompt-block__eyebrow">Prompt siap pakai</span>
+        <h3>${title}</h3>
+        ${description}
+        ${meta}
+      </div>
+      <div class="prompt-block__actions">
+        <button type="button" class="prompt-action prompt-action--primary" data-prompt-copy>${escapeHtml(block.copyLabel || 'Salin Prompt')}</button>
+        ${downloadButton}
+      </div>
+    </div>
+    <div class="prompt-block__content" data-prompt-content>
+      <pre><code>${escapeHtml(block.prompt || '')}</code></pre>
+    </div>
+    <button type="button" class="prompt-block__toggle" data-prompt-toggle aria-expanded="false">Tampilkan seluruh prompt</button>
+    <p class="prompt-block__status" data-prompt-status aria-live="polite"></p>
+  </section>`;
+}
+
 function blocksToMarkdown(blocks: any[]): string {
-  return blocks.map((block) => {
+  return blocks.map((block, index) => {
+    if (block._type === 'promptBlock') {
+      return `\n<div data-prompt-placeholder="${index}"></div>\n`;
+    }
     if (block._type === 'image' && block.asset?._ref) {
       const src = sanityImgUrl(block.asset._ref, 900);
       const alt = block.alt || '';
@@ -53,6 +104,10 @@ function blocksToMarkdown(blocks: any[]): string {
       if (marks.includes('code')) t = `\`${t}\``;
       return t;
     }).join('');
+    if (block.listItem) {
+      const indent = '  '.repeat(Math.max((block.level || 1) - 1, 0));
+      return `${indent}${block.listItem === 'number' ? '1.' : '-'} ${text}`;
+    }
     switch (block.style) {
       case 'h1': return `# ${text}`;
       case 'h2': return `## ${text}`;
@@ -61,13 +116,19 @@ function blocksToMarkdown(blocks: any[]): string {
       case 'blockquote': return `> ${text}`;
       default: return text;
     }
-  }).filter(Boolean).join('\n\n');
+  }).filter(Boolean).join('\n\n').replace(/(^|\n)(\s*(?:1\.|-) .*)\n\n(?=\s*(?:1\.|-) )/g, '$1$2\n');
 }
 
 let html = '';
 if (value && Array.isArray(value)) {
   const markdown = blocksToMarkdown(value);
   html = marked.parse(markdown, { async: false, breaks: false }) as string;
+  value.forEach((block: any, index: number) => {
+    if (block._type === 'promptBlock') {
+      const placeholder = `<div data-prompt-placeholder="${index}"></div>`;
+      html = html.replace(placeholder, renderPromptBlock(block));
+    }
+  });
 }
 ---
 
@@ -236,4 +297,222 @@ if (value && Array.isArray(value)) {
   .portable-md tr:last-child td {
     border-bottom: none;
   }
+
+  .portable-md .prompt-block {
+    margin: 2.5rem 0;
+    overflow: hidden;
+    border: 1px solid rgba(62, 207, 142, 0.25);
+    border-radius: 18px;
+    background: #0d120f;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  }
+
+  .portable-md .prompt-block__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(135deg, rgba(62, 207, 142, 0.1), transparent 62%);
+  }
+
+  .portable-md .prompt-block__eyebrow {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: #3ECF8E;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .portable-md .prompt-block h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.3;
+    text-transform: none;
+  }
+
+  .portable-md .prompt-block__description {
+    max-width: 42rem;
+    margin: 0.55rem 0 0;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .portable-md .prompt-block__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin-top: 0.8rem;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.72rem;
+  }
+
+  .portable-md .prompt-block__actions {
+    display: flex;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .portable-md .prompt-action,
+  .portable-md .prompt-block__toggle {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9px;
+    padding: 0.7rem 0.9rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.78);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.76rem;
+    font-weight: 700;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+  }
+
+  .portable-md .prompt-action:hover,
+  .portable-md .prompt-block__toggle:hover {
+    border-color: rgba(62, 207, 142, 0.55);
+    color: white;
+  }
+
+  .portable-md .prompt-action--primary {
+    border-color: #3ECF8E;
+    background: #3ECF8E;
+    color: #07100b;
+  }
+
+  .portable-md .prompt-action--primary:hover {
+    background: #65daa7;
+    color: #07100b;
+  }
+
+  .portable-md .prompt-block__content {
+    position: relative;
+    max-height: 28rem;
+    overflow: hidden;
+  }
+
+  .portable-md .prompt-block__content::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 6rem;
+    pointer-events: none;
+    background: linear-gradient(transparent, #090e0b);
+  }
+
+  .portable-md .prompt-block.is-expanded .prompt-block__content {
+    max-height: none;
+  }
+
+  .portable-md .prompt-block.is-expanded .prompt-block__content::after {
+    display: none;
+  }
+
+  .portable-md .prompt-block pre {
+    max-height: none;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    padding: 1.5rem;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .portable-md .prompt-block__toggle {
+    display: block;
+    margin: 1rem auto;
+  }
+
+  .portable-md .prompt-block__status {
+    min-height: 1.25rem;
+    margin: 0;
+    padding: 0 1.5rem 0.8rem;
+    color: #3ECF8E;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .portable-md .prompt-block__header {
+      flex-direction: column;
+      padding: 1.15rem;
+    }
+
+    .portable-md .prompt-block__actions {
+      width: 100%;
+    }
+
+    .portable-md .prompt-action {
+      flex: 1;
+    }
+
+    .portable-md .prompt-block pre {
+      padding: 1.15rem;
+      font-size: 0.78rem;
+    }
+  }
 </style>
+
+<script>
+  function initializePromptBlocks() {
+    document.querySelectorAll<HTMLElement>('[data-prompt-block]').forEach((block) => {
+      if (block.dataset.initialized === 'true') return;
+      block.dataset.initialized = 'true';
+
+      const prompt = block.querySelector('code')?.textContent || '';
+      const status = block.querySelector<HTMLElement>('[data-prompt-status]');
+      const copyButton = block.querySelector<HTMLButtonElement>('[data-prompt-copy]');
+      const toggleButton = block.querySelector<HTMLButtonElement>('[data-prompt-toggle]');
+
+      const setStatus = (message: string) => {
+        if (!status) return;
+        status.textContent = message;
+        window.setTimeout(() => {
+          if (status.textContent === message) status.textContent = '';
+        }, 3000);
+      };
+
+      copyButton?.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(prompt);
+          setStatus('Prompt berhasil disalin.');
+        } catch {
+          const textarea = document.createElement('textarea');
+          textarea.value = prompt;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          const copied = document.execCommand('copy');
+          textarea.remove();
+          setStatus(copied ? 'Prompt berhasil disalin.' : 'Gagal menyalin prompt.');
+        }
+      });
+
+      block.querySelector<HTMLButtonElement>('[data-prompt-download]')?.addEventListener('click', () => {
+        const blob = new Blob([prompt], {type: 'text/plain;charset=utf-8'});
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = 'zaidly-motion-explainer-prompt.txt';
+        anchor.click();
+        URL.revokeObjectURL(url);
+        setStatus('File prompt berhasil diunduh.');
+      });
+
+      toggleButton?.addEventListener('click', () => {
+        const expanded = block.classList.toggle('is-expanded');
+        toggleButton.setAttribute('aria-expanded', String(expanded));
+        toggleButton.textContent = expanded ? 'Ringkas prompt' : 'Tampilkan seluruh prompt';
+      });
+    });
+  }
+
+  initializePromptBlocks();
+  document.addEventListener('astro:page-load', initializePromptBlocks);
+</script>

@@ -8,19 +8,21 @@ interface Props {
   description?: string;
   ogImage?: string;
   keywords?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title,
   description = "Zaidly Agency membantu UMKM go-online dengan jasa pembuatan website profesional, cepat, dan terjangkau.",
   ogImage = "/og-image.svg",
-  keywords = "jasa website umkm, bikin website murah, jasa digital agency, website profesional"
+  keywords = "jasa website umkm, bikin website murah, jasa digital agency, website profesional",
+  structuredData,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://zaidly.com");
 const ogImageURL = new URL(ogImage, "https://zaidly.com").href;
 
-const schema = JSON.stringify({
+const defaultSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Zaidly Agency",
@@ -37,7 +39,9 @@ const schema = JSON.stringify({
   },
   "priceRange": "Rp 588.000 - Rp 2.588.000",
   "sameAs": ["https://zaidly.com"]
-});
+};
+
+const schema = JSON.stringify(structuredData || defaultSchema);
 ---
 <!doctype html>
 <html lang="id">
