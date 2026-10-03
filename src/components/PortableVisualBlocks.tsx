@@ -41,6 +41,13 @@ function blocksToMarkdown(blocks: any[]): string {
         : `![${alt}](${src})`;
     }
 
+    if (block._type === 'youtube') {
+      const match = (block.url || '').trim().match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/i);
+      const videoId = match ? match[1] : null;
+      if (!videoId) return '';
+      return `\n<div class="youtube-player-container"><div class="youtube-player-card"><div class="youtube-player-ratio"><iframe src="https://www.youtube-nocookie.com/embed/${videoId}?rel=0" class="youtube-iframe" allowfullscreen></iframe></div></div></div>\n`;
+    }
+
     if (block._type !== 'block') return '';
 
     // Extract text with marks (bold/italic/links)
